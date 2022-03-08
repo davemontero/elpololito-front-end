@@ -1,6 +1,10 @@
 import React from 'react';
 const SignUp = () => {
-    return <div> ola </div> ;
+    return (
+    <div>
+        <h1>ola</h1>
+    </div>
+    );
 }
 
 export default SignUp;
