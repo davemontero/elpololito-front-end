@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
+import PetitionModal from '../components/PetitionModal';
 
 function LandingPage() {
     const [openAviso, setOpenAviso] = useState(false);
@@ -30,26 +31,7 @@ function LandingPage() {
                 <Row>
                     <Col xs={{ span: 5, offset: 2 }}>
                         <div className='infoBlurb'>
-                            <Button
-                                className="btn btn-primary btn-lg btn3d"
-                                onClick={() => setOpenAviso(!openAviso)}
-                                aria-controls="collapseInfoAviso"
-                                aria-expanded={openAviso}
-                            >
-                                Crear aviso
-                            </Button>
-                            <Collapse in={openAviso}>
-                                <div id="collapseInfoAviso">
-                                    <div>
-                                        <h2> Buscas ayuda con una peguita? </h2>
-                                        <ul>
-                                        <li> Crea un aviso con el trabajo que quieres que se realice </li>
-                                        <li> Busca trabajadores cuyo perfil coincida con el trabajo que quieres que se realice </li>
-                                        <li> Ponte en contacto con el trabajador ideal para tus necesidades </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </Collapse>
+                            <PetitionModal />
                         </div>
                     </Col>
                     <Col xs={{ span: 5 }}>
@@ -73,7 +55,7 @@ function LandingPage() {
                             </Collapse>
                         </div>
                     </Col>
-                </Row>               
+                </Row>
                 <br />
                 <br />
                 <br />
