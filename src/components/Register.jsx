@@ -64,22 +64,96 @@ const AddUser = () => {
         <div className='container'>
             <form>
                 <div className="mb-3">
-                    <label htmlFor="InputName" className="form-label">Nombres </label>
+                    <label htmlFor="InputName" className="form-label">RUT Sin digito verificador</label>
                     <input type="text"
                         className="form-control"
                         id="InputName"
                         aria-describedby="NameHelp"
-                        value={form.Name}
+                        value={form.run}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="InputLastName" className="form-label">Apellidos</label>
+                    <label htmlFor="InputName" className="form-label">Primer Nombre</label>
+                    <input type="text"
+                        className="form-control"
+                        id="InputName"
+                        aria-describedby="NameHelp"
+                        value={form.fname}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="InputName" className="form-label">Segundo Nombre</label>
+                    <input type="text"
+                        className="form-control"
+                        id="InputName"
+                        aria-describedby="NameHelp"
+                        value={form.sname}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="InputLastName" className="form-label">Apellido Paterno</label>
                     <input type="text"
                         className="form-control"
                         id="InputLastName"
                         aria-describedby="LastNameHelp"
                         value={form.LastName}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="InputLastName" className="form-label">Apellido Materno</label>
+                    <input type="text"
+                        className="form-control"
+                        id="InputLastName"
+                        aria-describedby="LastNameHelp"
+                        value={form.LastName2}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="InputContactNumber" className="form-label">Numero de contacto</label>
+                    <input type="Integer"
+                        className="form-control"
+                        id="InputContactNumber"
+                        aria-describedby="ContactNumberHelp"
+                        value={form.ContactNumer}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="InputContactNumber" className="form-label">Fecha de Nacimiento</label>
+                    <input type="Integer"
+                        className="form-control"
+                        id="InputContactNumber"
+                        aria-describedby="ContactNumberHelp"
+                        value={form.Dob}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-Genre">
+                            Genero
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="#/action-1">Hombre</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">Mujer</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">Otro</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">Prefiero no decir</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="InputMail" className="form-label">Url de foto de Perfil</label>
+                    <input type="text"
+                        className="form-control"
+                        id="InputLastName"
+                        aria-describedby="LastNameHelp"
+                        value={form.email}
                         onChange={handleChange}
                     />
                 </div>
@@ -89,7 +163,7 @@ const AddUser = () => {
                         className="form-control"
                         id="InputLastName"
                         aria-describedby="LastNameHelp"
-                        value={form.LastName}
+                        value={form.email}
                         onChange={handleChange}
                     />
                 </div>
@@ -113,34 +187,11 @@ const AddUser = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="InputContactNumber" className="form-label">Numero de contacto</label>
-                    <input type="Integer"
-                        className="form-control"
-                        id="InputContactNumber"
-                        aria-describedby="ContactNumberHelp"
-                        value={form.ContactNumer}
-                        onChange={handleChange}
-                    />
-                </div>
                 <br>
                 </br>
-                <div>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-Genre">
-                            Genero
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Hombre</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Mujer</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Otro</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Prefiero no decir</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </div>
                 <br>
                 </br>
+                
                 <div className="mb-3">
                     <div className="container">
                         <Joblist addTodo={addTodo} />
@@ -157,7 +208,6 @@ const AddUser = () => {
                         </div>
                     </div>
                     <div id="jobHelp" className="form-text">En caso de ser querer publicar un aviso proceder sin actuar</div>
-
                 </div>
                 <br>
                 </br>
