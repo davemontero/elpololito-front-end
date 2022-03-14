@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 import Container from 'react-bootstrap/Container';
@@ -46,7 +47,7 @@ function LandingPage() {
                             </Button>
                             <Collapse in={openPololito}>
                                 <div id="collapseInfoPololito">
-                                    <h2> Querí shaajar? </h2>
+                                    <h2> ¿Quieres realizar pololitos? </h2>
                                     <ul>
                                         <li> Crea un Perfil de Trabajador a través del cual otros usuarios podrán encontrarte en los rubros que definas</li>
                                         <li> Filtra avisos de trabajo según tus habilidades o según la comuna para encontrar el trabajo perfecto para ti</li>
@@ -83,13 +84,15 @@ function LandingPage() {
                         <Carousel id="carousel-trabajadores" variant="dark" align="center">
                             <Carousel.Item>
                                 <Card style={{ width: '24rem' }}>
-                                    <Card.Img className="img-fluid" variant="top" src="https://cdn2.actitudfem.com/media/files/styles/big_img/public/images/2021/08/principal-goku-dragon-ball-es-asexual.jpg" />
+                                    <Card.Img className="img-fluid" variant="top" src="https://cdn.geeksterra.com/q:i/r:1/wp:1/w:380/u:https://geeksterra.com/wp-content/uploads/2021/04/Goku-trabajando.jpg" />
                                     <Card.Body>
                                         <Card.Title>Son Gokú</Card.Title>
                                         <Card.Text>
-                                            Realiza sacás de chucha a domicilio.
+                                            Granjero
                                         </Card.Text>
-                                        <Button variant="primary">Contactar</Button>
+                                        <div>
+                                            <Link to="SignUp" className="btn btn-primary">Contactar</Link>
+                                        </div>
                                     </Card.Body>
                                 </Card>
                             </Carousel.Item>
@@ -101,7 +104,9 @@ function LandingPage() {
                                         <Card.Text>
                                             Realiza entregas en todo Santiago
                                         </Card.Text>
-                                        <Button variant="primary">Contactar</Button>
+                                        <div>
+                                            <Link to="SignUp" className="btn btn-primary">Contactar</Link>
+                                        </div>
                                     </Card.Body>
                                 </Card>
                             </Carousel.Item>
@@ -113,7 +118,9 @@ function LandingPage() {
                                         <Card.Text>
                                             Plomero, Tenista, Golfista, Jardinero, Cazafantasmas, Medallista Olímpico...
                                         </Card.Text>
-                                        <Button variant="primary">Contactar</Button>
+                                        <div>
+                                            <Link to="SignUp" className="btn btn-primary">Contactar</Link>
+                                        </div>
                                     </Card.Body>
                                 </Card>
                             </Carousel.Item>
