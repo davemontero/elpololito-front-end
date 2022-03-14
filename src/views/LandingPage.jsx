@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";  
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 import Container from 'react-bootstrap/Container';
@@ -6,6 +7,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
+import BotonAviso from "../components/LinkButton.jsx"
+
 
 function LandingPage() {
     const [openAviso, setOpenAviso] = useState(false);
@@ -47,6 +50,7 @@ function LandingPage() {
                                         <li> Busca trabajadores cuyo perfil coincida con el trabajo que quieres que se realice </li>
                                         <li> Ponte en contacto con el trabajador ideal para tus necesidades </li>
                                         </ul>
+                                                                 
                                     </div>
                                 </div>
                             </Collapse>
