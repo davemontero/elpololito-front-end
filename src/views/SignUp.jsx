@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import RegisterModal from "../components/RegisterModal"
+import { Link } from 'react-router-dom';
 
 
 
@@ -39,6 +40,8 @@ const SignUp = () => {
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">Registrar</button>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                <Link to="/password-recovery" className="btn btn-primary">Olvidé mi contraseña</Link>
                 <br>
                 </br>
                 <br>

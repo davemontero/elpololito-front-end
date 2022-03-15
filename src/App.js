@@ -13,7 +13,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/SignUp" element={<SignUp />} />
-                <Route path="/LostPassword" element={<LostPassword />} />
+                <Route path="/password-recovery" element={<LostPassword />} />
             </Routes>
         </Router>
     </>
