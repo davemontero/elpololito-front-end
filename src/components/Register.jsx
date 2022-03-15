@@ -50,7 +50,11 @@ const AddUser = () => {
         setJob(NewJob);
     };
 
-    const [form, setForm] = useState({});
+    const [form, setForm] = useState({
+
+    }
+
+    );
 
     const handleChange = e => {
         setForm({
@@ -59,15 +63,21 @@ const AddUser = () => {
         });
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        alert("El formulario se envio")
+    };
+
     console.log(form)
     return (
         <div className='container'>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="InputName" className="form-label">Nombres </label>
                     <input type="text"
                         className="form-control"
                         id="InputName"
+                        name='Name'
                         aria-describedby="NameHelp"
                         value={form.Name}
                         onChange={handleChange}
@@ -78,6 +88,7 @@ const AddUser = () => {
                     <input type="text"
                         className="form-control"
                         id="InputLastName"
+                        name='LastName'
                         aria-describedby="LastNameHelp"
                         value={form.LastName}
                         onChange={handleChange}
@@ -87,9 +98,10 @@ const AddUser = () => {
                     <label htmlFor="InputMail" className="form-label">Direccion de correo</label>
                     <input type="text"
                         className="form-control"
-                        id="InputLastName"
-                        aria-describedby="LastNameHelp"
-                        value={form.LastName}
+                        id="InputMail"
+                        name='Mail'
+                        aria-describedby="MailHelp"
+                        value={form.Mail}
                         onChange={handleChange}
                     />
                 </div>
@@ -98,6 +110,7 @@ const AddUser = () => {
                     <input type="password"
                         className="form-control"
                         id="InputPassword"
+                        name='password'
                         aria-describedby="PasswordHelp"
                         value={form.Password}
                         onChange={handleChange}
@@ -108,6 +121,7 @@ const AddUser = () => {
                     <input type="password"
                         className="form-control"
                         id="InputPassword2"
+                        name='password2'
                         aria-describedby="Password2Help"
                         value={form.Password2}
                         onChange={handleChange}
@@ -118,6 +132,7 @@ const AddUser = () => {
                     <input type="Integer"
                         className="form-control"
                         id="InputContactNumber"
+                        name='Numero de contacto'
                         aria-describedby="ContactNumberHelp"
                         value={form.ContactNumer}
                         onChange={handleChange}
@@ -162,10 +177,10 @@ const AddUser = () => {
                 <br>
                 </br>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" 
-                    class="form-check-input" 
-                    id="CheckEmployer"
-                    value={form.Employer}
+                    <input type="checkbox"
+                        class="form-check-input"
+                        id="CheckEmployer"
+                        value={form.Employer}
                     />
                     <label class="form-check-label" for="CheckEmployer">Es usted un empleador ?</label>
                 </div>
