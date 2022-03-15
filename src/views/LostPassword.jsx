@@ -7,9 +7,9 @@ const LostPassword = () => {
 
 
         // Sé que estp está mal, pero tuve que salir antes de seguir weando con los métodos ups... a la noche lo termino!
-        fetch('localhost:3306/password-recovery')
+        fetch('http://localhost:3306/password-recovery')
             .then(response => response.json())
-            .then(data => {mail});
+            .then(data =>  console.log(data));
             //aaaaa
     
     }, []);
