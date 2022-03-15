@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import injectContext from "./store/pololitoContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from "./components/Navbar"
 import SignUp from "./views/SignUp";
 import LandingPage from "./views/LandingPage";
+import Navbar from "./components/Navbar";
+import LostPassword from "./views/LostPassword";
 
 const App = () => {
     return <>
@@ -13,6 +13,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/SignUp" element={<SignUp />} />
+                <Route path="/password-recovery" element={<LostPassword />} />
             </Routes>
         </Router>
     </>

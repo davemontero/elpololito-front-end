@@ -1,9 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
+import RegisterModal from "../components/RegisterModal"
+import { Link } from 'react-router-dom';
+
+
+
 const SignUp = () => {
+
+    const [form, setForm] = useState({});
+
+    const handleChange = e => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value,
+        });
+
+    };
     return (
-    <div>
-        <h1>ola</h1>
-    </div>
+        <div className='container'>
+            <form>
+                <div className="mb-3">
+                    <label htmlFor="InputMail" className="form-label">Direccion de correo</label>
+                    <input type="text"
+                        className="form-control"
+                        id="InputMail"
+                        aria-describedby="MailHelp"
+                        value={form.Mail}
+                        onChange={handleChange}
+                    />
+                    <div id="MailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="InputPassword" className="form-label">Password</label>
+                    <input type="password"
+                        className="form-control"
+                        id="InputPassword"
+                        aria-describedby="PasswordHelp"
+                        value={form.Password}
+                        onChange={handleChange}
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary">Registrar</button>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                <Link to="/password-recovery" className="btn btn-primary">Olvidé mi contraseña</Link>
+                <br>
+                </br>
+                <br>
+                </br>
+                <div>
+                    <RegisterModal/>
+                </div>
+            </form>
+        </div>
     );
 }
 

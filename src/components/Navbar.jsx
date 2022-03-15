@@ -1,44 +1,41 @@
-import React from 'react'
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
+import { Button, Modal } from "react-bootstrap";
+const NavBar = () => {
 
-const Navbar = () => {
+   
+
     return (
+
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">Navbar</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <Link to="/" className="btn btn-primary col-1"> Inicio </Link>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <div className="collapse navbar-collapse row ms-3" id="navbarNav">
+                    <ul className="navbar-nav col-10">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Link</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><hr className="dropdown-divider" /></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            <a className="nav-link active" aria-current="page" href="#"></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link disabled">Disabled</a>
+                            <a className="nav-link" href="#"></a>
                         </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#"></a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true"></a>
+                        </li>
+
+                        
                     </ul>
-                    <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <Link to="SignUp" className="btn btn-primary col-1">Iniciar Sesion</Link>
                 </div>
             </div>
         </nav>
     )
-}
+};
 
-export default Navbar;
+export default NavBar
