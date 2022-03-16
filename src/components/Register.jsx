@@ -138,7 +138,6 @@ const AddUser = () => {
                         <Dropdown.Toggle variant="success" id="dropdown-Genre">
                             Genero
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="#/action-1">Hombre</Dropdown.Item>
                             <Dropdown.Item href="#/action-2">Mujer</Dropdown.Item>

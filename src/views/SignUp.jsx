@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
 import RegisterModal from "../components/RegisterModal"
-
+import { Context } from '../store/pololitoContext';
 
 
 const SignUp = () => {
-
     const [form, setForm] = useState({});
-
     const handleChange = e => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
+        setForm({...form, [e.target.name]: e.target.value,})}
 
-    };
+    const sendUser = () => {
+        fetch("https://assets.breatheco.de/apis/fake/todos/user/oscar", {
+            "method": "PUT",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": JSON.stringify(todos)
+        })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
     return (
         <div className='container'>
             <form>
@@ -23,6 +32,7 @@ const SignUp = () => {
                         className="form-control"
                         id="InputMail"
                         aria-describedby="MailHelp"
+                        name='mail'
                         value={form.Mail}
                         onChange={handleChange}
                     />
@@ -34,19 +44,20 @@ const SignUp = () => {
                         className="form-control"
                         id="InputPassword"
                         aria-describedby="PasswordHelp"
+                        name='pass'
                         value={form.Password}
                         onChange={handleChange}
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">Registrar</button>
+                <button type="submit" onClick={console.log('form', form)} className="btn btn-primary">Registrar</button>
                 <br>
                 </br>
                 <br>
                 </br>
-                <div>
-                    <RegisterModal/>
-                </div>
             </form>
+            <div>
+                <RegisterModal />
+            </div>
         </div>
     );
 }
