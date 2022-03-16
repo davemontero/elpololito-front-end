@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Dropdown, } from "react-bootstrap"
 
 
 
-function Joblist({ addTodo }) {
+
+function Joblist({ AddJob }) {
 
     const [value, setItem] = useState("");
     const handleSubmit = e => {
         e.preventDefault();
         if (!value) return;
-        addTodo(value);
+        AddJob(value);
         setItem("");
     };
     return (
@@ -39,7 +39,7 @@ const AddUser = () => {
 
         }
     ]);
-    const addTodo = text => {
+    const AddJob = text => {
         const NewJob = [...job, { text }];
         setJob(NewJob)
     };
@@ -51,23 +51,27 @@ const AddUser = () => {
     };
 
     const [form, setForm] = useState({});
-
+    const [user, setUser] = useState({});
     const handleChange = e => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
+        setForm({...form,[e.target.name]: e.target.value,})
+        setUser({...user,[e.target.name]: e.target.value,})
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(user)
+        alert("El formulario se envio")
     };
 
-    console.log(form)
     return (
         <div className='container'>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="InputName" className="form-label">RUT Sin digito verificador</label>
                     <input type="text"
                         className="form-control"
                         id="InputName"
+                        name='rut'
                         aria-describedby="NameHelp"
                         value={form.run}
                         onChange={handleChange}
@@ -77,7 +81,8 @@ const AddUser = () => {
                     <label htmlFor="InputName" className="form-label">Primer Nombre</label>
                     <input type="text"
                         className="form-control"
-                        id="InputName"
+                        id="InputNameF"
+                        name='fname'
                         aria-describedby="NameHelp"
                         value={form.fname}
                         onChange={handleChange}
@@ -87,8 +92,9 @@ const AddUser = () => {
                     <label htmlFor="InputName" className="form-label">Segundo Nombre</label>
                     <input type="text"
                         className="form-control"
-                        id="InputName"
-                        aria-describedby="NameHelp"
+                        id="InputNameS"
+                        name='sname'
+                        aria-describedby="SnameHelp"
                         value={form.sname}
                         onChange={handleChange}
                     />
@@ -97,9 +103,10 @@ const AddUser = () => {
                     <label htmlFor="InputLastName" className="form-label">Apellido Paterno</label>
                     <input type="text"
                         className="form-control"
-                        id="InputLastName"
+                        id="InputLastNameF"
+                        name='lname'
                         aria-describedby="LastNameHelp"
-                        value={form.LastName}
+                        value={form.lName}
                         onChange={handleChange}
                     />
                 </div>
@@ -107,9 +114,10 @@ const AddUser = () => {
                     <label htmlFor="InputLastName" className="form-label">Apellido Materno</label>
                     <input type="text"
                         className="form-control"
-                        id="InputLastName"
+                        id="InputLastNameM"
+                        name='lname2'
                         aria-describedby="LastNameHelp"
-                        value={form.LastName2}
+                        value={form.lname2}
                         onChange={handleChange}
                     />
                 </div>
@@ -118,8 +126,9 @@ const AddUser = () => {
                     <input type="Integer"
                         className="form-control"
                         id="InputContactNumber"
+                        name='phone'
                         aria-describedby="ContactNumberHelp"
-                        value={form.ContactNumer}
+                        value={form.pphone}
                         onChange={handleChange}
                     />
                 </div>
@@ -127,32 +136,31 @@ const AddUser = () => {
                     <label htmlFor="InputContactNumber" className="form-label">Fecha de Nacimiento</label>
                     <input type="Integer"
                         className="form-control"
-                        id="InputContactNumber"
-                        aria-describedby="ContactNumberHelp"
-                        value={form.Dob}
+                        id="InputBday"
+                        name='dob'
+                        aria-describedby="BdayHelp"
+                        value={form.dob}
                         onChange={handleChange}
                     />
                 </div>
                 <div>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-Genre">
-                            Genero
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Hombre</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Mujer</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Otro</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Prefiero no decir</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    <select
+                    onChange={handleChange}
+                    >
+                        <option value="Hombre"> Hombre </option>
+                        <option value="Mujer"> Mujer </option>
+                        <option value="Otro"> Otro </option>
+                        <option value="No_especifico"> Prefiero no decir </option>
+                    </select>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="InputMail" className="form-label">Url de foto de Perfil</label>
                     <input type="text"
                         className="form-control"
                         id="InputLastName"
+                        name='ProfilePicture'
                         aria-describedby="LastNameHelp"
-                        value={form.email}
+                        value={form.picture}
                         onChange={handleChange}
                     />
                 </div>
@@ -160,9 +168,10 @@ const AddUser = () => {
                     <label htmlFor="InputMail" className="form-label">Direccion de correo</label>
                     <input type="text"
                         className="form-control"
-                        id="InputLastName"
-                        aria-describedby="LastNameHelp"
-                        value={form.email}
+                        id="InputMail"
+                        name='Mail'
+                        aria-describedby="MailHelp"
+                        value={user.mail}
                         onChange={handleChange}
                     />
                 </div>
@@ -171,18 +180,9 @@ const AddUser = () => {
                     <input type="password"
                         className="form-control"
                         id="InputPassword"
+                        name='password'
                         aria-describedby="PasswordHelp"
-                        value={form.Password}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="InputPassword2" className="form-label">Repite tu contraseña</label>
-                    <input type="password"
-                        className="form-control"
-                        id="InputPassword2"
-                        aria-describedby="Password2Help"
-                        value={form.Password2}
+                        value={user.password}
                         onChange={handleChange}
                     />
                 </div>
@@ -193,14 +193,14 @@ const AddUser = () => {
                 
                 <div className="mb-3">
                     <div className="container">
-                        <Joblist addTodo={addTodo} />
+                        <Joblist AddJob={AddJob} />
                         <div>
                             {job.map((job, index) => (
                                 <li >
                                     {job.text}
                                     <button className="btn btn-floating"
                                         onClick={() => removeTodo(index)}>
-                                        <i class="material-icons">x</i>
+                                        <i className="material-icons">x</i>
                                     </button>
                                 </li>
                             ))}
@@ -210,22 +210,22 @@ const AddUser = () => {
                 </div>
                 <br>
                 </br>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" 
-                    class="form-check-input" 
-                    id="CheckEmployer"
-                    value={form.Employer}
+                <div className="mb-3 form-check">
+                    <input type="checkbox"
+                        className="form-check-input"
+                        id="CheckEmployer"
+                        value={form.Employer}
                     />
-                    <label class="form-check-label" for="CheckEmployer">Es usted un empleador ?</label>
+                    <label className="form-check-label" htmlFor="CheckEmployer">Es usted un empleador ?</label>
                 </div>
 
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="CheckCondition" />
-                    <label class="form-check-label" for="CheckCondition">Acepto terminos y condiciones</label>
+                <div className="mb-3 form-check">
+                    <input type="checkbox" className="form-check-input" id="CheckCondition" />
+                    <label className="form-check-label" htmlFor="CheckCondition">Acepto terminos y condiciones</label>
                 </div>
 
                 <div>
-                    <Link to="SignUp" className="btn btn-primary">Inciar Sesion</Link>
+                    <Link to="SignUp" className="btn btn-primary"  onClick={handleSubmit}>Registrar</Link>
                 </div>
 
             </form>
