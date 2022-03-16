@@ -21,7 +21,7 @@ function LandingPage() {
                 <br />
                 <br />
                 <Row>
-                    <Col mx-auto>
+                    <Col mx-auto="true">
                         <h2 className='text-center'>Hoy Quiero...</h2>
                     </Col>
                 </Row>
@@ -65,7 +65,7 @@ function LandingPage() {
                 <br />
                 <br />
                 <Row>
-                    <Col mx-auto>
+                    <Col mx-auto="true">
                         <h2 className='text-center'>O encuentra Exactamente lo que buscas!</h2>
                     </Col>
                 </Row>
