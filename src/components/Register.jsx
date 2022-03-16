@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Dropdown, } from "react-bootstrap"
 
 
 
-function Joblist({ addTodo }) {
+
+function Joblist({ AddJob }) {
 
     const [value, setItem] = useState("");
     const handleSubmit = e => {
         e.preventDefault();
         if (!value) return;
-        addTodo(value);
+        AddJob(value);
         setItem("");
     };
     return (
@@ -39,7 +39,7 @@ const AddUser = () => {
 
         }
     ]);
-    const addTodo = text => {
+    const AddJob = text => {
         const NewJob = [...job, { text }];
         setJob(NewJob)
     };
@@ -77,7 +77,7 @@ const AddUser = () => {
                     <input type="text"
                         className="form-control"
                         id="InputName"
-                        name='Name'
+                        name='Run'
                         aria-describedby="NameHelp"
                         value={form.run}
                         onChange={handleChange}
@@ -87,7 +87,8 @@ const AddUser = () => {
                     <label htmlFor="InputName" className="form-label">Primer Nombre</label>
                     <input type="text"
                         className="form-control"
-                        id="InputName"
+                        id="InputNameF"
+                        name='Name'
                         aria-describedby="NameHelp"
                         value={form.fname}
                         onChange={handleChange}
@@ -97,8 +98,9 @@ const AddUser = () => {
                     <label htmlFor="InputName" className="form-label">Segundo Nombre</label>
                     <input type="text"
                         className="form-control"
-                        id="InputName"
-                        aria-describedby="NameHelp"
+                        id="InputNameS"
+                        name='Sname'
+                        aria-describedby="SnameHelp"
                         value={form.sname}
                         onChange={handleChange}
                     />
@@ -107,8 +109,8 @@ const AddUser = () => {
                     <label htmlFor="InputLastName" className="form-label">Apellido Paterno</label>
                     <input type="text"
                         className="form-control"
-                        id="InputLastName"
-                        name='LastName'
+                        id="InputLastNameF"
+                        name='LastNameF'
                         aria-describedby="LastNameHelp"
                         value={form.LastName}
                         onChange={handleChange}
@@ -118,7 +120,8 @@ const AddUser = () => {
                     <label htmlFor="InputLastName" className="form-label">Apellido Materno</label>
                     <input type="text"
                         className="form-control"
-                        id="InputLastName"
+                        id="InputLastNameM"
+                        name='LastNameM'
                         aria-describedby="LastNameHelp"
                         value={form.LastName2}
                         onChange={handleChange}
@@ -129,6 +132,7 @@ const AddUser = () => {
                     <input type="Integer"
                         className="form-control"
                         id="InputContactNumber"
+                        name='ContactNumber'
                         aria-describedby="ContactNumberHelp"
                         value={form.ContactNumer}
                         onChange={handleChange}
@@ -138,33 +142,31 @@ const AddUser = () => {
                     <label htmlFor="InputContactNumber" className="form-label">Fecha de Nacimiento</label>
                     <input type="Integer"
                         className="form-control"
-                        id="InputContactNumber"
-                        aria-describedby="ContactNumberHelp"
-                        value={form.Dob}
+                        id="InputBday"
+                        name='BirthDay'
+                        aria-describedby="BdayHelp"
+                        value={form.Bday}
                         onChange={handleChange}
                     />
                 </div>
                 <div>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-Genre">
-                            Genero
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Hombre</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Mujer</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Otro</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Prefiero no decir</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    <select
+                    onChange={handleChange}
+                    >
+                        <option value="Hombre"> Hombre </option>
+                        <option value="Mujer"> Mujer </option>
+                        <option value="Otro"> Otro </option>
+                        <option value="No_especifico"> Prefiero no decir </option>
+                    </select>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="InputMail" className="form-label">Url de foto de Perfil</label>
                     <input type="text"
                         className="form-control"
                         id="InputLastName"
+                        name='ProfilePicture'
                         aria-describedby="LastNameHelp"
-                        value={form.email}
+                        value={form.picture}
                         onChange={handleChange}
                     />
                 </div>
@@ -219,7 +221,7 @@ const AddUser = () => {
                 
                 <div className="mb-3">
                     <div className="container">
-                        <Joblist addTodo={addTodo} />
+                        <Joblist AddJob={AddJob} />
                         <div>
                             {job.map((job, index) => (
                                 <li >
@@ -251,7 +253,7 @@ const AddUser = () => {
                 </div>
 
                 <div>
-                    <Link to="SignUp" className="btn btn-primary">Inciar Sesion</Link>
+                    <Link to="SignUp" className="btn btn-primary"  onClick={handleSubmit}>Registrar</Link>
                 </div>
 
             </form>
