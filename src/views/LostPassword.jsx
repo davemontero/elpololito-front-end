@@ -23,7 +23,9 @@ const LostPassword = () => {
             body: JSON.stringify({ mail })
         })
             .then(response => response.json())
-            .then(data => console.log(data.msg));
+            .then(data => console.log(data.msg))
+            .catch((error) => {
+                console.error('Error:', error)});
     }
 
     return <>
