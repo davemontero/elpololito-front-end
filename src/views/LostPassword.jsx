@@ -1,33 +1,36 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, } from 'react';
 
 
 const LostPassword = () => {
 
-    useEffect(() => {
 
-
-        // Sé que estp está mal, pero tuve que salir antes de seguir weando con los métodos ups... a la noche lo termino!
-        fetch('http://localhost:3306/password-recovery')
-            .then(response => response.json())
-            .then(data =>  console.log(data));
-            //aaaaa
-    
-    }, []);
-    const [mail, setMail] = useState ("");
+    const [mail, setMail] = useState("");
 
     const changeMail = (event) => {
         setMail(event.target.value);
-      };
+    };
 
-      function handleSubmit(event) {
+    function handleSubmit(event) {
+
         event.preventDefault();
-      }
+
+        fetch('http://localhost:5000/password-recovery', {
+
+            method: "POST",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ mail })
+        })
+            .then(response => response.json())
+            .then(data => console.log(data.msg));
+    }
 
     return <>
         <div className="container">
-        <br />
-        <br />
-        <br />
+            <br />
+            <br />
+            <br />
             <h2>Restablecer contraseña</h2>
             <br />
             <br />
@@ -41,8 +44,8 @@ const LostPassword = () => {
                         value={mail}
                         onChange={changeMail}
                     />
-                </div>          
-                <button type="submit" className="btn btn-primary">Enviar correo de recuperación</button>
+                </div>
+                <button type="submit" className="btn btn-primary" onClick={console.log(mail)}>Enviar correo de recuperación</button>
             </form>
             <br />
             <br />
@@ -50,5 +53,7 @@ const LostPassword = () => {
         </div>
     </>
 }
+
+
 
 export default LostPassword;
