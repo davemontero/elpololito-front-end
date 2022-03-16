@@ -20,7 +20,7 @@ const SignUp = () => {
             "body": JSON.stringify(form)
         })
             .then(response => {
-                console.log(response.json().then(data=>data.msg));
+                console.log(response.json().then(data=>console.log(data.msg)));
             })
             .catch(err => {
                 console.error(err);
@@ -53,7 +53,7 @@ const SignUp = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <button type="submit" onClick={handleSubmit} className="btn btn-primary">Registrar</button>
+                <button type="submit" onClick={handleSubmit} className="btn btn-primary">Iniciar sesion</button>
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 <Link to="/password-recovery" className="btn btn-primary">Olvidé mi contraseña</Link>
                 <br>
