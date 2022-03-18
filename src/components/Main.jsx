@@ -12,7 +12,7 @@ const Main = () => {
                                     <p className="header-text-paragraph">Sin pagar por servicios o publicidad, acá podras encontrar esos trabajos que se ajusten a tu tiempo de una manera sencilla.</p>
                                 </div>
                                 <div className="header-content-btn">
-                                    <button className="header-btn">¡Empezemos!</button>
+                                    <button className="header-btn">¡Empecemos!</button>
                                 </div>
                             </div>
                         </div>

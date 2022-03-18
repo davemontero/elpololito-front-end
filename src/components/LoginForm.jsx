@@ -9,7 +9,7 @@ const LoginForm = () => {
     
     fetch('http://localhost:5000/login', {
       method: "POST",
-      header: {
+      headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(login)
