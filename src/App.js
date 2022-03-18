@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,7 +17,20 @@ const App = () => {
                 <Route path="/password-recovery" element={<LostPassword />} />
             </Routes>
         </Router>
-    </>
-}
+=======
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle"
 
-export default App;
+import Header from "./components/Header"
+import injectContext from "./store/pololitoContext";
+
+const App = () => {
+  return (
+    <>
+      <Header />
+>>>>>>> aeb0b47819c9b42e0adfe5c8b232c5a5b2e872ef
+    </>
+  );
+};
+
+export default injectContext(App);
