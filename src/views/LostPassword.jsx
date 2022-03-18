@@ -17,7 +17,7 @@ const LostPassword = () => {
         fetch('http://localhost:5000/password-recovery', {
 
             method: "POST",
-            "headers": {
+            headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ mail })

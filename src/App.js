@@ -5,6 +5,7 @@ import SignUp from "./views/SignUp";
 import LandingPage from "./views/LandingPage";
 import Navbar from "./components/Navbar";
 import LostPassword from "./views/LostPassword";
+import MisPololitos from "./views/MisPololitos";
 
 const App = () => {
     return <>
@@ -14,6 +15,7 @@ const App = () => {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/SignUp" element={<SignUp />} />
                 <Route path="/password-recovery" element={<LostPassword />} />
+                <Route path="/mis-pololitos" element ={<MisPololitos/>} />
             </Routes>
         </Router>
     </>

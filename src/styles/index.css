@@ -136,3 +136,11 @@
 	height:31rem;
 	margin: auto;
   }
+
+.HCardo {
+border: 2px solid;
+border-style: groove;
+border-radius: 16px;
+padding: 10px;
+
+}
