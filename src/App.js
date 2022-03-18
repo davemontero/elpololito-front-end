@@ -6,6 +6,7 @@ import LandingPage from "./views/LandingPage";
 import Navbar from "./components/Navbar";
 import LostPassword from "./views/LostPassword";
 import MisPololitos from "./views/MisPololitos";
+import MisAvisos from "./views/MisAvisos";
 
 const App = () => {
     return <>
@@ -15,7 +16,8 @@ const App = () => {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/SignUp" element={<SignUp />} />
                 <Route path="/password-recovery" element={<LostPassword />} />
-                <Route path="/mis-pololitos" element ={<MisPololitos/>} />
+                <Route path="/mis-pololitos" element ={<MisPololitos />} />
+                <Route path="/mis-avisos" element ={<MisAvisos />} />
             </Routes>
         </Router>
     </>

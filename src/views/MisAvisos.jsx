@@ -4,14 +4,14 @@ import HCard from "../components/HorizontalCard";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 
-const MisPololitos = () => {
+const MisAvisos = () => {
     console.log("aaaaaaaa")
     return <>
 
         <Container fluid>
             <Row>
                 <Col xs={{offset:1}}> <h1>
-                    Mis Pololitos
+                    Mis Avisos
                 </h1></Col>
                
             </Row>
@@ -19,7 +19,7 @@ const MisPololitos = () => {
             <br />
             <Row>
                 <Col xs={{offset:1}}>
-                <h3>Pololitos pendientes</h3>
+                <h3>Avisos abiertos</h3>
                 </Col>
             </Row>
             <br />
@@ -35,7 +35,7 @@ const MisPololitos = () => {
             
             <Row>
                 <Col xs={{offset:1}}>
-                <h3>Pololitos completados</h3>
+                <h3>Avisos pasados</h3>
                 </Col>
             </Row>
             <br />
@@ -44,4 +44,4 @@ const MisPololitos = () => {
     </>
 }
 
-export default MisPololitos
+export default MisAvisos
