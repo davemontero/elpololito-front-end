@@ -1,41 +1,104 @@
-const LoginForm = () => {
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-  const handleLogin = e => {
-    e.preventDefault()
-    const login = {
-      user: e.target.user.value,
-      password: e.target.password.value
-    }
+const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [checksUser, setChecksUser] = useState(false);
+  const [checksPassword, setChecksPassword] = useState({
+    caps: false,
+    lows: false,
+    numb: false,
+    spch: false,
+    leng: false,
+  });
+
+  const handleOnChangeUser = e => setEmail(e.target.value);
+
+  const handleOnBlurUser = () => {
+    const user = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}.([a-z{2,3}])?/.test(email);
+    setChecksUser(user);
+  };
+
+  const handleOnChangePassword = (e) => setPassword(e.target.value);
+
+  const handleOnKeyUpPassword = (e) => {
+    const { value } = e.target;
+    const caps = /[A-Z]/.test(value);
+    const lows = /[a-z]/.test(value);
+    const numb = /[0-9]/.test(value);
+    const spch = /[$@#*-]/.test(value);
+    const leng = value.length >= 6 && value.length <= 50;
+    setChecksPassword({
+      caps,
+      lows,
+      numb,
+      spch,
+      leng,
+    });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
     
-    fetch('http://localhost:5000/login', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(login)
-    })
-    .then(resp => resp.json())
-    .then(data => console.log(data))
-    .catch(error => {
-      console.error(error)
-    })
-  }
+    const passwordValidate = Object.entries(checksPassword).filter((value,i) => value.includes(false))
+    if (!checksUser) {
+      toast.error('Favor, ingrese un correo valido', {autoClose: 2400})
+    } else if (passwordValidate.length > 0){
+      toast.error('Usuario o contraseña incorrectos', {autoClose: 2400})
+    } else {
+      const id = toast.loading("Cargando...")
+      const userValidated = {}
+      userValidated.user = email
+      userValidated.password = password
+      fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userValidated),
+      })
+      .then((resp) => resp.json())
+      .then((data) =>
+        data.status
+          ? toast.update(id, {
+              render: data.msg,
+              type: "success",
+              isLoading: false,
+              closeButton: true,
+            })
+          : toast.update(id, {
+              render: data.msg,
+              type: "error",
+              isLoading: false,
+              closeButton: true,
+            })
+      )
+      .catch((error) => {
+        console.error(error);
+      });
+    }
+  };
 
   return (
     <form className="needs-validation" onSubmit={handleLogin} noValidate>
+      <ToastContainer />
       <div className="mb-3">
         <label htmlFor="inputUser" className="form-label">
           Usuario
         </label>
         <input
+          autoFocus
           type="text"
           className="form-control"
           name="user"
           id="inputUser"
+          value={email}
+          onChange={handleOnChangeUser}
+          onBlur={handleOnBlurUser}
           required
         />
-        <div className="valid-feedback">Looks good!</div>
-        <div className="invalid-feedback">Please choose a username.</div>
       </div>
       <div className="mb-3">
         <label htmlFor="inputPassword" className="form-label">
@@ -45,6 +108,9 @@ const LoginForm = () => {
           type="password"
           className="form-control"
           name="password"
+          value={password}
+          onChange={handleOnChangePassword}
+          onKeyUp={handleOnKeyUpPassword}
           id="inputPassword"
           required
         />
