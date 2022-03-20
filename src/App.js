@@ -7,10 +7,15 @@ import Navbar from "./components/Navbar";
 import LostPassword from "./views/LostPassword";
 import MisPololitos from "./views/MisPololitos";
 import MisAvisos from "./views/MisAvisos";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle"
+import Header from "./components/Header"
+import injectContext from "./store/pololitoContext";
 
 const App = () => {
     return <>
         <Router>
+        <Header />
         <Navbar />
             <Routes>
                 <Route path="/" element={<LandingPage />} />
@@ -20,7 +25,8 @@ const App = () => {
                 <Route path="/mis-avisos" element ={<MisAvisos />} />
             </Routes>
         </Router>
-    </>
+
+</>
 }
 
-export default App;
+export default injectContext(App);
