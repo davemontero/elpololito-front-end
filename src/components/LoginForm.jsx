@@ -41,14 +41,14 @@ const LoginForm = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
     const passwordValidate = Object.entries(checksPassword).filter((value,i) => value.includes(false))
+
     if (!checksUser) {
       toast.error('Favor, ingrese un correo valido', {autoClose: 2400})
     } else if (passwordValidate.length > 0){
       toast.error('Usuario o contraseña incorrectos', {autoClose: 2400})
     } else {
-      const id = toast.loading("Cargando...")
+      const id = toast.loading("Cargando...", {})
       const userValidated = {}
       userValidated.user = email
       userValidated.password = password
@@ -59,7 +59,13 @@ const LoginForm = () => {
         },
         body: JSON.stringify(userValidated),
       })
-      .then((resp) => resp.json())
+      .then(response => {
+        if (!response.ok) {
+          throw Error('No se pone conectar con el servidor')
+        } else {
+          response.json()
+        }
+      })
       .then((data) =>
         data.status
           ? toast.update(id, {
@@ -76,7 +82,7 @@ const LoginForm = () => {
             })
       )
       .catch((error) => {
-        console.error(error);
+        toast.update(id, {render: error.message, type: "error", isLoading: false, closeButton: true})
       });
     }
   };
