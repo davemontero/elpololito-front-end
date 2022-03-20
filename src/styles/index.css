@@ -121,21 +121,6 @@ body {
     color: #7a7a7a;
 }
 
-<<<<<<< HEAD
-#carousel-trabajadores {
-	width:42rem;
-	height:31rem;
-	margin: auto;
-  }
-
-.HCardo {
-border: 2px solid;
-border-style: groove;
-border-radius: 16px;
-padding: 10px;
-
-}
-=======
 .header-content-img {
     position: relative;
     min-height: 480px;
@@ -201,4 +186,3 @@ padding: 10px;
 {
     top: 8px;
 }
->>>>>>> 4d1c87e1b71089a4f3792ef8fd4fe68f90d61453

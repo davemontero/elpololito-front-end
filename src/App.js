@@ -16,7 +16,6 @@ const App = () => {
     return <>
         <Router>
         <Header />
-        <Navbar />
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/SignUp" element={<SignUp />} />
