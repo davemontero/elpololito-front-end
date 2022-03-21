@@ -6,9 +6,13 @@ const RegisterFormClient = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [checked, setChecked] = useState(false);
 
+  const [form, setForm] = useState()
+
   const handleChange = () => {
     setChecked(!checked)
   }
+
+
 
 
   const handleUser = (e) => {
@@ -34,25 +38,25 @@ const RegisterFormClient = () => {
         <label htmlFor="inputFirstname" className="form-label">
           Primer Nombre <span className="input-require">*</span>
         </label>
-        <input type="text" className="form-control" id="inputFirstname" name="firstname" />
+        <input type="text" className="form-control" id="inputFirstname" name="fname" />
       </div>
       <div className="col-md-6">
         <label htmlFor="inputSecondname" className="form-label">
           Segundo Nombre
         </label>
-        <input type="text" className="form-control" id="inputSecondname" name="secondname" />
+        <input type="text" className="form-control" id="inputSecondname" name="sname" />
       </div>
       <div className="col-md-6">
         <label htmlFor="InputLastname" className="form-label">
           Primer Apellido <span className="input-require">*</span>
         </label>
-        <input type="text" className="form-control" id="InputLastname" name="lastname" />
+        <input type="text" className="form-control" id="InputLastname" name="lname" />
       </div>
       <div className="col-md-6">
         <label htmlFor="InputLastname2" className="form-label">
           Segundo Apellido
         </label>
-        <input type="text" className="form-control" id="inputLastname2" name="lastname2" />
+        <input type="text" className="form-control" id="inputLastname2" name="lname2" />
       </div>
       <div className="col-md-6">
         <label htmlFor="inputRUT" className="form-label">
