@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
   const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -43,13 +42,13 @@ import "react-toastify/dist/ReactToastify.css";
   const handleLogin = e => {
     let navigate = useNavigate()
     e.preventDefault();
-    const passwordValidate = Object.entries(checksPassword).filter((value,i) => value.includes(false))
+    const passwordValidate = Object.entries(checksPassword).filter(value => value.includes(false))
     if (!checksUser) {
       toast.error('Favor, ingrese un correo valido', {autoClose: 2400})
     } else if (passwordValidate.length > 0){
       toast.error('Usuario o contraseña incorrectos', {autoClose: 2400})
     } else {
-      const id = toast.loading("Cargando...", {})
+      const id = toast.loading("Cargando...")
       const userValidated = {
         user: email,
         password: password
@@ -64,7 +63,7 @@ import "react-toastify/dist/ReactToastify.css";
       })
       .then(response => response.json())
       .then(data =>
-        data.status ? navigate("../login", { replace: true }) : toast.update(id, {
+        data.status ? navigate("/login") : toast.update(id, {
           render: data.msg,
           type: "error",
           isLoading: false,
