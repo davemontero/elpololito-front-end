@@ -186,3 +186,49 @@ body {
 {
     top: 8px;
 }
+.login-wrapper {
+    height: 100vh;
+    background-color: var(--accent-color-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-title {
+    font-family: var(--elpololito-font);
+    color: var(--primary-color);
+    font-size: 4rem;
+    position: absolute;
+    top: 20%;
+}
+
+.login-box {
+    width: 450px;
+    height: 320px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    padding: 2rem 1.8rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.mb-3 > .form-label {
+    color: var(--accent-color-2) !important;
+}
+
+.login-btn {
+    background-color: var(--accent-color-2);
+    border-radius: 3px;
+    padding: 0.5em 1.3em !important;
+    color: var(--primary-color) !important;
+    line-height: 1.8rem;
+    border: none;
+    margin: 0 auto;
+    width: 150px;
+    align-self: center;
+    margin-top: 1rem;
+}

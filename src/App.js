@@ -5,9 +5,7 @@ import injectContext from "./store/pololitoContext";
 
 const App = () => {
   return (
-    <>
-      <Header />
-    </>
+    <Header />
   );
 };
 
