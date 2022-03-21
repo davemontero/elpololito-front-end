@@ -31,7 +31,7 @@ function LandingPage() {
                 <Row>
                     <Col xs={{ span: 5, offset: 2 }}>
                         <div className='infoBlurb'>
-                            {/* <PetitionModal /> */}
+                            Avisos
                         </div>
                     </Col>
                     <Col xs={{ span: 5 }}>
