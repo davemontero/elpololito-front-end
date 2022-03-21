@@ -186,3 +186,17 @@ body {
 {
     top: 8px;
 }
+
+#carousel-trabajadores {
+	width:42rem;
+	height:31rem;
+	margin: auto;
+  }
+/* carta horizontal */
+.HCardo {
+border: 2px solid;
+border-style: groove;
+border-radius: 16px;
+padding: 10px;
+
+}
