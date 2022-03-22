@@ -29,26 +29,25 @@ function LandingPage() {
                 <br />
                 <br />
                 <Row>
-                    <Col xs={{ span: 5, offset: 2 }}>
+                <Col xs={{ span: 5, offset: 2 }}>
                         <div className='infoBlurb'>
-                        <Button
+                            <Button
                                 className="btn btn-warning btn-lg btn3d"
                                 onClick={() => setOpenAviso(!openAviso)}
                                 aria-controls="collapseInfoAviso"
                                 aria-expanded={openAviso}
-                            >
-                                Publicar un Aviso
+                                
+                                >
+                                        Publicar un Aviso
                             </Button>
                             <Collapse in={openAviso}>
-                                <div id="collapseInfoAviso">
-                                    <h2> ¿Quieres publicar un aviso? </h2>
+                                    <h2> ¿Quieres publicar avisos? </h2>
                                     <ul>
-                                        <li> aaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
-                                        <li> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
-                                    </ul>
-                                </div>
+                                        <li> Puedes hacer visible tus necesidades mediante avisos y asi trabajadores te contactaran, para realizar un pololito</li>
+                                    </ul>    
+                                                          
                             </Collapse>
-                        </div>
+                            </div>  
                     </Col>
                     <Col xs={{ span: 5 }}>
                         <div className='infoBlurb'>

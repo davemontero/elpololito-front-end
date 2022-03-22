@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ModalRegister from "../components/ModalRegister"
 import { Link } from 'react-router-dom';
 
 
@@ -61,7 +62,7 @@ const SignUp = () => {
                 </br>
             </form>
             <div>
-                <RegisterModal />
+                <ModalRegister/>
             </div>
         </div>
     );
