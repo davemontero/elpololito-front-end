@@ -19,30 +19,23 @@ const RegisterFormClient = () => {
 
   console.log(form)
 
-
-const handlesubmmit = () => {  
-  fetch("http://localhost:5000/create-person",{
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(form)
-      })
-      .then(response => response.json(),
-      console.log(form))
-      .then(data => {
-        if (data.status) {
-          navigate('/app')
-        } else {
-          toast.update(id, {
-            render: data.msg,
-            type: "error",
-            isLoading: false,
-            closeButton: true,
-          })
-        }
-      })
-    }
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log('form', form)
+    fetch("http://localhost:5000/create-person", {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(form)
+    })
+        .then(response => {
+            console.log(response.json().then(data=>console.log(data.msg)));
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
 
   const handleUser = (e) => {
     e.preventDefault()
@@ -164,7 +157,7 @@ const handlesubmmit = () => {
           </label>
         </div>
       </div>
-      <button type="submit" className="btn btn-primary" onClick={handlesubmmit}>
+      <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
         Registrar
       </button>
     </form>
