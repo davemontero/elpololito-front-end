@@ -65,7 +65,7 @@ const LoginForm = () => {
       .then(data =>
         {
           if (data.status) {
-            navigate("/app")
+            navigate("/Home")
           }else{
             toast.update(id, {
               render: data.msg,

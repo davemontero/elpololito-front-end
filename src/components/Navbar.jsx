@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
@@ -20,24 +22,24 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul className="navbar-nav navbar-nav-center">
             <li className="nav-item nav-item-list">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/">
                 Inicio
-            </a>
+            </Link>
             </li>
             <li className="nav-item nav-item-list">
-            <a className="nav-link" href="#">
-                Nosotros
-            </a>
+            <Link className="nav-link" to="/">
+                Publicar Aviso
+            </Link>
             </li>
             <li className="nav-item nav-item-list">
-            <a className="nav-link" href="#">
-                Servicios
-            </a>
+            <Link className="nav-link" to="/pololitos">
+                Mis Pololitos
+            </Link>
             </li>
             <li className="nav-item nav-item-list">
-            <a className="nav-link" href="#">
-                Contacto
-            </a>
+            <Link className="nav-link" to="/publications">
+                Mis Avisos
+            </Link>
             </li>
         </ul>
         <ul className="navbar-nav">

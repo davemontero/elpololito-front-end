@@ -41,7 +41,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:1f9f7a038c3f930bab00cdab8904273a6cba4900eff9a7f47dac6b6ea341d4a56eeb436414132de2403cdcfe80ea3f550f389d44a54ac7f349360c61a214976e#npm:17.0.2"],\
             ["react-router-dom", "virtual:1f9f7a038c3f930bab00cdab8904273a6cba4900eff9a7f47dac6b6ea341d4a56eeb436414132de2403cdcfe80ea3f550f389d44a54ac7f349360c61a214976e#npm:6.2.2"],\
             ["react-scripts", "virtual:1f9f7a038c3f930bab00cdab8904273a6cba4900eff9a7f47dac6b6ea341d4a56eeb436414132de2403cdcfe80ea3f550f389d44a54ac7f349360c61a214976e#npm:5.0.0"],\
-            ["react-toastify", "virtual:1f9f7a038c3f930bab00cdab8904273a6cba4900eff9a7f47dac6b6ea341d4a56eeb436414132de2403cdcfe80ea3f550f389d44a54ac7f349360c61a214976e#npm:8.2.0"]\
+            ["react-toastify", "virtual:1f9f7a038c3f930bab00cdab8904273a6cba4900eff9a7f47dac6b6ea341d4a56eeb436414132de2403cdcfe80ea3f550f389d44a54ac7f349360c61a214976e#npm:8.2.0"],\
+            ["toastify", "npm:2.0.1"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -8806,7 +8807,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:1f9f7a038c3f930bab00cdab8904273a6cba4900eff9a7f47dac6b6ea341d4a56eeb436414132de2403cdcfe80ea3f550f389d44a54ac7f349360c61a214976e#npm:17.0.2"],\
             ["react-router-dom", "virtual:1f9f7a038c3f930bab00cdab8904273a6cba4900eff9a7f47dac6b6ea341d4a56eeb436414132de2403cdcfe80ea3f550f389d44a54ac7f349360c61a214976e#npm:6.2.2"],\
             ["react-scripts", "virtual:1f9f7a038c3f930bab00cdab8904273a6cba4900eff9a7f47dac6b6ea341d4a56eeb436414132de2403cdcfe80ea3f550f389d44a54ac7f349360c61a214976e#npm:5.0.0"],\
-            ["react-toastify", "virtual:1f9f7a038c3f930bab00cdab8904273a6cba4900eff9a7f47dac6b6ea341d4a56eeb436414132de2403cdcfe80ea3f550f389d44a54ac7f349360c61a214976e#npm:8.2.0"]\
+            ["react-toastify", "virtual:1f9f7a038c3f930bab00cdab8904273a6cba4900eff9a7f47dac6b6ea341d4a56eeb436414132de2403cdcfe80ea3f550f389d44a54ac7f349360c61a214976e#npm:8.2.0"],\
+            ["toastify", "npm:2.0.1"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -19588,6 +19590,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["to-regex-range", "npm:5.0.1"],\
             ["is-number", "npm:7.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["toastify", [\
+        ["npm:2.0.1", {\
+          "packageLocation": "./.yarn/cache/toastify-npm-2.0.1-9a64cf51e2-f76e756057.zip/node_modules/toastify/",\
+          "packageDependencies": [\
+            ["toastify", "npm:2.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\

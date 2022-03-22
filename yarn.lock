@@ -6362,6 +6362,7 @@ __metadata:
     react-router-dom: ^6.2.2
     react-scripts: ^5.0.0
     react-toastify: ^8.2.0
+    toastify: ^2.0.1
   languageName: unknown
   linkType: soft
 
@@ -15078,6 +15079,13 @@ __metadata:
     regex-not: ^1.0.2
     safe-regex: ^1.1.0
   checksum: 4ed4a619059b64e204aad84e4e5f3ea82d97410988bcece7cf6cbfdbf193d11bff48cf53842d88b8bb00b1bfc0d048f61f20f0709e6f393fd8fe0122662d9db4
+  languageName: node
+  linkType: hard
+
+"toastify@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "toastify@npm:2.0.1"
+  checksum: f76e75605783c0fdfb839668e811d228e1fdf7255d55acbd9f356119ac3f02b051f92445bc7d22abf2442cd78fdcf89fc82912fbcbc74ac8de01815e87054ae9
   languageName: node
   linkType: hard
 
