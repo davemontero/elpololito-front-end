@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import RegisterModal from "../components/RegisterModal"
 import { Link } from 'react-router-dom';
 
 
