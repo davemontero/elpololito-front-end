@@ -1,18 +1,19 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom"
+import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
-  const LoginForm = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [checksUser, setChecksUser] = useState(false);
-    const [checksPassword, setChecksPassword] = useState({
-      caps: false,
-      lows: false,
-      numb: false,
-      spch: false,
-      leng: false,
-    });
+const LoginForm = () => {
+  let navigate = useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [checksUser, setChecksUser] = useState(false);
+  const [checksPassword, setChecksPassword] = useState({
+    caps: false,
+    lows: false,
+    numb: false,
+    spch: false,
+    leng: false,
+  });
 
   const handleOnChangeUser = e => setEmail(e.target.value);
 
@@ -40,7 +41,6 @@ import { ToastContainer, toast } from "react-toastify";
   };
 
   const handleLogin = e => {
-    let navigate = useNavigate()
     e.preventDefault();
     const passwordValidate = Object.entries(checksPassword).filter(value => value.includes(false))
     if (!checksUser) {
@@ -63,12 +63,18 @@ import { ToastContainer, toast } from "react-toastify";
       })
       .then(response => response.json())
       .then(data =>
-        data.status ? navigate("/login") : toast.update(id, {
-          render: data.msg,
-          type: "error",
-          isLoading: false,
-          closeButton: true,
-        })
+        {
+          if (data.status) {
+            navigate("/app")
+          }else{
+            toast.update(id, {
+              render: data.msg,
+              type: "error",
+              isLoading: false,
+              closeButton: true,
+            })
+          }
+        }
       )
       .catch((error) => {
         toast.update(id, {render: error.message, type: "error", isLoading: false, closeButton: true})
