@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const RegisterFormClient = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  // const [startDate, setStartDate] = useState(new Date());
   const [checked, setChecked] = useState(false);
 
   const [form, setForm] = useState()
@@ -12,8 +12,37 @@ const RegisterFormClient = () => {
     setChecked(!checked)
   }
 
+  const handleChangeform = e => {
+    setForm({
+      ...form, [e.target.name]: e.target.value,})
+  }
+
+  console.log(form)
 
 
+const handlesubmmit = () => {  
+  fetch("http://localhost:5000/create-person",{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form)
+      })
+      .then(response => response.json(),
+      console.log(form))
+      .then(data => {
+        if (data.status) {
+          navigate('/app')
+        } else {
+          toast.update(id, {
+            render: data.msg,
+            type: "error",
+            isLoading: false,
+            closeButton: true,
+          })
+        }
+      })
+    }
 
   const handleUser = (e) => {
     e.preventDefault()
@@ -38,50 +67,51 @@ const RegisterFormClient = () => {
         <label htmlFor="inputFirstname" className="form-label">
           Primer Nombre <span className="input-require">*</span>
         </label>
-        <input type="text" className="form-control" id="inputFirstname" name="fname" />
+        <input type="text" className="form-control" id="inputFirstname" name="fname" onChange={handleChangeform} />
       </div>
       <div className="col-md-6">
         <label htmlFor="inputSecondname" className="form-label">
           Segundo Nombre
         </label>
-        <input type="text" className="form-control" id="inputSecondname" name="sname" />
+        <input type="text" className="form-control" id="inputSecondname" name="sname" onChange={handleChangeform} />
       </div>
       <div className="col-md-6">
         <label htmlFor="InputLastname" className="form-label">
           Primer Apellido <span className="input-require">*</span>
         </label>
-        <input type="text" className="form-control" id="InputLastname" name="lname" />
+        <input type="text" className="form-control" id="InputLastname" name="lname" onChange={handleChangeform} />
       </div>
       <div className="col-md-6">
         <label htmlFor="InputLastname2" className="form-label">
           Segundo Apellido
         </label>
-        <input type="text" className="form-control" id="inputLastname2" name="lname2" />
+        <input type="text" className="form-control" id="inputLastname2" name="lname2" onChange={handleChangeform} />
       </div>
       <div className="col-md-6">
         <label htmlFor="inputRUT" className="form-label">
           RUT <span className="input-require">*</span>
         </label>
-        <input type="text" className="form-control" id="inputRUT" name="rut" />
+        <input type="text" className="form-control" id="inputRUT" name="rut" onChange={handleChangeform} />
       </div>
       <div className="col-md-6">
         <label htmlFor="inputDOB" className="form-label">
           Fecha de nacimiento <span className="input-require">*</span>
         </label>
-        <DatePicker
+        {/* <DatePicker
           id="inputDOB"
           name="dob"
           className="form-control"
-          dateFormat="dd/MM/yyyy"
+          dateFormat="yyyy/MM/"
           selected={startDate}
           onChange={(date) => setStartDate(date)}
-        ></DatePicker>
+        ></DatePicker> */}
+        <input type="text" className="form-control" id="inputRUT" name="dob" onChange={handleChangeform} />
       </div>
       <div className="col-md-6">
         <label htmlFor="inputPhone" className="form-label">
           Teléfono <span className="input-require">*</span>
         </label>
-        <input type="text" className="form-control" id="inputPhone" name="phone" />
+        <input type="text" className="form-control" id="inputPhone" name="phone" onChange={handleChangeform} />
       </div>
       <div className="col-12">
         <label htmlFor="inputAddress" className="form-label">
@@ -93,6 +123,7 @@ const RegisterFormClient = () => {
           id="inputAddress"
           placeholder="Av. Irarrazabal 1350"
           name="address"
+          onChange={handleChangeform}
         />
       </div>
       <div className="col-12">
@@ -105,34 +136,35 @@ const RegisterFormClient = () => {
           id="inputAddress2"
           placeholder="Departamento, oficina, piso"
           name="address2"
+          onChange={handleChangeform}
         />
       </div>
       <div className="col-md-6">
         <label htmlFor="inputCity" className="form-label">
           Ciudad <span className="input-require">*</span>
         </label>
-        <input type="text" className="form-control" id="inputCity" name="city" />
+        <input type="text" className="form-control" id="inputCity" name="city" onChange={handleChangeform} />
       </div>
       <div className="col-md-6">
         <label htmlFor="inputGender" className="form-label">
           Genero <span className="input-require">*</span>
         </label>
-        <select id="inputGender" className="form-select" name="gender">
+        <select id="inputGender" className="form-select" name="gender" onChange={handleChangeform}>
           <option>Elegir...</option>
-          <option value={1}>Mujer</option>
-          <option value={2}>Hombre</option>
-          <option value={3}>Prefiero no decir</option>
+          <option value="Mujer">Mujer</option>
+          <option value="Hombre">Hombre</option>
+          <option value="Prefiero no decir">Prefiero no decir</option>
         </select>
       </div>
       <div className="col-12">
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" id="gridCheck" name="check" checked={checked} onChange={handleChange}/>
+          <input className="form-check-input" type="checkbox" id="gridCheck" name="check" checked={checked} onChange={handleChange} />
           <label className="form-check-label" htmlFor="gridCheck">
             He leido los terminos y condiciones
           </label>
         </div>
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary" onClick={handlesubmmit}>
         Registrar
       </button>
     </form>
