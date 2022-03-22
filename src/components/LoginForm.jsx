@@ -102,7 +102,7 @@ const LoginForm = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="inputPassword" className="form-label">
+        <label htmlFor="inputPasswordLogin" className="form-label">
           Contraseña
         </label>
         <input
@@ -112,7 +112,7 @@ const LoginForm = () => {
           value={password}
           onChange={handleOnChangePassword}
           onKeyUp={handleOnKeyUpPassword}
-          id="inputPassword"
+          id="inputPasswordLogin"
           required
         />
       </div>

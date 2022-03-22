@@ -5,31 +5,39 @@ import "react-datepicker/dist/react-datepicker.css";
 const RegisterFormClient = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [checked, setChecked] = useState(false);
-
-  const handleChange = () => {
+  const [user, setUser] = useState({});
+  const [form, setForm] = useState({});
+  const handleChange = e => {
     setChecked(!checked)
+    setForm({ ...form, [e.target.name]: e.target.value, })
+    setUser({ ...user, [e.target.name]: e.target.value, })
+  }
+  function handleSubmit(event) {
+    
+    event.preventDefault();
+    console.log(form)
+    console.log(user)
+    fetch("http://localhost:5000/create-person", {
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": JSON.stringify(form)
+    })
+      .then(response => {
+        console.log(response.json().then(data => console.log(data.pid)));
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
 
-  const handleUser = (e) => {
-    e.preventDefault()
-    console.log(e.target.firstname.value)
-    console.log(e.target.secondname.value)
-    console.log(e.target.lastname.value)
-    console.log(e.target.lastname2.value)
-    console.log(e.target.rut.value)
-    console.log(e.target.dob.value)
-    console.log(e.target.phone.value)
-    console.log(e.target.address.value)
-    console.log(e.target.address2.value)
-    console.log(e.target.city.value)
-    console.log(e.target.gender.value)
-    console.log(e.target.check.checked)
-  }
-
+  console.log(form)
+  console.log(user)
 
   return (
-    <form className="row g-3" onSubmit={handleUser}>
+    <form className="row g-3" onSubmit={handleSubmit}>
       <div className="col-md-6">
         <label htmlFor="inputFirstname" className="form-label">
           Primer Nombre <span className="input-require">*</span>
@@ -79,56 +87,38 @@ const RegisterFormClient = () => {
         </label>
         <input type="text" className="form-control" id="inputPhone" name="phone" />
       </div>
-      <div className="col-12">
-        <label htmlFor="inputAddress" className="form-label">
-          Dirección <span className="input-require">*</span>
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="inputAddress"
-          placeholder="Av. Irarrazabal 1350"
-          name="address"
-        />
-      </div>
-      <div className="col-12">
-        <label htmlFor="inputAddress2" className="form-label">
-          Dirección 2
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="inputAddress2"
-          placeholder="Departamento, oficina, piso"
-          name="address2"
-        />
-      </div>
-      <div className="col-md-6">
-        <label htmlFor="inputCity" className="form-label">
-          Ciudad <span className="input-require">*</span>
-        </label>
-        <input type="text" className="form-control" id="inputCity" name="city" />
-      </div>
       <div className="col-md-6">
         <label htmlFor="inputGender" className="form-label">
           Genero <span className="input-require">*</span>
         </label>
         <select id="inputGender" className="form-select" name="gender">
           <option>Elegir...</option>
-          <option value={1}>Mujer</option>
-          <option value={2}>Hombre</option>
-          <option value={3}>Prefiero no decir</option>
+          <option value={"Mujer"}>Mujer</option>
+          <option value={"Hombre"}>Hombre</option>
+          <option value={"No Binario"}>Prefiero no decir</option>
         </select>
+      </div>
+      <div className="col-md-12">
+        <label htmlFor="inputMail" className="form-label">
+          E-mail <span className="input-require">*</span>
+        </label>
+        <input type="text" className="form-control" id="inputMail" name="mail" />
+      </div>
+      <div className="col-md-12">
+        <label htmlFor="inputPassword" className="form-label">
+          Contraseña <span className="input-require">*</span>
+        </label>
+        <input type="password" className="form-control" id="inputPassword" name="password" />
       </div>
       <div className="col-12">
         <div className="form-check">
-          <input className="form-check-input" type="checkbox" id="gridCheck" name="check" checked={checked} onChange={handleChange}/>
+          <input className="form-check-input" type="checkbox" id="gridCheck" name="check" checked={checked} onChange={handleChange} />
           <label className="form-check-label" htmlFor="gridCheck">
             He leido los terminos y condiciones
           </label>
         </div>
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" onClick={handleSubmit} className="btn btn-primary">
         Registrar
       </button>
     </form>
