@@ -51,17 +51,32 @@ const AddUser = () => {
     };
 
     const [form, setForm] = useState({});
+
     const [user, setUser] = useState({});
     const handleChange = e => {
-        setForm({...form,[e.target.name]: e.target.value,})
-        setUser({...user,[e.target.name]: e.target.value,})
+        setForm({ ...form, [e.target.name]: e.target.value, })
+        setUser({ ...user, [e.target.name]: e.target.value, })
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(user)
-        alert("El formulario se envio")
-    };
+    console.log(form)
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        console.log('form', form)
+        fetch("http://localhost:5000/create-person", {
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": JSON.stringify(form)
+        })
+            .then(response => {
+                console.log(response.json().then(data => console.log(data.msg)));
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
 
     return (
         <div className='container'>
@@ -145,7 +160,7 @@ const AddUser = () => {
                 </div>
                 <div>
                     <select
-                    onChange={handleChange}
+                        onChange={handleChange}
                     >
                         <option value="Hombre"> Hombre </option>
                         <option value="Mujer"> Mujer </option>
@@ -190,7 +205,7 @@ const AddUser = () => {
                 </br>
                 <br>
                 </br>
-                
+
                 <div className="mb-3">
                     <div className="container">
                         <Joblist AddJob={AddJob} />
@@ -225,7 +240,7 @@ const AddUser = () => {
                 </div>
 
                 <div>
-                    <Link to="SignUp" className="btn btn-primary"  onClick={handleSubmit}>Registrar</Link>
+                    <Link to="SignUp" className="btn btn-primary" onClick={handleSubmit}>Registrar</Link>
                 </div>
 
             </form>
