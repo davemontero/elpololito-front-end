@@ -39,7 +39,6 @@ const Login = () => {
   };
   const handleOnChangePassword = (e) => setPassword(e.target.value);
 
-
   const handleLogin = e => {
     e.preventDefault()
     const passwordValidate = Object.entries(checksPassword).filter(value => value.includes(false))
