@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -117,7 +117,7 @@ const LoginForm = () => {
         />
       </div>
       <div className="mb-3 text-center">
-        <a href="#">Olvide mi Contraseña</a>
+        <Link to="/forgot-password">Olvide mi Contraseña</Link>
       </div>
       <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
         Iniciar
