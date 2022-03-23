@@ -1,44 +1,29 @@
 import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { Context } from "../store/pololitoContext";
+
+
 
 const LoginForm = () => {
   let navigate = useNavigate()
+  const { actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checksUser, setChecksUser] = useState(false);
-  const [checksPassword, setChecksPassword] = useState({
-    caps: false,
-    lows: false,
-    numb: false,
-    spch: false,
-    leng: false,
-  });
+  const [checksPassword, setChecksPassword] = useState(false);
 
   const handleOnChangeUser = e => setEmail(e.target.value);
 
-  const handleOnBlurUser = () => {
-    const user = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}.([a-z{2,3}])?/.test(email);
-    setChecksUser(user);
+  const handleOnBlurUser = (email) => {
+    setChecksUser(actions.testEmail(email));
+  };
+  
+  const handleOnBlurPassword = (pass) => {
+    setChecksPassword(actions.testPassword(pass));
   };
 
   const handleOnChangePassword = (e) => setPassword(e.target.value);
-
-  const handleOnKeyUpPassword = (e) => {
-    const { value } = e.target;
-    const caps = /[A-Z]/.test(value);
-    const lows = /[a-z]/.test(value);
-    const numb = /[0-9]/.test(value);
-    const spch = /[$@#*-]/.test(value);
-    const leng = value.length >= 6 && value.length <= 50;
-    setChecksPassword({
-      caps,
-      lows,
-      numb,
-      spch,
-      leng,
-    });
-  };
 
   const handleLogin = e => {
     e.preventDefault();
@@ -111,7 +96,7 @@ const LoginForm = () => {
           name="password"
           value={password}
           onChange={handleOnChangePassword}
-          onKeyUp={handleOnKeyUpPassword}
+          onBlur={handleOnBlurPassword}
           id="inputPasswordLogin"
           required
         />
