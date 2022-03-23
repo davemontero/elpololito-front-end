@@ -119,7 +119,7 @@ const LoginForm = () => {
       <div className="mb-3 text-center">
         <a href="#">Olvide mi Contraseña</a>
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
         Iniciar
       </button>
     </form>
