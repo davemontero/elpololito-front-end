@@ -1,36 +1,18 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import RegisterFormClient from "./RegisterFormClient"
 
-
-
-
-function Joblist({ AddJob }) {
-
-    const [value, setItem] = useState("");
-    const handleSubmit = e => {
-        e.preventDefault();
-        if (!value) return;
-        AddJob(value);
-        setItem("");
-    };
-    return (
-
+const Register = () => {
+  return (
+    <>
+      <div className="tab-content" id="pills-tabContent">
         <div>
-            Añade un oficio
-            <br />
-            <input
-                type="text"
-                placeholder="tu oficio es ?"
-                value={value}
-                onChange={e => setItem(e.target.value)}
-            />
-            <button
-                onClick={handleSubmit}
-                type="submit">
-                añadir
-            </button>
+          <RegisterFormClient />
         </div>
+      </div>
+    </>
+  );
+};
 
+<<<<<<< HEAD
     );
 }
 const AddUser = () => {
@@ -250,3 +232,6 @@ const AddUser = () => {
     );
 }
 export default AddUser;
+=======
+export default Register;
+>>>>>>> 0a2b57491649b59fac697a00e2bbac572d75234d

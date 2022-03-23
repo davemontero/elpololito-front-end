@@ -7,7 +7,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
-import PetitionModal from '../components/PetitionModal';
 
 function LandingPage() {
     const [openAviso, setOpenAviso] = useState(false);
@@ -30,23 +29,40 @@ function LandingPage() {
                 <br />
                 <br />
                 <Row>
-                    <Col xs={{ span: 5, offset: 2 }}>
+                <Col xs={{ span: 5, offset: 2 }}>
                         <div className='infoBlurb'>
-                            <PetitionModal />
-                        </div>
+                            <Button
+                                className="btn btn-warning btn-lg btn3d"
+                                onClick={() => setOpenAviso(!openAviso)}
+                                aria-controls="collapseAviso"
+                                aria-expanded={openAviso}
+                                
+                                >
+                                        Publicar un Aviso
+                            </Button>
+                            <Collapse className="aaa" 
+                            in={openAviso}>
+                                <div id="collapseAviso">
+                                    <h2> ¿Quieres publicar avisos? </h2>
+                                    <ul>
+                                        <li> Puedes hacer visible tus necesidades mediante avisos y asi trabajadores te contactaran, para realizar un pololito</li>
+                                    </ul>    
+                                    </div>                   
+                            </Collapse>
+                            </div>  
                     </Col>
                     <Col xs={{ span: 5 }}>
                         <div className='infoBlurb'>
                             <Button
                                 className="btn btn-warning btn-lg btn3d"
                                 onClick={() => setOpenPololito(!openPololito)}
-                                aria-controls="collapseInfoPololito"
+                                aria-controls="collapsePololito"
                                 aria-expanded={openPololito}
                             >
                                 Hacer un Pololito
                             </Button>
-                            <Collapse in={openPololito}>
-                                <div id="collapseInfoPololito">
+                            <Collapse className="aaa"  in={openPololito}>
+                                <div id="collapsePololito">
                                     <h2> ¿Quieres realizar pololitos? </h2>
                                     <ul>
                                         <li> Crea un Perfil de Trabajador a través del cual otros usuarios podrán encontrarte en los rubros que definas</li>
