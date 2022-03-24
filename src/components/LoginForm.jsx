@@ -1,8 +1,9 @@
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const LoginForm = () => {
+  let navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checksUser, setChecksUser] = useState(false);
@@ -39,47 +40,41 @@ const LoginForm = () => {
     });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = e => {
     e.preventDefault();
-    const passwordValidate = Object.entries(checksPassword).filter((value,i) => value.includes(false))
-
+    const passwordValidate = Object.entries(checksPassword).filter(value => value.includes(false))
     if (!checksUser) {
       toast.error('Favor, ingrese un correo valido', {autoClose: 2400})
     } else if (passwordValidate.length > 0){
       toast.error('Usuario o contraseña incorrectos', {autoClose: 2400})
     } else {
-      const id = toast.loading("Cargando...", {})
-      const userValidated = {}
-      userValidated.user = email
-      userValidated.password = password
+      const id = toast.loading("Cargando...")
+      const userValidated = {
+        user: email,
+        password: password
+      }
+      
       fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userValidated),
+        body: JSON.stringify(userValidated)
       })
-      .then(response => {
-        if (!response.ok) {
-          throw Error('No se pone conectar con el servidor')
-        } else {
-          response.json()
-        }
-      })
-      .then((data) =>
-        data.status
-          ? toast.update(id, {
-              render: data.msg,
-              type: "success",
-              isLoading: false,
-              closeButton: true,
-            })
-          : toast.update(id, {
+      .then(response => response.json())
+      .then(data =>
+        {
+          if (data.status) {
+            navigate("/Home")
+          }else{
+            toast.update(id, {
               render: data.msg,
               type: "error",
               isLoading: false,
               closeButton: true,
             })
+          }
+        }
       )
       .catch((error) => {
         toast.update(id, {render: error.message, type: "error", isLoading: false, closeButton: true})
@@ -107,7 +102,7 @@ const LoginForm = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="inputPassword" className="form-label">
+        <label htmlFor="inputPasswordLogin" className="form-label">
           Contraseña
         </label>
         <input
@@ -117,14 +112,14 @@ const LoginForm = () => {
           value={password}
           onChange={handleOnChangePassword}
           onKeyUp={handleOnKeyUpPassword}
-          id="inputPassword"
+          id="inputPasswordLogin"
           required
         />
       </div>
       <div className="mb-3 text-center">
-        <a href="#">Olvide mi Contraseña</a>
+        <Link to="/forgot-password">Olvide mi Contraseña</Link>
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
         Iniciar
       </button>
     </form>

@@ -7,7 +7,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
-import PetitionModal from '../components/PetitionModal';
 
 function LandingPage() {
     const [openAviso, setOpenAviso] = useState(false);
@@ -30,9 +29,24 @@ function LandingPage() {
                 <br />
                 <br />
                 <Row>
-                    <Col xs={{ span: 5, offset: 2 }}>
+                <Col xs={{ span: 5, offset: 2 }}>
                         <div className='infoBlurb'>
-                            <PetitionModal />
+                            <Button
+                                className="btn btn-warning btn-lg btn3d"
+                                onClick={() => setOpenAviso(!openAviso)}
+                                aria-controls="collapseInfoAviso"
+                                aria-expanded={openAviso}
+                            >
+                                Publicar un aviso
+                            </Button>
+                            <Collapse in={openAviso}>
+                                <div id="collapseInfoAviso">
+                                    <h2> ¿Quieres publicar avisos? </h2>
+                                    <ul>
+                                        <li> Puedes hacer visible tus necesidades mediante avisos y asi trabajadores te contactaran, para realizar un pololito</li>
+                                    </ul>
+                                </div>
+                            </Collapse>
                         </div>
                     </Col>
                     <Col xs={{ span: 5 }}>
