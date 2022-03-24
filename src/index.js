@@ -5,7 +5,6 @@ import Home from "./views/Home";
 import Login from "./views/Login";
 import LostPassword from "./views/LostPassword"
 import "./styles/index.css"
-import LostPassword from "./views/LostPassword"
 import MisAvisos from "./views/MisAvisos"
 import MisPololitos from "./views/MisPololitos"
 

@@ -27,7 +27,7 @@ const Navbar = () => {
             </Link>
             </li>
             <li className="nav-item nav-item-list">
-            <a className="nav-link nav-link-publication" href="#" data-bs-toggle="modal" data-bs-target="#publicationModal">
+            <a className="nav-link nav-link-publication" href="#">
                 Publicar Aviso
             </a>
             </li>
