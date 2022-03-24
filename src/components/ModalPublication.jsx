@@ -1,19 +1,19 @@
-import LoginForm from "./LoginForm"
+import FormPublication from "./FormPublication";
 
-const ModalLogin = () => {
+const ModalPublication = () => {
   return (
     <div
       className="modal fade"
-      id="loginModal"
+      id="publicationModal"
       tabIndex="-1"
-      aria-labelledby="loginModalLabel"
+      aria-labelledby="PublicationModalLabel"
       aria-hidden="true"
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="loginModalLabel">
-              Iniciar sesión
+            <h5 className="modal-title" id="PublicationModalLabel">
+              Publicar Aviso
             </h5>
             <button
               type="button"
@@ -23,7 +23,7 @@ const ModalLogin = () => {
             ></button>
           </div>
           <div className="modal-body">
-            <LoginForm />
+            <FormPublication />
           </div>
         </div>
       </div>
@@ -31,4 +31,4 @@ const ModalLogin = () => {
   );
 };
 
-export default ModalLogin;
+export default ModalPublication;

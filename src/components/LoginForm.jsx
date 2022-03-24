@@ -1,5 +1,6 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useState } from "react";
+import { Link } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify";
 
 const LoginForm = () => {
@@ -44,16 +45,16 @@ const LoginForm = () => {
     e.preventDefault();
     const passwordValidate = Object.entries(checksPassword).filter(value => value.includes(false))
     if (!checksUser) {
-      toast.error('Favor, ingrese un correo valido', {autoClose: 2400})
-    } else if (passwordValidate.length > 0){
-      toast.error('Usuario o contraseña incorrectos', {autoClose: 2400})
+      toast.error('Favor, ingrese un correo valido', { autoClose: 2400 })
+    } else if (passwordValidate.length > 0) {
+      toast.error('Usuario o contraseña incorrectos', { autoClose: 2400 })
     } else {
       const id = toast.loading("Cargando...")
       const userValidated = {
         user: email,
         password: password
       }
-      
+
       fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
@@ -61,12 +62,11 @@ const LoginForm = () => {
         },
         body: JSON.stringify(userValidated)
       })
-      .then(response => response.json())
-      .then(data =>
-        {
+        .then(response => response.json())
+        .then(data => {
           if (data.status) {
             navigate("/Home")
-          }else{
+          } else {
             toast.update(id, {
               render: data.msg,
               type: "error",
@@ -75,10 +75,10 @@ const LoginForm = () => {
             })
           }
         }
-      )
-      .catch((error) => {
-        toast.update(id, {render: error.message, type: "error", isLoading: false, closeButton: true})
-      });
+        )
+        .catch((error) => {
+          toast.update(id, { render: error.message, type: "error", isLoading: false, closeButton: true })
+        });
     }
   };
 
@@ -102,7 +102,7 @@ const LoginForm = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="inputPasswordLogin" className="form-label">
+        <label htmlFor="inputPassword" className="form-label">
           Contraseña
         </label>
         <input
@@ -112,16 +112,16 @@ const LoginForm = () => {
           value={password}
           onChange={handleOnChangePassword}
           onKeyUp={handleOnKeyUpPassword}
-          id="inputPasswordLogin"
+          id="inputPassword"
           required
         />
       </div>
-      <div className="mb-3 text-center">
-        <Link to="/forgot-password">Olvide mi Contraseña</Link>
+      <div className="mb-3 text-center d-flex justify-content-between" >
+        <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
+          Iniciar
+        </button>
+        <span className="btn btn-warning" onClick={() => { navigate("/forgot-password") }} data-bs-dismiss="modal">Olvide mi Contraseña</span>
       </div>
-      <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
-        Iniciar
-      </button>
     </form>
   );
 };
