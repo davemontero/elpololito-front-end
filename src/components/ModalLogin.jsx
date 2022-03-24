@@ -1,7 +1,6 @@
 import LoginForm from "./LoginForm"
 
 const ModalLogin = () => {
-  
   return (
     <div
       className="modal fade"

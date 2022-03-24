@@ -1,11 +1,10 @@
 import FormPublication from "./FormPublication";
 
-const ModalLogin = () => {
-  
+const ModalPublication = () => {
   return (
     <div
       className="modal fade"
-      id="PublicationModal"
+      id="publicationModal"
       tabIndex="-1"
       aria-labelledby="PublicationModalLabel"
       aria-hidden="true"
@@ -32,4 +31,4 @@ const ModalLogin = () => {
   );
 };
 
-export default ModalLogin;
+export default ModalPublication;
