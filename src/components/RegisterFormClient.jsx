@@ -29,8 +29,13 @@ const RegisterFormClient = () => {
       "body": JSON.stringify(form)
     })
       .then(response => {
-        response.json()
-      }).then(data => console.log(data))
+        response.json().then(data => swal({
+          title:"Exito",
+          text:"Usuario"+data.fullname+"Creado con exito",
+          icon:"success",
+          timer:5000
+        }))
+      })
       .catch(err => {
         console.error(err);
       });

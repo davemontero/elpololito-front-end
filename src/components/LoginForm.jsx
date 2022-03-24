@@ -1,44 +1,60 @@
-import { Link, useNavigate } from "react-router-dom"
-import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { Link } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify";
-import { Context } from "../store/pololitoContext";
-
-
 
 const LoginForm = () => {
   let navigate = useNavigate()
-  const { actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checksUser, setChecksUser] = useState(false);
-  const [checksPassword, setChecksPassword] = useState(false);
+  const [checksPassword, setChecksPassword] = useState({
+    caps: false,
+    lows: false,
+    numb: false,
+    spch: false,
+    leng: false,
+  });
 
   const handleOnChangeUser = e => setEmail(e.target.value);
 
-  const handleOnBlurUser = (email) => {
-    setChecksUser(actions.testEmail(email));
-  };
-  
-  const handleOnBlurPassword = (pass) => {
-    setChecksPassword(actions.testPassword(pass));
+  const handleOnBlurUser = () => {
+    const user = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}.([a-z{2,3}])?/.test(email);
+    setChecksUser(user);
   };
 
   const handleOnChangePassword = (e) => setPassword(e.target.value);
+
+  const handleOnKeyUpPassword = (e) => {
+    const { value } = e.target;
+    const caps = /[A-Z]/.test(value);
+    const lows = /[a-z]/.test(value);
+    const numb = /[0-9]/.test(value);
+    const spch = /[$@#*-]/.test(value);
+    const leng = value.length >= 6 && value.length <= 50;
+    setChecksPassword({
+      caps,
+      lows,
+      numb,
+      spch,
+      leng,
+    });
+  };
 
   const handleLogin = e => {
     e.preventDefault();
     const passwordValidate = Object.entries(checksPassword).filter(value => value.includes(false))
     if (!checksUser) {
-      toast.error('Favor, ingrese un correo valido', {autoClose: 2400})
-    } else if (passwordValidate.length > 0){
-      toast.error('Usuario o contraseña incorrectos', {autoClose: 2400})
+      toast.error('Favor, ingrese un correo valido', { autoClose: 2400 })
+    } else if (passwordValidate.length > 0) {
+      toast.error('Usuario o contraseña incorrectos', { autoClose: 2400 })
     } else {
       const id = toast.loading("Cargando...")
       const userValidated = {
         user: email,
         password: password
       }
-      
+
       fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
@@ -46,12 +62,11 @@ const LoginForm = () => {
         },
         body: JSON.stringify(userValidated)
       })
-      .then(response => response.json())
-      .then(data =>
-        {
+        .then(response => response.json())
+        .then(data => {
           if (data.status) {
             navigate("/Home")
-          }else{
+          } else {
             toast.update(id, {
               render: data.msg,
               type: "error",
@@ -60,10 +75,10 @@ const LoginForm = () => {
             })
           }
         }
-      )
-      .catch((error) => {
-        toast.update(id, {render: error.message, type: "error", isLoading: false, closeButton: true})
-      });
+        )
+        .catch((error) => {
+          toast.update(id, { render: error.message, type: "error", isLoading: false, closeButton: true })
+        });
     }
   };
 
@@ -87,7 +102,7 @@ const LoginForm = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="inputPasswordLogin" className="form-label">
+        <label htmlFor="inputPassword" className="form-label">
           Contraseña
         </label>
         <input
@@ -96,17 +111,17 @@ const LoginForm = () => {
           name="password"
           value={password}
           onChange={handleOnChangePassword}
-          onBlur={handleOnBlurPassword}
-          id="inputPasswordLogin"
+          onKeyUp={handleOnKeyUpPassword}
+          id="inputPassword"
           required
         />
       </div>
-      <div className="mb-3 text-center">
-        <Link to="/forgot-password">Olvide mi Contraseña</Link>
+      <div className="mb-3 text-center d-flex justify-content-between" >
+        <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
+          Iniciar
+        </button>
+        <span className="btn btn-warning" onClick={() => { navigate("/forgot-password") }} data-bs-dismiss="modal">Olvide mi Contraseña</span>
       </div>
-      <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
-        Iniciar
-      </button>
     </form>
   );
 };
