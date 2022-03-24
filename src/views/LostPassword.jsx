@@ -1,9 +1,6 @@
-import React, { useState, } from 'react';
-
+import { useState } from 'react';
 
 const LostPassword = () => {
-
-
     const [mail, setMail] = useState("");
 
     const changeMail = (event) => {
@@ -11,16 +8,14 @@ const LostPassword = () => {
     };
 
     function handleSubmit(event) {
-
         event.preventDefault();
 
         fetch('http://localhost:5000/password-recovery', {
-
             method: "POST",
             "headers": {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ mail })
+            body: JSON.stringify({mail: mail})
         })
             .then(response => response.json())
             .then(data => console.log(data.msg))
@@ -30,12 +25,7 @@ const LostPassword = () => {
 
     return <>
         <div className="container">
-            <br />
-            <br />
-            <br />
             <h2>Restablecer contraseña</h2>
-            <br />
-            <br />
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="LostMail" className="form-label">Ingrese su email</label>
@@ -47,7 +37,7 @@ const LostPassword = () => {
                         onChange={changeMail}
                     />
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={console.log(mail)}>Enviar correo de recuperación</button>
+                <button type="submit" className="btn btn-primary">Enviar correo de recuperación</button>
             </form>
             <br />
             <br />
