@@ -7,6 +7,7 @@ import "./styles/index.css"
 import LostPassword from "./views/LostPassword"
 import MisAvisos from "./views/MisAvisos"
 import MisPololitos from "./views/MisPololitos"
+import AddPetition from "./views/AddPetition.jsx";
 
 
 ReactDOM.render(
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Route path="/forgot-password" element={<LostPassword />}></Route>
       <Route path="/publications" element={<MisAvisos />}></Route>
       <Route path="/pololitos" element={<MisPololitos />}></Route>
+      <Route path="/petition" element={<AddPetition />}></Route>
     </Routes>
   </BrowserRouter>,
   document.getElementById('app')

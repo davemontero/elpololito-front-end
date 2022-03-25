@@ -35,8 +35,8 @@ const RegisterFormClient = () => {
       },
       "body": JSON.stringify(form)
     })
-      .then(response => {
-        response.json().then(data => setUser({...user, pid:data.person_id}));
+      .then(data => {
+        console.log(data.json());
       })
       .catch(err => {
         console.error(err);
@@ -50,7 +50,7 @@ const RegisterFormClient = () => {
       "body": JSON.stringify(user)
     })
       .then(response => {
-        console.log(response.json().then(data => console.log(data)));
+        console.log(response.json().then(data => console.log(data.pid)));
       })
       .catch(err => {
         console.error(err);
@@ -58,9 +58,6 @@ const RegisterFormClient = () => {
     
 
   }
-
-
-
 
   return (
     <form className="row g-3" onSubmit={handleSubmit}>
@@ -101,7 +98,25 @@ const RegisterFormClient = () => {
         <input type="text" className="form-control" id="inputdob" name="dob" onChange={handleChangeform} />
       </div>
       <div className="col-md-6">
-        <label htmlFor="inputPhoto" className="form-label">
+        <label htmlFor="inputPhone" className="form-label">
+          Mail <span className="input-require">*</span>
+        </label>
+        <input type="text" className="form-control" id="inputMail" name="mail" onChange={handleChangeUser} />
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="inputPhone" className="form-label">
+          Password <span className="input-require">*</span>
+        </label>
+        <input type="password" className="form-control" id="inputPasswordUser" name="password" onChange={handleChangeUser} />
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="inputPhone" className="form-label">
+          Teléfono <span className="input-require">*</span>
+        </label>
+        <input type="text" className="form-control" id="inputPhone" name="phone" onChange={handleChangeform} />
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="inputPhone" className="form-label">
           Foto <span className="input-require">*</span>
         </label>
         <input type="text" className="form-control" id="inputPhoto" name="photo" onChange={handleChangeform} />
@@ -116,24 +131,6 @@ const RegisterFormClient = () => {
           <option value="Hombre">Hombre</option>
           <option value="Prefiero no decir">Prefiero no decir</option>
         </select>
-      </div>
-      <div className="col-md-6">
-        <label htmlFor="inputPhone" className="form-label">
-          Teléfono <span className="input-require">*</span>
-        </label>
-        <input type="text" className="form-control" id="inputPhone" name="phone" onChange={handleChangeform} />
-      </div>
-      <div className="col-md-12">
-        <label htmlFor="inputPhone" className="form-label">
-          Mail <span className="input-require">*</span>
-        </label>
-        <input type="text" className="form-control" id="inputMail" name="mail" onChange={handleChangeUser} />
-      </div>
-      <div className="col-md-12">
-        <label htmlFor="inputPhone" className="form-label">
-          Password <span className="input-require">*</span>
-        </label>
-        <input type="password" className="form-control" id="inputPasswordUser" name="password" onChange={handleChangeUser} />
       </div>
 
       <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
