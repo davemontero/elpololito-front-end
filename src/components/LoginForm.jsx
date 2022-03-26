@@ -63,12 +63,12 @@ const LoginForm = () => {
         body: JSON.stringify(userValidated)
       })
         .then(response => response.json())
-        .then(data => {
-          if (data.status) {
-            navigate("/Home")
+        .then(response => {
+          if (response.status) {
+            navigate("/home")
           } else {
             toast.update(id, {
-              render: data.msg,
+              render: response.msg,
               type: "error",
               isLoading: false,
               closeButton: true,

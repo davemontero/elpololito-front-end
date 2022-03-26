@@ -62,7 +62,7 @@ const Login = () => {
       .then(response => response.json())
       .then(data => {
         if (data.status) {
-          navigate('/app')
+          navigate('/home')
         } else {
           toast.update(id, {
             render: data.msg,
@@ -82,7 +82,7 @@ const Login = () => {
         <form onSubmit={handleLogin} className="login-form">
           <ToastContainer />
           <div className="mb-3">
-            <label htmlFor="formLoginUser" className="form-label">
+            <label htmlFor="formLoginUser" className="form-label form-label-white">
               Correo
             </label>
             <input
@@ -98,7 +98,7 @@ const Login = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="formLoginPassword" className="form-label">
+            <label htmlFor="formLoginPassword" className="form-label form-label-white">
               Contraseña
             </label>
             <input
