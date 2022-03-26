@@ -54,7 +54,7 @@ const LoginForm = () => {
         user: email,
         password: password
       }
-
+     
       fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
@@ -62,7 +62,7 @@ const LoginForm = () => {
         },
         body: JSON.stringify(userValidated)
       })
-        .then(response => response.json())        
+        .then(response => response.json())
         .then(response => {
           if (response[0].status) {
             navigate("/Home")
@@ -77,9 +77,8 @@ const LoginForm = () => {
           }
         }
         )
-        .then(data => {localStorage.setItem("jwt-token", data.token) }
+        .then(response => { localStorage.setItem("jwt", response[1].token) }
         )
-        
         .catch((error) => {
           toast.update(id, { render: error.message, type: "error", isLoading: false, closeButton: true })
         });

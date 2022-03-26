@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 const Home = () => {
     
+    console.log(localStorage);
+
     return <>
      <h1>Hello World</h1>
         <div>
