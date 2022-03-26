@@ -8,7 +8,7 @@ import "./styles/index.css"
 import MisAvisos from "./views/MisAvisos"
 import MisPololitos from "./views/MisPololitos"
 import ResetPassword from "./views/ResetPassword"
-
+import WhoAmI from "./views/WhoAmI"
 
 ReactDOM.render(
   <BrowserRouter>
@@ -20,6 +20,7 @@ ReactDOM.render(
       <Route path="/reset-password/:token" element={<ResetPassword />}></Route>
       <Route path="/publications" element={<MisAvisos />}></Route>
       <Route path="/pololitos" element={<MisPololitos />}></Route>
+      <Route path="/who_am_i" element={<WhoAmI />}></Route>
     </Routes>
   </BrowserRouter>,
   document.getElementById('app')

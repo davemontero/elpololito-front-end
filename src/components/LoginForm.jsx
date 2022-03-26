@@ -54,7 +54,7 @@ const LoginForm = () => {
         user: email,
         password: password
       }
-
+     
       fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
@@ -75,6 +75,8 @@ const LoginForm = () => {
             })
           }
         }
+        )
+        .then(response => { localStorage.setItem("jwt", response[1].token) }
         )
         .catch((error) => {
           toast.update(id, { render: error.message, type: "error", isLoading: false, closeButton: true })
