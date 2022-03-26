@@ -1,29 +1,20 @@
 import { useState } from "react";
-import DatePicker from "react-datepicker";
+import swal from 'sweetalert';
 import "react-datepicker/dist/react-datepicker.css";
 
 const RegisterFormClient = () => {
   // const [startDate, setStartDate] = useState(new Date());
-  const [checked, setChecked] = useState(false);
+
 
   const [form, setForm] = useState({})
-  const [user, setUser] = useState({})
-
-
 
   const handleChangeform = e => {
     setForm({
       ...form, [e.target.name]: e.target.value,
     })
   }
-  const handleChangeUser = e => {
-    setUser({
-      ...user, [e.target.name]: e.target.value,
-    })
-  }
 
   console.log(form)
-  console.log(user)
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -35,30 +26,21 @@ const RegisterFormClient = () => {
       },
       "body": JSON.stringify(form)
     })
-      .then(data => {
-        console.log(data.json());
-      })
-      .catch(err => {
-        console.error(err);
-      });
-      console.log(user)
-      fetch("http://localhost:5000/create-user", {
-      "method": "POST",
-      "headers": {
-        "Content-Type": "application/json"
-      },
-      "body": JSON.stringify(user)
-    })
       .then(response => {
-        console.log(response.json().then(data => console.log(data.pid)));
+        response.json()
       })
+      .then(data => swal({
+        title: "Exito",
+        text: `Usuario  ${data.fullname} Creado con exito`,
+        icon: "success",
+        timer: 5000
+      }))
       .catch(err => {
         console.error(err);
       });
-    
+
 
   }
-
   return (
     <form className="row g-3" onSubmit={handleSubmit}>
       <div className="col-md-6">
@@ -99,18 +81,6 @@ const RegisterFormClient = () => {
       </div>
       <div className="col-md-6">
         <label htmlFor="inputPhone" className="form-label">
-          Mail <span className="input-require">*</span>
-        </label>
-        <input type="text" className="form-control" id="inputMail" name="mail" onChange={handleChangeUser} />
-      </div>
-      <div className="col-md-6">
-        <label htmlFor="inputPhone" className="form-label">
-          Password <span className="input-require">*</span>
-        </label>
-        <input type="password" className="form-control" id="inputPasswordUser" name="password" onChange={handleChangeUser} />
-      </div>
-      <div className="col-md-6">
-        <label htmlFor="inputPhone" className="form-label">
           Teléfono <span className="input-require">*</span>
         </label>
         <input type="text" className="form-control" id="inputPhone" name="phone" onChange={handleChangeform} />
@@ -129,8 +99,20 @@ const RegisterFormClient = () => {
           <option>Elegir...</option>
           <option value="Mujer">Mujer</option>
           <option value="Hombre">Hombre</option>
-          <option value="Prefiero no decir">Prefiero no decir</option>
+          <option value="no binario">Prefiero no decir</option>
         </select>
+      </div>
+      <div className="col-md-12">
+        <label htmlFor="inputPhone" className="form-label">
+          Mail <span className="input-require">*</span>
+        </label>
+        <input type="text" className="form-control" id="inputMail" name="mail" onChange={handleChangeform} />
+      </div>
+      <div className="col-md-12">
+        <label htmlFor="inputPhone" className="form-label">
+          Password <span className="input-require">*</span>
+        </label>
+        <input type="password" className="form-control" id="inputPasswordUser" name="password" onChange={handleChangeform} />
       </div>
 
       <button type="submit" className="btn btn-primary" onClick={handleSubmit}>

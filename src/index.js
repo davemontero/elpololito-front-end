@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from './App';
 import Home from "./views/Home";
 import Login from "./views/Login";
-import "./styles/index.css"
 import LostPassword from "./views/LostPassword"
+import "./styles/index.css"
 import MisAvisos from "./views/MisAvisos"
 import MisPololitos from "./views/MisPololitos"
 import AddPetition from "./views/AddPetition.jsx";
