@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
+import { Link } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify";
 
 const LoginForm = () => {
@@ -44,16 +45,16 @@ const LoginForm = () => {
     e.preventDefault();
     const passwordValidate = Object.entries(checksPassword).filter(value => value.includes(false))
     if (!checksUser) {
-      toast.error('Favor, ingrese un correo valido', {autoClose: 2400})
-    } else if (passwordValidate.length > 0){
-      toast.error('Usuario o contraseña incorrectos', {autoClose: 2400})
+      toast.error('Favor, ingrese un correo valido', { autoClose: 2400 })
+    } else if (passwordValidate.length > 0) {
+      toast.error('Usuario o contraseña incorrectos', { autoClose: 2400 })
     } else {
       const id = toast.loading("Cargando...")
       const userValidated = {
         user: email,
         password: password
       }
-      
+     
       fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
@@ -61,24 +62,25 @@ const LoginForm = () => {
         },
         body: JSON.stringify(userValidated)
       })
-      .then(response => response.json())
-      .then(data =>
-        {
-          if (data.status) {
+        .then(response => response.json())
+        .then(response => {
+          if (response[0].status) {
+            localStorage.setItem("jwt", response[1].token)
             navigate("/Home")
-          }else{
+            console.log(response)
+          } else {
             toast.update(id, {
-              render: data.msg,
+              render: response[0].msg,
               type: "error",
               isLoading: false,
               closeButton: true,
             })
           }
         }
-      )
-      .catch((error) => {
-        toast.update(id, {render: error.message, type: "error", isLoading: false, closeButton: true})
-      });
+        )        
+        .catch((error) => {
+          toast.update(id, { render: error.message, type: "error", isLoading: false, closeButton: true })
+        });
     }
   };
 
@@ -116,12 +118,12 @@ const LoginForm = () => {
           required
         />
       </div>
-      <div className="mb-3 text-center">
-        <a href="#">Olvide mi Contraseña</a>
+      <div className="mb-3 text-center d-flex justify-content-between" >
+        <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
+          Iniciar
+        </button>
+        <span className="btn btn-warning" onClick={() => { navigate("/forgot-password") }} data-bs-dismiss="modal">Olvide mi Contraseña</span>
       </div>
-      <button type="submit" className="btn btn-primary">
-        Iniciar
-      </button>
     </form>
   );
 };
