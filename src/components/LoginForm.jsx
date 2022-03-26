@@ -62,13 +62,14 @@ const LoginForm = () => {
         },
         body: JSON.stringify(userValidated)
       })
-        .then(response => response.json())
-        .then(data => {
-          if (data.status) {
+        .then(response => response.json())        
+        .then(response => {
+          if (response[0].status) {
             navigate("/Home")
+            console.log(response)
           } else {
             toast.update(id, {
-              render: data.msg,
+              render: response[0].msg,
               type: "error",
               isLoading: false,
               closeButton: true,
@@ -76,6 +77,9 @@ const LoginForm = () => {
           }
         }
         )
+        .then(data => {localStorage.setItem("jwt-token", data.token) }
+        )
+        
         .catch((error) => {
           toast.update(id, { render: error.message, type: "error", isLoading: false, closeButton: true })
         });
