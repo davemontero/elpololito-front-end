@@ -7,13 +7,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 
 
-const HCard = () => {
+const HCard = props => {
 
     return <>
         <Container fluid >
             <div className="HCardo">
                 <Row>
-                    <Col xs={6}><h3>Título</h3></Col>
+                    <Col xs={6}><h3>{props.title}</h3></Col>
                     <Col xs={{ span: 2, offset: 4 }}> RATING PENDING</Col>
                 </Row>
                 <br />
@@ -21,13 +21,13 @@ const HCard = () => {
                     <Col xs={8}>
                         <div>
                             <p>
-                                Lugar
+                                Lugar {props.address}
                             </p>
                             <p>
-                                Fecha y Hora
+                                Fecha y Hora {props.date}
                             </p>
                             <p>
-                                Descripción
+                                Descripción {props.body}
                             </p>
                         </div>
                     </Col>

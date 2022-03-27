@@ -65,9 +65,9 @@ const LoginForm = () => {
         .then(response => response.json())
         .then(response => {
           if (response[0].status) {
-            localStorage.setItem("jwt", response[1].token)
+            localStorage.setItem("user_id", response[1].user_id)
+            localStorage.setItem("jwt",response[1].token)
             navigate("/Home")
-            console.log(response)
           } else {
             toast.update(id, {
               render: response[0].msg,
@@ -75,7 +75,9 @@ const LoginForm = () => {
               isLoading: false,
               closeButton: true,
             })
-          }
+          } 
+  
+        
         }
         )        
         .catch((error) => {

@@ -8,8 +8,9 @@ const LogOut = () => {
     let navigate = useNavigate();
 
     function handleLogOut() {
-        localStorage.removeItem("token")
+        localStorage.clear()
         navigate("/")
+        console.log(localStorage)
          }
 
     return <>

@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom'
 const Home = () => {
     
     console.log(localStorage);
-    console.log(localStorage.key(0));
-    console.log(localStorage.key(1));   
+    
 
     return <>
      <h1>Hello World</h1>

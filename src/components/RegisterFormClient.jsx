@@ -4,11 +4,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const RegisterFormClient = () => {
   // const [startDate, setStartDate] = useState(new Date());
-  const [checked, setChecked] = useState(false);
+
 
   const [form, setForm] = useState({})
-
-
 
   const handleChangeform = e => {
     setForm({
@@ -29,23 +27,20 @@ const RegisterFormClient = () => {
       "body": JSON.stringify(form)
     })
       .then(response => {
-        response.json().then(data => swal({
-          title:"Exito",
-          text:"Usuario"+data.fullname+"Creado con exito",
-          icon:"success",
-          timer:5000
-        }))
+        response.json()
       })
+      .then(data => swal({
+        title: "Exito",
+        text: `Usuario  ${data.fname} Creado con exito`,
+        icon: "success",
+        timer: 5000
+      }))
       .catch(err => {
         console.error(err);
       });
-    
+
 
   }
-
-
-
-
   return (
     <form className="row g-3" onSubmit={handleSubmit}>
       <div className="col-md-6">
@@ -85,7 +80,13 @@ const RegisterFormClient = () => {
         <input type="text" className="form-control" id="inputdob" name="dob" onChange={handleChangeform} />
       </div>
       <div className="col-md-6">
-        <label htmlFor="inputPhoto" className="form-label">
+        <label htmlFor="inputPhone" className="form-label">
+          Teléfono <span className="input-require">*</span>
+        </label>
+        <input type="text" className="form-control" id="inputPhone" name="phone" onChange={handleChangeform} />
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="inputPhone" className="form-label">
           Foto <span className="input-require">*</span>
         </label>
         <input type="text" className="form-control" id="inputPhoto" name="photo" onChange={handleChangeform} />
@@ -100,12 +101,6 @@ const RegisterFormClient = () => {
           <option value="Hombre">Hombre</option>
           <option value="no binario">Prefiero no decir</option>
         </select>
-      </div>
-      <div className="col-md-6">
-        <label htmlFor="inputPhone" className="form-label">
-          Teléfono <span className="input-require">*</span>
-        </label>
-        <input type="text" className="form-control" id="inputPhone" name="phone" onChange={handleChangeform} />
       </div>
       <div className="col-md-12">
         <label htmlFor="inputPhone" className="form-label">
