@@ -4,26 +4,34 @@ import React, { useState } from "react"
 
 const AddPetition = () => {
 
-    const [form, setForm] = useState()
+    const [form, setForm] = useState(
+        
+    )
 
     const HandleChange = e => {
-        setForm({ ...form, [e.target.name]: e.target.value })
+        setForm({ ...form, [e.target.name]: e.target.value,
+            "user_id" : localStorage.user_id
+         })
     }
 
-    
+
+
+
 
     function handleSubmit(event) {
+
         event.preventDefault();
         console.log('form', form)
         fetch("http://localhost:5000/create-publication", {
             "method": "POST",
             "headers": {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer ${localStorage.getItem('jwt')}"
             },
             "body": JSON.stringify(form)
         })
-            .then(respuesta => {
-                console.log(respuesta);
+            .then(response => {
+                console.log(response);
             })
             .catch(err => {
                 console.error(err);

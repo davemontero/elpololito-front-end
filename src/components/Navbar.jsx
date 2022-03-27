@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
+import LogOut from "./LogOut"
 
 const Navbar = () => {
+
+
+
+
+
+    console.log(localStorage)
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container">
@@ -42,6 +50,7 @@ const Navbar = () => {
                                 Mis Avisos
                             </Link>
                         </li>
+                        <LogOut />
                     </ul>
                     <ul className="navbar-nav">
                         <li className="nav-item nav-item-list">

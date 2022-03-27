@@ -54,7 +54,7 @@ const LoginForm = () => {
         user: email,
         password: password
       }
-
+     
       fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
@@ -65,8 +65,9 @@ const LoginForm = () => {
         .then(response => response.json())
         .then(response => {
           if (response[0].status) {
-            navigate("/home")
-            console.log(response)
+            localStorage.setItem("user_id", response[1].user_id)
+            localStorage.setItem("jwt",response[1].token)
+            navigate("/Home")
           } else {
             toast.update(id, {
               render: response[0].msg,
@@ -75,9 +76,10 @@ const LoginForm = () => {
               closeButton: true,
             })
           } 
+  
         
         }
-        )
+        )        
         .catch((error) => {
           toast.update(id, { render: error.message, type: "error", isLoading: false, closeButton: true })
         });

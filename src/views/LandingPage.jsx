@@ -13,7 +13,7 @@ function LandingPage() {
     const [openPololito, setOpenPololito] = useState(false);
 
     return (
-        <>
+        <>        
             <Container fluid='md' >
                 <br />
                 <br />
@@ -28,6 +28,7 @@ function LandingPage() {
                 <br />
                 <br />
                 <br />
+             
                 <Row>
                 <Col xs={{ span: 5, offset: 2 }}>
                         <div className='infoBlurb'>
