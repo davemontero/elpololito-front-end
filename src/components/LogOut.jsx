@@ -8,12 +8,12 @@ const LogOut = () => {
     let navigate = useNavigate();
 
     function handleLogOut() {
-        localStorage.removeItem("token")
+        localStorage.removeItem("jwt")
         navigate("/")
          }
-
+console.log(localStorage)
     return <>
-    <Button onClick={handleLogOut} variant="dark">Log Out</Button>{' '}
+    <Button className="nav-link-btn-dark nav-link-btn" onClick={handleLogOut} variant="dark">Cerrar Sesión</Button>{' '}
    </>
 }
 

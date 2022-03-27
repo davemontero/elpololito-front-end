@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import LogOut from "./LogOut" 
 
 const Navbar = () => {
   return (
@@ -52,6 +53,9 @@ const Navbar = () => {
             <a className="nav-link nav-link-btn" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
                 Registrate
             </a>
+            </li>
+            <li className="nav-item nav-item-list">
+            <LogOut/>
             </li>
         </ul>
         </div>

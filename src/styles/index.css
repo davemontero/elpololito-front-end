@@ -73,6 +73,11 @@ body {
     line-height: 1.8rem;
 }
 
+.nav-link-btn-dark {
+    background-color: var(--bs-dark);
+
+}
+
 .nav-link-btn:hover {
     color: var(--accent-color-2);
 }

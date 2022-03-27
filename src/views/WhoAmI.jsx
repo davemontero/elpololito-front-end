@@ -14,12 +14,9 @@ const WhoAmI = () => {
   .then(response => response.json())
   .then(data => console.log(data))
   ;
-
-  console.log(localStorage);
+  
   });
-
-
-    console.log(localStorage);
+   
    return <>
     <h1>Soy alguien</h1>
    </>
