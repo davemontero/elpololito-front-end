@@ -203,8 +203,15 @@ border: 2px solid;
 border-style: groove;
 border-radius: 16px;
 padding: 10px;
-
 }
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+
+
 .login-wrapper {
     height: 100vh;
     background-color: var(--accent-color-1);
