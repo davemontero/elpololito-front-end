@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
-import { Link } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify";
 
 const LoginForm = () => {
@@ -54,7 +53,6 @@ const LoginForm = () => {
         user: email,
         password: password
       }
-     
       fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
@@ -76,8 +74,6 @@ const LoginForm = () => {
           }
         }
         )
-        .then(response => { localStorage.setItem("jwt", response[1].token) }
-        )
         .catch((error) => {
           toast.update(id, { render: error.message, type: "error", isLoading: false, closeButton: true })
         });
@@ -85,7 +81,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="needs-validation" onSubmit={handleLogin} noValidate>
+    <form className="needs-validation" onSubmit={handleLogin}>
       <ToastContainer />
       <div className="mb-3">
         <label htmlFor="inputUser" className="form-label">
@@ -119,7 +115,7 @@ const LoginForm = () => {
         />
       </div>
       <div className="mb-3 text-center d-flex justify-content-between" >
-        <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
+        <button type="submit" className="btn btn-primary" data-bs-dismiss={modal}>
           Iniciar
         </button>
         <span className="btn btn-warning" onClick={() => { navigate("/forgot-password") }} data-bs-dismiss="modal">Olvide mi Contraseña</span>

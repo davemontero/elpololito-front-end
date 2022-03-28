@@ -44,9 +44,9 @@ const Navbar = () => {
         </ul>
         <ul className="navbar-nav">
             <li className="nav-item nav-item-list">
-            <a className="nav-link nav-link-login" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
-                Iniciar sesión
-            </a>
+                <Link className="nav-link nav-link-login" to="/login">
+                    Iniciar sesión
+                </Link>
             </li>
             <li className="nav-item nav-item-list">
             <a className="nav-link nav-link-btn" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">

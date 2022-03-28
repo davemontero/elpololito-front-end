@@ -7,7 +7,6 @@ import LostPassword from "./views/LostPassword"
 import "./styles/index.css"
 import MisAvisos from "./views/MisAvisos"
 import MisPololitos from "./views/MisPololitos"
-import ResetPassword from "./views/ResetPassword"
 import WhoAmI from "./views/WhoAmI"
 
 ReactDOM.render(
@@ -17,7 +16,6 @@ ReactDOM.render(
       <Route path="/home" element={<Home />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/forgot-password" element={<LostPassword />}></Route>
-      <Route path="/reset-password/:token" element={<ResetPassword />}></Route>
       <Route path="/publications" element={<MisAvisos />}></Route>
       <Route path="/pololitos" element={<MisPololitos />}></Route>
       <Route path="/who_am_i" element={<WhoAmI />}></Route>

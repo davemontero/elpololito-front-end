@@ -248,6 +248,14 @@ padding: 10px;
     margin-top: 1rem;
 }
 
+.login-btn:hover {
+    background-color: var(--accent-color-2);
+}
+
+.login-btn:disabled {
+    background-color: var(--accent-color-2);
+}
+
 .btn3d {
 	position: relative;
 	top: -6px;
@@ -381,4 +389,12 @@ padding: 10px;
     padding: 3rem;
     min-width: 340px;
     width: 500px;
+}
+
+.search-wrapper {
+    padding: 4rem 0;
+}
+
+.search-input {
+    max-width: 430px;
 }
