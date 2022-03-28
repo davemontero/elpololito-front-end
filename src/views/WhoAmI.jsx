@@ -14,17 +14,15 @@ const WhoAmI = () => {
       },
     })
   .then(response => response.json())
-  .then(data => setQuienSoy(data))
+  .then(data => console.log(data))
 
   ;
   
   });
    
    return <>
-    <h1>Soy {quienSoy.email}</h1>
+    <h1>Soy {quienSoy.resp}</h1>
    </>
 }
 
 export default WhoAmI
-
-localStorage.getItem('jwt') ? <Navbar1/> : <Navbar2/>
