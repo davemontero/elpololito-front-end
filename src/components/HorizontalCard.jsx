@@ -8,7 +8,11 @@ import Col from 'react-bootstrap/Col'
 
 
 const HCard = props => {
-
+    const [Pololito, setPololito] = useState({
+        "status": false,
+        "user_id": 0,
+        "pub_id": 0
+    })
     return <>
         <Container fluid >
             <div className="HCardo">
@@ -58,6 +62,17 @@ const HCard = props => {
 
                             </Carousel.Item>
                         </Carousel>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Button className="btn btn-warning btn-lg btn3d" onClick={setPololito({
+                            "status": true,
+                            "user_id": ,
+                            "pub_id": 0
+                        })}>
+                            Realizar Pololito
+                        </Button>
                     </Col>
                 </Row>
             </div>
