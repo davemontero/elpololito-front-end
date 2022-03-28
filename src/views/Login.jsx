@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react"
-import { ToastContainer, toast } from "react-toastify";
+import swal from 'sweetalert';
+import { Button, Spinner } from "react-bootstrap"
 
 const Login = () => {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showSpinner, setShowSpinner] = useState(false);
   const [checksUser, setChecksUser] = useState(false);
   const [checksPassword, setChecksPassword] = useState({
     caps: false,
@@ -41,16 +43,16 @@ const Login = () => {
 
   const handleLogin = e => {
     e.preventDefault()
+    setShowSpinner(true)
     const passwordValidate = Object.entries(checksPassword).filter(value => value.includes(false))
     if (!checksUser) {
       toast.error('Favor, ingrese un correo valido', {autoClose: 2400})
     } else if (passwordValidate.length > 0){
       toast.error('Usuario o contraseña incorrectos', {autoClose: 2400})
     } else {
-      const id = toast.loading("Cargando...")
       const userValidate = {
-          user: "dave@gmail.com",
-          password: "oa1Rasd*"
+          user: email,
+          password: password
       }
       fetch("http://localhost:5000/login",{
           method: "POST",
@@ -61,17 +63,25 @@ const Login = () => {
       })
       .then(response => response.json())
       .then(data => {
-        if (data.status) {
-          navigate('/app')
+        if (data[0].status) {
+          localStorage.setItem("jwt", data[1].token)
+          navigate('/home')
         } else {
-          toast.update(id, {
-            render: data.msg,
-            type: "error",
-            isLoading: false,
-            closeButton: true,
+          swal({
+            title:"Error",
+            text: data[0].msg,
+            icon:"error",
+            timer:5000
           })
         }
-      })
+      }).catch(() => {
+        swal({
+          title:"Error",
+          text: "Ha ocurrido un problema, intentalo más tarde.",
+          icon:"error",
+          timer:5000
+        })
+      }).then(() => setShowSpinner(false))
     }
   }
 
@@ -80,9 +90,8 @@ const Login = () => {
       <div className="login-title">El pololito</div>
       <div className="login-box">
         <form onSubmit={handleLogin} className="login-form">
-          <ToastContainer />
           <div className="mb-3">
-            <label htmlFor="formLoginUser" className="form-label">
+            <label htmlFor="formLoginUser" className="form-label form-label-white">
               Correo
             </label>
             <input
@@ -98,7 +107,7 @@ const Login = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="formLoginPassword" className="form-label">
+            <label htmlFor="formLoginPassword" className="form-label form-label-white">
               Contraseña
             </label>
             <input
@@ -112,7 +121,25 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit" className="login-btn">Iniciar sesión</button>
+          {
+          showSpinner ? (
+            <Button className="login-btn" disabled>
+              <Spinner
+                className="me-1"
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+              Cargando...
+            </Button>
+            ) : (
+              <Button type="submit" className="login-btn">
+                Iniciar
+              </Button>
+            )
+          }
         </form>
       </div>
     </main>

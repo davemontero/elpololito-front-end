@@ -1,18 +1,32 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            loginInfo:[]
+            publications: [],
+            workersProfiles: [],
+            auth: ""
         },
         actions: {
-            testEmail: (email) =>{
-                return /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}.([a-z{2,3}])?/.test(email);
+            isAuth: () => {
+                
             },
-            testPassword: (pass)=>{
-                if( /[A-Z]/.test(pass) && /[a-z]/.test(pass) && /[0-9]/.test(pass) && /[$@#*-]/.test(pass) && pass.length >= 6 && pass.length <= 50){
-                    return true
-                }else{
-                    return false
-                }
+            readWorkersProfiles: () => {
+                fetch("http://localhost:5000/get-workers")
+                .then(res => res.json())
+                .then(data => setStore({workersProfiles:data}))
+                .catch(err => {
+                        console.error(err);
+                    });
+
+            },
+
+
+            readPetitions: () => {
+                fetch("http://localhost:5000/create-publication")
+                .then(res => res.json())
+                .then(data => setStore({publications:data}))
+                .catch(err => {
+                        console.error(err);
+                    });
             }
         }
     };
