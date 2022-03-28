@@ -1,50 +1,86 @@
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import {
-  Navbar,
   Container,
-  Nav,
-  NavDropdown,
   Form,
+  Row,
+  Col,
+  Tab,
+  Tabs,
   FormControl,
   Button,
 } from "react-bootstrap";
+import HomeAvisos from "../components/HomeAvisos";
+import HomeWorkers from "../components/HomeWorkers"
+import NavbarApp from "../components/NavbarApp";
+
 const Home = () => {
+  const [key, setKey] = useState("trabajador");
+  useEffect(() => {
+    fetch("http://localhost:5000/home", {
+      method: "get",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  });
   return (
-      <>
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand href="#">El Pololito</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll" className="justify-content-end">
-          <Nav>
-            <Nav.Link>Nuevo aviso</Nav.Link>
-            <Nav.Link>Mis avisos</Nav.Link>
-            <Nav.Link>Mis pololitos</Nav.Link>
-            <NavDropdown title="Nombre">
-                <NavDropdown.Item>Perfil</NavDropdown.Item>
-                <NavDropdown.Item>Ayuda</NavDropdown.Item>
-                <NavDropdown.Item>Cerrar sesión</NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    <main>
-      <section className="search-wrapper">
-        <Container>
+    <>
+      <NavbarApp />
+      <main>
+        <section className="search-wrapper">
+          <Container>
             <Form className="d-flex justify-content-center">
-                <FormControl
-                    type="search"
-                    className="me-2 search-input"
-                    aria-label="Buscar">
-                </FormControl>
-                <Button>Buscar</Button>
+              <FormControl
+                type="search"
+                className="me-2 search-input"
+                aria-label="Buscar"
+              ></FormControl>
+              <Button>Buscar</Button>
             </Form>
-        </Container>
-      </section>
-      <section>
-        {/* ACA EL CONTENIDO RESTANTE */}
-      </section>
-    </main>
+          </Container>
+        </section>
+        <section>
+          <Container>
+            <Row>
+              <Col>
+                <Tabs
+                  id="switch-grid"
+                  activeKey={key}
+                  onSelect={(k) => setKey(k)}
+                  className="mb-3"
+                >
+                  <Tab eventKey="trabajador" title="Trabajadores">
+                    <h2>Trabajadores destacados</h2>
+                    <div>
+                      <HomeWorkers />
+                    </div>
+                  </Tab>
+
+                  <Tab eventKey="aviso" title="Avisos">
+                    <h2>Avisos destacados</h2>
+                    <div>
+                      <HomeAvisos />
+                    </div>
+                  </Tab>
+                </Tabs>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <div>
+                  <Link className="nav-link" to="/who_am_i">
+                    WHO AM I AAAAAA
+                  </Link>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+      </main>
     </>
   );
 };

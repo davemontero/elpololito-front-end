@@ -63,12 +63,13 @@ const Login = () => {
       })
       .then(response => response.json())
       .then(data => {
-        if (data.status) {
+        if (data[0].status) {
+          localStorage.setItem("jwt", data[1].token)
           navigate('/home')
         } else {
           swal({
             title:"Error",
-            text: data.msg,
+            text: data[0].msg,
             icon:"error",
             timer:5000
           })

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle"
 import VisitPage from "./views/visitPage";
@@ -13,7 +13,9 @@ import MisAvisos from "./views/MisAvisos"
 import MisPololitos from "./views/MisPololitos"
 import AddPetition from "./views/AddPetition";
 import WhoAmI from "./views/WhoAmI"
-
+import Navbar from "./components/Navbar";
+import NavbarApp from "./components/NavbarApp"
+import { Context } from "./store/pololitoContext";
 
 
 const App = () => {
