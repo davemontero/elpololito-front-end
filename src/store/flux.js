@@ -1,17 +1,14 @@
-import React from "react";
-
-
-
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             publications: [],
             workersProfiles: [],
-
-
+            auth: ""
         },
         actions: {
-
+            isAuth: () => {
+                
+            },
             readWorkersProfiles: () => {
                 fetch("http://localhost:5000/get-workers")
                 .then(res => res.json())

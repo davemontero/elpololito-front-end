@@ -12,6 +12,7 @@
     --webfont: 'Roboto';
     --shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     --shadow-card: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    --divider: hsla(0,40%,50%,0.3)
 }
 body {
     font-family: var(--webfont);
@@ -72,6 +73,7 @@ body {
     padding: 0.5em 1.3em !important;
     color: var(--accent-color-2) !important;
     line-height: 1.8rem;
+    border: 0;
 }
 
 .nav-link-btn-dark {
@@ -150,7 +152,7 @@ body {
     position: absolute;
     width: 300px;
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: var(--shadow)
 }
 
 .header-btn {
@@ -184,7 +186,7 @@ body {
 
 .react-datepicker{
  border: 0;
- box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;;
+ box-shadow: var(--shadow);
 }
 
 .react-datepicker__triangle{
@@ -210,7 +212,6 @@ border-radius: 16px;
 padding: 10px;
 }
 .card-img-top {
-    width: 100%;
     height: 200px;
     object-fit: cover;
 }
@@ -252,7 +253,7 @@ padding: 10px;
     flex-direction: column;
 }
 
-.mb-3 > .form-label {
+.form-label-white {
     color: var(--accent-color-2) !important;
 }
 
@@ -267,6 +268,14 @@ padding: 10px;
     width: 150px;
     align-self: center;
     margin-top: 1rem;
+}
+
+.login-btn:hover {
+    background-color: var(--accent-color-2);
+}
+
+.login-btn:disabled {
+    background-color: var(--accent-color-2);
 }
 
 .btn3d {
@@ -384,4 +393,82 @@ padding: 10px;
 .btn3d.btn-magick.active {
 	box-shadow: 0 0 0 1px #9a00cd inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, 0.3);
 	background-color: #bb39d7;
+}
+
+.forgotPassword-wrapper {
+    height: 100vh;
+    background-color: var(--accent-color-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.forgotPassword-box {
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    padding: 3rem;
+    min-width: 340px;
+    width: 500px;
+}
+
+.search-wrapper {
+    padding: 4rem 0;
+}
+
+.search-input {
+    max-width: 430px;
+}
+
+.userPanel-wrapper {
+    padding: 80px 0 35px 0;
+}
+
+.carousel-card {
+    box-shadow: var(--shadow-card);
+}
+
+.workers-wrapper {
+    padding: 45px 0 60px 0;
+}
+
+.footer-wrapper {
+    padding: 60px 0 0 0;
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
+}
+
+.rrss-box {
+    padding: 10px 0;
+}
+
+.rrss{
+    background-color: var(--bs-gray);
+    color: var(--bs-light);
+    border-radius: 50%;
+    padding: 7px 9px;
+    margin-right: 5px;
+}
+
+.rrss:hover {
+    color: var(--bs-light);
+}
+
+.divider {
+    border-top: 1px solid var(--divider);
+    margin: 20px 0 0 0;
+}
+
+.copy {
+    padding: 20px 0;
+}
+
+.link-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.link-item {
+    margin-bottom: 1rem;
 }

@@ -7,7 +7,7 @@ import ModalLogin from "./ModalLogin"
 const Header = () => {
     return (
         <header className="header-wrapper">
-            
+            <Navbar />
             <Main />
             <ModalRegister />
             <ModalLogin />
