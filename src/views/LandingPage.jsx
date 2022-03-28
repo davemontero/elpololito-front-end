@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useContext, useState } from "react";
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
@@ -7,13 +7,19 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
+import { Context } from '../store/pololitoContext';
 
 function LandingPage() {
     const [openAviso, setOpenAviso] = useState(false);
     const [openPololito, setOpenPololito] = useState(false);
 
+    const { store, actions } = useContext(Context);
+    useEffect(() => {
+        actions.readPetitions();
+    }, [])
+
     return (
-        <>        
+        <>
             <Container fluid='md' >
                 <br />
                 <br />
@@ -28,7 +34,7 @@ function LandingPage() {
                 <br />
                 <br />
                 <br />
-             
+
                 <Row>
                 <Col xs={{ span: 5, offset: 2 }}>
                         <div className='infoBlurb text-start'>
@@ -37,20 +43,20 @@ function LandingPage() {
                                 onClick={() => setOpenAviso(!openAviso)}
                                 aria-controls="collapseAviso"
                                 aria-expanded={openAviso}
-                                
-                                >
-                                        Publicar un Aviso
+
+                            >
+                                Publicar un Aviso
                             </Button>
-                            <Collapse className="aaa" 
-                            in={openAviso}>
+                            <Collapse className="aaa"
+                                in={openAviso}>
                                 <div id="collapseAviso">
                                     <h2> ¿Quieres publicar avisos? </h2>
                                     <ul>
                                         <li> Puedes hacer visible tus necesidades mediante avisos y asi trabajadores te contactaran, para realizar un pololito</li>
-                                    </ul>    
-                                    </div>                   
+                                    </ul>
+                                </div>
                             </Collapse>
-                            </div>  
+                        </div>
                     </Col>
                     <Col xs={{ span: 5 }}>
                         <div className='infoBlurb text-start'>
@@ -62,7 +68,7 @@ function LandingPage() {
                             >
                                 Hacer un Pololito
                             </Button>
-                            <Collapse className="aaa"  in={openPololito}>
+                            <Collapse className="aaa" in={openPololito}>
                                 <div id="collapsePololito">
                                     <h2> ¿Quieres realizar pololitos? </h2>
                                     <ul>
@@ -154,39 +160,21 @@ function LandingPage() {
                 <Row>
                     <Col >
                         <Carousel id="carousel-avisos" variant="dark" align="center">
-                            <Carousel.Item>
-                                <Card style={{ width: '18rem' }}>
-                                    <Card.Body>
-                                        <Card.Title>Se busca Jardinero</Card.Title>
-                                        <Card.Text>
-                                            Santiago. Comuna de Maipú.
-                                        </Card.Text>
-                                        <Button variant="primary">Contactar</Button>
-                                    </Card.Body>
-                                </Card>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <Card style={{ width: '18rem' }}>
-                                    <Card.Body>
-                                        <Card.Title>Necesito una niñera de 4 a 8</Card.Title>
-                                        <Card.Text>
-                                            Santiago. Comuna de Las Condes. Días Lunes, Martes, y Jueves.
-                                        </Card.Text>
-                                        <Button variant="primary">Contactar</Button>
-                                    </Card.Body>
-                                </Card>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <Card style={{ width: '18rem' }}>
-                                    <Card.Body>
-                                        <Card.Title>se busca gf 10gp</Card.Title>
-                                        <Card.Text>
-                                            Meet at GE
-                                        </Card.Text>
-                                        <Button variant="primary">Contactar</Button>
-                                    </Card.Body>
-                                </Card>
-                            </Carousel.Item>
+                            {store.publications.map(publication =>
+                                <Carousel.Item>
+
+                                    <Card style={{ width: '18rem' }}>
+                                        <Card.Body>
+                                            <Card.Title> Se Busca {publication.Title}</Card.Title>
+                                            <Card.Text>
+                                                {publication.place}
+                                            </Card.Text>
+                                            <Button variant="primary">Contactar</Button>
+                                        </Card.Body>
+                                    </Card>
+
+                                </Carousel.Item>
+                            )}
                         </Carousel>
                     </Col>
                 </Row>
