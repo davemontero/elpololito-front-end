@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+
+    
+
+
+
+
+
+
+
+
+
+
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
     <div className="container">
@@ -43,6 +56,11 @@ const Navbar = () => {
             </li>
         </ul>
         <ul className="navbar-nav">
+            <li className="nav-item nav-item-list">
+            <a className="nav-link nav-link-login" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Iniciar sesión
+            </a>
+            </li>
             <li className="nav-item nav-item-list">
             <a className="nav-link nav-link-login" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
                 Iniciar sesión

@@ -8,8 +8,9 @@ const LogOut = () => {
     let navigate = useNavigate();
 
     function handleLogOut() {
-        localStorage.removeItem("jwt")
+        localStorage.clear()
         navigate("/")
+        console.log(localStorage)
          }
 console.log(localStorage)
     return <>

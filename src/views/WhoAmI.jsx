@@ -7,23 +7,24 @@ const WhoAmI = () => {
   
   useEffect(() => {
     fetch("http://localhost:5000/who_am_i", {
-      method: 'get',
+      method: 'GET',
       headers: {
           
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
     })
   .then(response => response.json())
-  .then(data => setQuienSoy(data.email))
+  .then(data => setQuienSoy(data))
 
   ;
   
   });
    
    return <>
-    <h1>Soy {quienSoy}</h1>
+    <h1>Soy {quienSoy.email}</h1>
    </>
 }
 
 export default WhoAmI
 
+localStorage.getItem('jwt')? algo : nada
