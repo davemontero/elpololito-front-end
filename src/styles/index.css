@@ -11,7 +11,6 @@
     --elpololito-font: 'Oregano';
     --webfont: 'Roboto';
 }
-
 body {
     font-family: var(--webfont);
     font-weight: 500;
@@ -77,6 +76,10 @@ body {
     color: var(--accent-color-2);
 }
 
+.nav-link-btn-dark {
+    background-color: var(--bs-dark);
+
+}
 .navbar-toggler:focus {
     box-shadow: none;
 }

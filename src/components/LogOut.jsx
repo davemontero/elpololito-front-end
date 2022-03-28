@@ -14,7 +14,7 @@ const LogOut = () => {
     }
 
     return <>
-        <a className="nav-link nav-link-btn" onClick={handleLogOut}>
+        <a className="nav-link nav-link-btn nav-link-btn-dark" href="#" onClick={handleLogOut}>
             Log Out
         </a>
     </>
