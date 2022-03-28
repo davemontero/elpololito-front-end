@@ -10,7 +10,6 @@ import Col from 'react-bootstrap/Col';
 
 
 const Home = () => {
-<<<<<<< HEAD
 
     useEffect(() => {
         fetch("http://localhost:5000/home", {
@@ -28,11 +27,6 @@ const Home = () => {
     });
 
     const [key, setKey] = useState('trabajador');
-=======
-    
-    console.log(localStorage);
-    
->>>>>>> 6c8f7a0156b4b1796163c0cf483eb2b79acf8a75
 
     return <>
 

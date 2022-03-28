@@ -26,5 +26,3 @@ const WhoAmI = () => {
 }
 
 export default WhoAmI
-
-localStorage.getItem('jwt')? algo : nada

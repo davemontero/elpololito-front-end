@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import LogOut from "./LogOut" 
 
 const Navbar = () => {
@@ -63,77 +62,6 @@ const Navbar = () => {
     </div>
     </nav>
   );
-=======
-import LogOut from "./LogOut"
-
-const Navbar = () => {
-
-
-
-
-
-    console.log(localStorage)
-
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light">
-            <div className="container">
-                <a className="navbar-brand" href="#">
-                    El Pololito
-                    <img src="./images/flag.svg" className="title-flag" />
-                </a>
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <ul className="navbar-nav navbar-nav-center">
-                        <li className="nav-item nav-item-list">
-                            <Link className="nav-link" to="/">
-                                Inicio
-                            </Link>
-                        </li>
-                        <li className="nav-item nav-item-list">
-                            <Link className="nav-link" to="/petition">
-                                Publicar Aviso
-                            </Link>
-
-                        </li>
-                        <li className="nav-item nav-item-list">
-                            <Link className="nav-link" to="/pololitos">
-                                Mis Pololitos
-                            </Link>
-                        </li>
-                        <li className="nav-item nav-item-list">
-                            <Link className="nav-link" to="/publications">
-                                Mis Avisos
-                            </Link>
-                        </li>
-                        <LogOut />
-                    </ul>
-                    <ul className="navbar-nav">
-                        <li className="nav-item nav-item-list">
-                            <a className="nav-link nav-link-login" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                Iniciar sesión
-                            </a>
-                        </li>
-                        <li className="nav-item nav-item-list">
-                            <a className="nav-link nav-link-btn" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
-                                Registrate
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    );
->>>>>>> 6c8f7a0156b4b1796163c0cf483eb2b79acf8a75
 };
 
 export default Navbar;
