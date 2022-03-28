@@ -1,5 +1,5 @@
 import React from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
 
@@ -8,13 +8,16 @@ const LogOut = () => {
     let navigate = useNavigate();
 
     function handleLogOut() {
-        localStorage.removeItem("token")
+        localStorage.clear()
         navigate("/")
-         }
+        console.log(localStorage)
+    }
 
     return <>
-    <Button onClick={handleLogOut} variant="dark">Log Out</Button>{' '}
-   </>
+        <a className="nav-link nav-link-btn nav-link-btn-dark" href="#" onClick={handleLogOut}>
+            Log Out
+        </a>
+    </>
 }
 
 

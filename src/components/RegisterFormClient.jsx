@@ -4,8 +4,10 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 
 const RegisterFormClient = () => {
+  // const [startDate, setStartDate] = useState(new Date());
+
+
   const [form, setForm] = useState({})
-  const [startDate, setStartDate] = useState(new Date);
 
   const handleChangeform = e => {
     setForm({
@@ -88,7 +90,13 @@ const RegisterFormClient = () => {
         <DatePicker selected={startDate} onChange={handleDate} className="form-control" dateFormat="yyyy-MM-dd"/>
       </div>
       <div className="col-md-6">
-        <label htmlFor="inputPhoto" className="form-label">
+        <label htmlFor="inputPhone" className="form-label">
+          Teléfono <span className="input-require">*</span>
+        </label>
+        <input type="text" className="form-control" id="inputPhone" name="phone" onChange={handleChangeform} />
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="inputPhone" className="form-label">
           Foto <span className="input-require">*</span>
         </label>
         <input type="text" className="form-control" id="inputPhoto" name="photo" onChange={handleChangeform} />
@@ -103,12 +111,6 @@ const RegisterFormClient = () => {
           <option value="Hombre">Hombre</option>
           <option value="no binario">Prefiero no decir</option>
         </select>
-      </div>
-      <div className="col-md-6">
-        <label htmlFor="inputPhone" className="form-label">
-          Teléfono <span className="input-require">*</span>
-        </label>
-        <input type="text" className="form-control" id="inputPhone" name="phone" onChange={handleChangeform} />
       </div>
       <div className="col-md-12">
         <label htmlFor="inputPhone" className="form-label">

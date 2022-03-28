@@ -1,19 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+
 
 const WhoAmI = () => {
-    fetch("http://localhost:5000/who_am_i", {
-        method: 'get',
-        headers: {
-            'Content-Type': 'application/json',
-            "Authorization": "Bearer ${localStorage.getItem('jwt')}",
-        },
-      })
-    .then(response => response.json())
-    .then(data => console.log(data));
 
-    console.log(localStorage);
+  const [quienSoy, setQuienSoy] = useState();
+  
+  useEffect(() => {
+    fetch("http://localhost:5000/who_am_i", {
+      method: 'GET',
+      headers: {
+          
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
+    })
+  .then(response => response.json())
+  .then(data => setQuienSoy(data))
+
+  ;
+  
+  });
+   
    return <>
-    <h1>Hello World</h1>
+    <h1>Soy {quienSoy.email}</h1>
    </>
 }
 
