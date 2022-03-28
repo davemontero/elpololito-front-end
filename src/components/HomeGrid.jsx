@@ -24,7 +24,7 @@ const HomeGrid = () => {
             items: 3,
             slidesToSlide: 1 // optional, default to 1.
         }
-    };
+    }
     return <>
         <Container fluid>
             <Row>

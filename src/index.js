@@ -8,13 +8,8 @@ import "./styles/index.css"
 
 
 ReactDOM.render(
-
   <react.StrictMode>
     <App />
-
-
-
   </react.StrictMode>,
-
   document.getElementById('app')
 );

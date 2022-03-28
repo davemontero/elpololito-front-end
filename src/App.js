@@ -17,8 +17,8 @@ import WhoAmI from "./views/WhoAmI"
 
 
 const App = () => {
-    return <>
-
+    return (
+    <>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<VisitPage/> }></Route>
@@ -30,8 +30,9 @@ const App = () => {
                 <Route path="/petition" element={<AddPetition />}></Route>
                 <Route path="/who_am_i" element={<WhoAmI />}></Route>
             </Routes>
-        </BrowserRouter>,
+        </BrowserRouter>
     </>
+    )
 }
 
 export default injectContext(App);

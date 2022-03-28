@@ -4,9 +4,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 
 const RegisterFormClient = () => {
-  // const [startDate, setStartDate] = useState(new Date());
-
-
+  const [startDate, setStartDate] = useState(new Date());
   const [form, setForm] = useState({})
 
   const handleChangeform = e => {
@@ -86,7 +84,6 @@ const RegisterFormClient = () => {
         <label htmlFor="inputDOB" className="form-label">
           Fecha de nacimiento <span className="input-require">*</span>
         </label>
-        {/* <input type="text" className="form-control" id="inputdob" name="dob" onChange={handleChangeform} /> */}
         <DatePicker selected={startDate} onChange={handleDate} className="form-control" dateFormat="yyyy-MM-dd"/>
       </div>
       <div className="col-md-6">
