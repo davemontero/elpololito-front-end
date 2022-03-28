@@ -7,6 +7,8 @@ import { Context } from '../store/pololitoContext';
 
 
 
+
+
 const MisAvisos = () => {
 
     const { store, actions } = useContext(Context);
@@ -14,11 +16,18 @@ const MisAvisos = () => {
         actions.readPetitions();
     }, [])
 
+    const HandleDate = (date) => {
+        const FormatDate = new Date(date)
+        return FormatDate.toLocaleString()
+    }
+
+
+
     return <>
 
         <Row>
             <Col xs={{ offset: 1 }}> <h1>
-                Mis Avisos
+                 Avisos
             </h1></Col>
 
         </Row>
@@ -30,13 +39,13 @@ const MisAvisos = () => {
             </Col>
         </Row>
         <br />
-
         {store.publications.map(publication =>
+
             <Container fluid>
 
                 <Row>
                     <Col xs={{ span: 10, offset: 1 }}>
-                        <HCard title = {publication.Title} body = {publication.Body} date = {publication.create_at} address =  {publication.place} />
+                        <HCard title={publication.Title} body={publication.Body} date={HandleDate(publication.create_at)} address={publication.place} />
                     </Col>
                 </Row>
                 <br />
@@ -50,6 +59,7 @@ const MisAvisos = () => {
                     </Col>
                 </Row>
                 <br />
+
             </Container>
 
         )}
