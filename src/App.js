@@ -13,6 +13,7 @@ import MisAvisos from "./views/MisAvisos"
 import MisPololitos from "./views/MisPololitos"
 import AddPetition from "./views/AddPetition";
 import WhoAmI from "./views/WhoAmI"
+import Navbar from "./components/Navbar";
 
 
 
@@ -20,6 +21,7 @@ const App = () => {
     return <>
 
         <BrowserRouter>
+        <Navbar/>
             <Routes>
                 <Route path="/" element={<VisitPage/> }></Route>
                 <Route path="/home" element={<Home />}></Route>

@@ -12,7 +12,7 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container">
-                <a className="navbar-brand" href="#">
+                <a className="navbar-brand" href="/">
                     El Pololito
                     <img src="./images/flag.svg" className="title-flag" />
                 </a>
@@ -30,7 +30,7 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <ul className="navbar-nav navbar-nav-center">
                         <li className="nav-item nav-item-list">
-                            <Link className="nav-link" to="/">
+                            <Link className="nav-link" to="/home">
                                 Inicio
                             </Link>
                         </li>

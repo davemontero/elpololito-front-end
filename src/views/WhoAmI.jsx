@@ -26,3 +26,5 @@ const WhoAmI = () => {
 }
 
 export default WhoAmI
+
+localStorage.getItem('jwt') ? <Navbar1/> : <Navbar2/>
