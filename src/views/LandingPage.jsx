@@ -161,7 +161,7 @@ function LandingPage() {
                     <Col >
                         <Carousel id="carousel-avisos" variant="dark" align="center">
                             {store.publications.map(publication =>
-                                <Carousel.Item>
+                                <Carousel.Item key={publication.pub_id}>
 
                                     <Card style={{ width: '18rem' }}>
                                         <Card.Body>
@@ -172,7 +172,6 @@ function LandingPage() {
                                             <Button variant="primary">Contactar</Button>
                                         </Card.Body>
                                     </Card>
-
                                 </Carousel.Item>
                             )}
                         </Carousel>

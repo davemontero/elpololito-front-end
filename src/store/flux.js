@@ -27,9 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 fetch("http://localhost:5000/create-publication")
                 .then(res => res.json())
                 .then(data => setStore({publications:data}))
-                .catch(err => {
-                        console.error(err);
-                    });
+                .catch(err => {console.error(err);});
             }
         }
     };

@@ -63,7 +63,7 @@ const HomeAvisos = () => {
 
 
                         {store.publications.map(publication =>
-                            <Card mx-auto="true">
+                            <Card mx-auto="true" key={publication.pub_id}>
                                 <Card.Body>
                                     <Card.Title> Se Busca {publication.Title}</Card.Title>
                                     <Card.Text>
