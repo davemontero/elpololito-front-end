@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react"
+import swal from 'sweetalert';
 
 const LostPassword = () => {
+    let navigate = useNavigate();
     const [mail, setMail] = useState("");
 
     const changeMail = (event) => {
@@ -18,34 +21,46 @@ const LostPassword = () => {
             body: JSON.stringify({mail: mail})
         })
             .then(response => response.json())
-            .then(data => console.log(data.msg))
-            .catch((error) => {
-                console.error('Error:', error)});
+            .then(data => {
+                data.status ? (
+                    swal({
+                      title:"Exito",
+                      text: data.msg,
+                      icon:"success",
+                      timer:5000
+                    }).then(() => navigate('/reset-password'))) :
+                    (
+                      swal({
+                      title:"Error",
+                      text: data.msg,
+                      icon:"error",
+                      timer:5000
+                    }))
+            })
+            .catch((error) => console.error('Error:', error));
     }
 
-    return <>
-        <div className="container">
-            <h2>Restablecer contraseña</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="LostMail" className="form-label">Ingrese su email</label>
-                    <input type="text"
-                        className="form-control"
-                        id="LostMail"
-                        aria-describedby="MailHelp"
-                        value={mail}
-                        onChange={changeMail}
-                    />
-                </div>
-                <button type="submit" className="btn btn-primary">Enviar correo de recuperación</button>
-            </form>
-            <br />
-            <br />
-            <p>Un correo le será enviado para restablecer la contraseña.</p>
-        </div>
-    </>
+    return (
+        <main className='forgotPassword-wrapper'>
+            <div className="login-title">El pololito</div>
+            <div className="forgotPassword-box">
+                <form onSubmit={handleSubmit}>
+                    <h2 className='mb-3'>Reestablecer contraseña</h2>
+                    <div className="mb-4">
+                        <label htmlFor="LostMail" className="form-label form-label-white">Ingrese su email</label>
+                        <input type="text"
+                            className="form-control"
+                            id="LostMail"
+                            placeholder='ejemplo@dominio.com'
+                            value={mail}
+                            onChange={changeMail}
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </main>
+    )
 }
-
-
 
 export default LostPassword;

@@ -1,16 +1,13 @@
-import React, {useEffect, useState} from 'react';
-
+import React, { useEffect, useState } from "react";
 
 const WhoAmI = () => {
-
   const [quienSoy, setQuienSoy] = useState();
-  
+
   useEffect(() => {
     fetch("http://localhost:5000/who_am_i", {
-      method: 'GET',
+      method: "GET",
       headers: {
-          
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     })
   .then(response => response.json())

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle"
 import VisitPage from "./views/visitPage";
@@ -14,14 +14,14 @@ import MisPololitos from "./views/MisPololitos"
 import AddPetition from "./views/AddPetition";
 import WhoAmI from "./views/WhoAmI"
 import Navbar from "./components/Navbar";
-
+import NavbarApp from "./components/NavbarApp"
+import { Context } from "./store/pololitoContext";
 
 
 const App = () => {
-    return <>
-
+    return (
+    <>
         <BrowserRouter>
-        <Navbar/>
             <Routes>
                 <Route path="/" element={<VisitPage/> }></Route>
                 <Route path="/home" element={<Home />}></Route>
@@ -32,8 +32,9 @@ const App = () => {
                 <Route path="/petition" element={<AddPetition />}></Route>
                 <Route path="/who_am_i" element={<WhoAmI />}></Route>
             </Routes>
-        </BrowserRouter>,
+        </BrowserRouter>
     </>
+    )
 }
 
 export default injectContext(App);
