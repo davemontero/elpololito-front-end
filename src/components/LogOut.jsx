@@ -1,5 +1,5 @@
 import React from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
 
@@ -11,11 +11,13 @@ const LogOut = () => {
         localStorage.clear()
         navigate("/")
         console.log(localStorage)
-         }
+    }
 
     return <>
-    <Button onClick={handleLogOut} variant="dark">Log Out</Button>{' '}
-   </>
+        <a className="nav-link nav-link-btn" onClick={handleLogOut}>
+            Log Out
+        </a>
+    </>
 }
 
 

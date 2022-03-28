@@ -50,7 +50,6 @@ const Navbar = () => {
                                 Mis Avisos
                             </Link>
                         </li>
-                        <LogOut />
                     </ul>
                     <ul className="navbar-nav">
                         <li className="nav-item nav-item-list">
@@ -62,6 +61,9 @@ const Navbar = () => {
                             <a className="nav-link nav-link-btn" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
                                 Registrate
                             </a>
+                        </li>
+                        <li className="nav-item nav-item-list">
+                            <LogOut />
                         </li>
                     </ul>
                 </div>

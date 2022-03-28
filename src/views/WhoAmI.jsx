@@ -12,14 +12,11 @@ const WhoAmI = () => {
       },
     })
   .then(response => response.json())
-<<<<<<< HEAD
   .then(data => console.log(data))
   ;
 
   console.log(localStorage);
-=======
   
->>>>>>> 935f51f466b391a084c5ba18f54b5293ff79f2c2
   });
 
 
