@@ -36,8 +36,8 @@ function LandingPage() {
                 <br />
 
                 <Row>
-                    <Col xs={{ span: 5, offset: 2 }}>
-                        <div className='infoBlurb'>
+                <Col xs={{ span: 5, offset: 2 }}>
+                        <div className='infoBlurb text-start'>
                             <Button
                                 className="btn btn-warning btn-lg btn3d"
                                 onClick={() => setOpenAviso(!openAviso)}
@@ -59,7 +59,7 @@ function LandingPage() {
                         </div>
                     </Col>
                     <Col xs={{ span: 5 }}>
-                        <div className='infoBlurb'>
+                        <div className='infoBlurb text-start'>
                             <Button
                                 className="btn btn-warning btn-lg btn3d"
                                 onClick={() => setOpenPololito(!openPololito)}

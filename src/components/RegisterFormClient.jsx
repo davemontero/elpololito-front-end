@@ -31,7 +31,7 @@ const RegisterFormClient = () => {
       })
       .then(data => swal({
         title: "Exito",
-        text: `Usuario  ${data.fname} Creado con exito`,
+        text: `Usuario Creado con exito`,
         icon: "success",
         timer: 5000
       }))
