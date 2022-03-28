@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Context } from '../store/pololitoContext';
 import Carousel from 'react-bootstrap/Carousel'
-import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -8,6 +8,45 @@ import Col from 'react-bootstrap/Col'
 
 
 const HCard = props => {
+    const { store } = useContext(Context);
+    const [quienSoy, setQuienSoy] = useState();
+
+    const HandlePololito = () => {
+    setPololito({
+        ...Pololito,
+        "status": true,
+        "user_id": quienSoy.id[0],
+        "pub_id": store.publications[0].pub_id
+    })
+
+    fetch("http://localhost:5000/create-pololito", {
+        "method": "POST",
+        "headers": {
+            "Content-type": "application/json"
+        },
+        "body": JSON.stringify(Pololito)
+    })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
+
+    useEffect(() => {
+        fetch("http://localhost:5000/who_am_i", {
+            method: 'GET',
+            headers: {
+
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+            },
+        })
+            .then(response => response.json())
+            .then(data => setQuienSoy(data));
+
+    });
+
     const [Pololito, setPololito] = useState({
         "status": false,
         "user_id": 0,
@@ -59,25 +98,19 @@ const HCard = props => {
                                     src="https://areajugones.sport.es/wp-content/uploads/2020/09/one-piece-luffy.jpg"
                                     alt="Third slide"
                                 />
-
                             </Carousel.Item>
                         </Carousel>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <Button className="btn btn-warning btn-lg btn3d" onClick={setPololito({
-                            "status": true,
-                            "user_id": ,
-                            "pub_id": 0
-                        })}>
+                        <Button className="btn btn-warning btn-lg btn3d" onClick={()=>HandlePololito()}>
                             Realizar Pololito
                         </Button>
                     </Col>
                 </Row>
             </div>
         </Container>
-
 
     </>
 }
