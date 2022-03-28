@@ -12,20 +12,20 @@ const HCard = props => {
     const [quienSoy, setQuienSoy] = useState();
 
     const HandlePololito = () => {
-    setPololito({
-        ...Pololito,
-        "status": true,
-        "user_id": quienSoy.id[0],
-        "pub_id": store.publications[0].pub_id
-    })
+        setPololito({
+            ...Pololito,
+            "status": true,
+            "user_id": quienSoy.id[0],
+            "pub_id": store.publications[0].pub_id
+        })
 
-    fetch("http://localhost:5000/create-pololito", {
-        "method": "POST",
-        "headers": {
-            "Content-type": "application/json"
-        },
-        "body": JSON.stringify(Pololito)
-    })
+        fetch("http://localhost:5000/create-pololito", {
+            "method": "POST",
+            "headers": {
+                "Content-type": "application/json"
+            },
+            "body": JSON.stringify(Pololito)
+        })
             .then(response => {
                 console.log(response);
             })
@@ -104,14 +104,13 @@ const HCard = props => {
                 </Row>
                 <Row>
                     <Col>
-                        <Button className="btn btn-warning btn-lg btn3d" onClick={()=>HandlePololito(props.pub_id)}>
+                        <Button className="btn btn-warning btn-lg btn3d" onClick={() => HandlePololito(props.pub_id)}>
                             Realizar Pololito
                         </Button>
                     </Col>
                 </Row>
             </div>
         </Container>
-
     </>
-}
-export default HCard
+};
+export default HCard;

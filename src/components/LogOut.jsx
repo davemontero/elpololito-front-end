@@ -1,24 +1,26 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 const LogOut = () => {
+  let navigate = useNavigate();
 
-    let navigate = useNavigate();
+  function handleLogOut() {
+    localStorage.clear();
+    navigate("/");
+  }
 
-    function handleLogOut() {
-        localStorage.clear()
-        navigate("/")
-        console.log(localStorage)
-    }
-
-    return <>
-        <a className="nav-link nav-link-btn nav-link-btn-dark" href="#" onClick={handleLogOut}>
-            Log Out
-        </a>
+  return (
+    <>
+      <a
+        className="nav-link nav-link-btn nav-link-btn-dark"
+        href="#"
+        onClick={handleLogOut}
+      >
+        Cerrar sesión
+      </a>
     </>
-}
-
+  );
+};
 
 export default LogOut;

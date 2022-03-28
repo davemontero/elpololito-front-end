@@ -1,21 +1,18 @@
-import React, { useContext, useEffect } from 'react';
-import Carousel from 'react-multi-carousel';
-import Button from 'react-bootstrap/Button';
-import 'react-multi-carousel/lib/styles.css';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Context } from '../store/pololitoContext';
-
+import React, { useContext, useEffect } from "react";
+import Carousel from "react-multi-carousel";
+import Button from "react-bootstrap/Button";
+import "react-multi-carousel/lib/styles.css";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { Context } from "../store/pololitoContext";
 
 const HomeAvisos = () => {
-
-
-    const { store, actions } = useContext(Context);
-    useEffect(() => {
-        actions.readPetitions();
-    }, [])
+  const { store, actions } = useContext(Context);
+  useEffect(() => {
+    actions.readPetitions();
+  }, []);
 
 
 
@@ -79,6 +76,7 @@ const HomeAvisos = () => {
             </Row>
         </Container>
     </>
-}
 
-export default HomeAvisos
+};
+
+export default HomeAvisos;

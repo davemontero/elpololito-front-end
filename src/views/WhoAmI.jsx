@@ -5,12 +5,11 @@ import NavbarDos from '../components/NavbarDos';
 
 
 const WhoAmI = () => {
-
   const [quienSoy, setQuienSoy] = useState();
 
   useEffect(() => {
     fetch("http://localhost:5000/who_am_i", {
-      method: 'GET',
+      method: "GET",
       headers: {
 
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
