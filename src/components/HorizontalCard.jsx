@@ -104,7 +104,7 @@ const HCard = props => {
                 </Row>
                 <Row>
                     <Col>
-                        <Button className="btn btn-warning btn-lg btn3d" onClick={()=>HandlePololito()}>
+                        <Button className="btn btn-warning btn-lg btn3d" onClick={()=>HandlePololito(props.pub_id)}>
                             Realizar Pololito
                         </Button>
                     </Col>
