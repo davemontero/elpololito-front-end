@@ -217,10 +217,10 @@ padding: 10px;
 .grid-card{
     margin: 0px 10px;
     box-shadow: var(--shadow-card);
+    min-height: 300px;
+    max-height: 300px;
 }
-.card-holder{
-    height: 300px;
-}
+
 
 .login-wrapper {
     height: 100vh;

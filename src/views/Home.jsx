@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import HomeGrid from '../components/HomeGrid';
+import HomeWorkers from '../components/HomeWorkers';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import HomeAvisos from '../components/HomeAvisos'
 
 
 
@@ -21,9 +22,7 @@ const Home = () => {
         })
             .then(response => response.json())
             .then(data => console.log(data))
-            ;
-
-        console.log(localStorage);
+            ;       
     });
 
     const [key, setKey] = useState('trabajador');
@@ -35,23 +34,23 @@ const Home = () => {
             <Row>
                 <Col>
 
-                <Tabs
-      id="switch-grid"
-      activeKey={key}
-      onSelect={(k) => setKey(k)}
-      className="mb-3"
-    >
+                    <Tabs
+                        id="switch-grid"
+                        activeKey={key}
+                        onSelect={(k) => setKey(k)}
+                        className="mb-3"
+                    >
                         <Tab eventKey="trabajador" title="Trabajadores">
-                            <h1>Trabajadores destacados</h1>
+                            <h2>Trabajadores destacados</h2>
                             <div>
-                                <HomeGrid />
+                                <HomeWorkers />
                             </div>
                         </Tab>
 
                         <Tab eventKey="aviso" title="Avisos">
-                        <h1>Avisos destacados</h1>
+                            <h2>Avisos destacados</h2>
                             <div>
-                                <HomeGrid />
+                                <HomeAvisos />
                             </div>
                         </Tab>
                     </Tabs>
