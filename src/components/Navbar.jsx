@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import LogOut from "./LogOut"
+import LogOut from "../components/LogOut"
 
 const Navbar = () => {
 
