@@ -233,20 +233,22 @@ margin: 5px;
     justify-content: center;
 }
 
-.login-title {
-    font-family: var(--elpololito-font);
-    color: var(--primary-color);
-    font-size: 4rem;
-    position: absolute;
-    top: 20%;
-}
-
 .login-box {
     width: 450px;
     height: 320px;
     background-color: var(--primary-color);
     border-radius: 5px;
     padding: 2rem 1.8rem;
+    position: relative;
+}
+
+.login-title {
+    font-family: var(--elpololito-font);
+    color: var(--primary-color);
+    font-size: 4rem;
+    position: absolute;
+    top: -100px;
+    left: 110px;
 }
 
 .login-form {
@@ -412,6 +414,7 @@ margin: 5px;
     padding: 3rem;
     min-width: 340px;
     width: 500px;
+    position: relative;
 }
 
 .search-wrapper {

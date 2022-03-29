@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import Button from "react-bootstrap/Button";
 import "react-multi-carousel/lib/styles.css";

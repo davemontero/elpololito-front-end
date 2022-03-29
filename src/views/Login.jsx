@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react"
-import swal from 'sweetalert';
-import { Button, Spinner } from "react-bootstrap"
+import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import swal from "sweetalert";
+import { Button, Spinner } from "react-bootstrap";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -17,10 +17,13 @@ const Login = () => {
     leng: false,
   });
 
-  const handleOnChangeUser = e => setEmail(e.target.value);
+  const handleOnChangeUser = (e) => setEmail(e.target.value);
 
   const handleOnBlurUser = () => {
-    const user = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}.([a-z{2,3}])?/.test(email);
+    const user =
+      /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}.([a-z{2,3}])?/.test(
+        email
+      );
     setChecksUser(user);
   };
 
@@ -41,57 +44,64 @@ const Login = () => {
   };
   const handleOnChangePassword = (e) => setPassword(e.target.value);
 
-  const handleLogin = e => {
-    e.preventDefault()
-    setShowSpinner(true)
-    const passwordValidate = Object.entries(checksPassword).filter(value => value.includes(false))
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setShowSpinner(true);
+    const passwordValidate = Object.entries(checksPassword).filter((value) =>
+      value.includes(false)
+    );
     if (!checksUser) {
-      toast.error('Favor, ingrese un correo valido', {autoClose: 2400})
-    } else if (passwordValidate.length > 0){
-      toast.error('Usuario o contraseña incorrectos', {autoClose: 2400})
+      toast.error("Favor, ingrese un correo valido", { autoClose: 2400 });
+    } else if (passwordValidate.length > 0) {
+      toast.error("Usuario o contraseña incorrectos", { autoClose: 2400 });
     } else {
       const userValidate = {
-          user: email,
-          password: password
-      }
-      fetch("http://localhost:5000/login",{
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userValidate)
+        user: email,
+        password: password,
+      };
+      fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userValidate),
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data[0].status) {
-          localStorage.setItem("jwt", data[1].token)
-          navigate('/home')
-        } else {
-          swal({
-            title:"Error",
-            text: data[0].msg,
-            icon:"error",
-            timer:5000
-          })
-        }
-      }).catch(() => {
-        swal({
-          title:"Error",
-          text: "Ha ocurrido un problema, intentalo más tarde.",
-          icon:"error",
-          timer:5000
+        .then((response) => response.json())
+        .then((data) => {
+          if (data[0].status) {
+            localStorage.setItem("jwt", data[1].token);
+            navigate("/home");
+          } else {
+            swal({
+              title: "Error",
+              text: data[0].msg,
+              icon: "error",
+              timer: 5000,
+            });
+          }
         })
-      }).then(() => setShowSpinner(false))
+        .catch(() => {
+          swal({
+            title: "Error",
+            text: "Ha ocurrido un problema, intentalo más tarde.",
+            icon: "error",
+            timer: 5000,
+          });
+        })
+        .then(() => setShowSpinner(false));
     }
-  }
+  };
 
   return (
     <main className="login-wrapper">
-      <div className="login-title">El pololito</div>
       <div className="login-box">
+        <div className="login-title">El pololito</div>
         <form onSubmit={handleLogin} className="login-form">
           <div className="mb-3">
-            <label htmlFor="formLoginUser" className="form-label form-label-white">
+            <label
+              htmlFor="formLoginUser"
+              className="form-label form-label-white"
+            >
               Correo
             </label>
             <input
@@ -107,7 +117,10 @@ const Login = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="formLoginPassword" className="form-label form-label-white">
+            <label
+              htmlFor="formLoginPassword"
+              className="form-label form-label-white"
+            >
               Contraseña
             </label>
             <input
@@ -121,8 +134,10 @@ const Login = () => {
               required
             />
           </div>
-          {
-          showSpinner ? (
+          <Link to="/forgot-password" className="text-center">
+            Olvide mi Contraseña
+          </Link>
+          {showSpinner ? (
             <Button className="login-btn" disabled>
               <Spinner
                 className="me-1"
@@ -134,12 +149,11 @@ const Login = () => {
               />
               Cargando...
             </Button>
-            ) : (
-              <Button type="submit" className="login-btn">
-                Iniciar
-              </Button>
-            )
-          }
+          ) : (
+            <Button type="submit" className="login-btn">
+              Iniciar
+            </Button>
+          )}
         </form>
       </div>
     </main>

@@ -11,6 +11,7 @@ import LostPassword from "./views/LostPassword"
 import MisAvisos from "./views/MisAvisos"
 import MisPololitos from "./views/MisPololitos"
 import AddPetition from "./views/AddPetition";
+import ResetPassword from "./views/ResetPassword"
 import WhoAmI from "./views/WhoAmI"
 import ProtectedRoutes from "./components/ProtectedRoute";
 import PublicRoutes from "./components/PublicRoute";
