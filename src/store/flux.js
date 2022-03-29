@@ -2,13 +2,9 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             publications: [],
-            workersProfiles: [],
-            resetMail: ""
+            workersProfiles: []
         },
         actions: {
-            resetMail: (email) => {
-                setStore({resetMail:email})
-            },
             readWorkersProfiles: () => {
                 fetch("http://localhost:5000/get-workers")
                 .then(res => res.json())

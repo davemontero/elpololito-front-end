@@ -16,10 +16,11 @@ const NavbarApp = () => {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll" className="justify-content-end">
           <Nav>
-            <Nav.Link>Nuevo aviso</Nav.Link>
-            <Nav.Link>Inicio</Nav.Link>
-            <Nav.Link>Mis avisos</Nav.Link>
-            <Nav.Link>Mis pololitos</Nav.Link>
+          <Nav.Link href="/home">Inicio</Nav.Link>
+            <Nav.Link href="/petition">Nuevo aviso</Nav.Link>
+            
+            <Nav.Link href="/publications">Mis avisos</Nav.Link>
+            <Nav.Link href="/pololitos">Mis pololitos</Nav.Link>
             <NavDropdown title="Nombre">
               <NavDropdown.Item>Perfil</NavDropdown.Item>
               <NavDropdown.Item>Ayuda</NavDropdown.Item>
