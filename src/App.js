@@ -12,6 +12,7 @@ import LostPassword from "./views/LostPassword"
 import MisAvisos from "./views/MisAvisos"
 import MisPololitos from "./views/MisPololitos"
 import AddPetition from "./views/AddPetition";
+import ResetPassword from "./views/ResetPassword"
 import WhoAmI from "./views/WhoAmI"
 import Navbar from "./components/Navbar";
 import NavbarApp from "./components/NavbarApp"
@@ -27,6 +28,7 @@ const App = () => {
                 <Route path="/home" element={<Home />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/forgot-password" element={<LostPassword />}></Route>
+                <Route path="/reset-password" element={<ResetPassword />}></Route>
                 <Route path="/publications" element={<MisAvisos />}></Route>
                 <Route path="/pololitos" element={<MisPololitos />}></Route>
                 <Route path="/petition" element={<AddPetition />}></Route>

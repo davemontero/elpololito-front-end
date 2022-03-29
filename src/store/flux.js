@@ -3,11 +3,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         store: {
             publications: [],
             workersProfiles: [],
-            auth: ""
+            resetMail: ""
         },
         actions: {
-            isAuth: () => {
-                
+            resetMail: (email) => {
+                setStore({resetMail:email})
             },
             readWorkersProfiles: () => {
                 fetch("http://localhost:5000/get-workers")
@@ -16,10 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 .catch(err => {
                         console.error(err);
                     });
-
             },
-
-
             readPetitions: () => {
                 fetch("http://localhost:5000/create-publication")
                 .then(res => res.json())
