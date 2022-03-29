@@ -1,14 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavbarApp from "../components/NavbarApp";
 
 const AddPetition = () => {
   const [form, setForm] = useState();
+  const [id, setId] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:5000/who_am_i", {
+      method: "GET",
+      headers: {
+
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
+    })
+      .then(response => response.json())
+      .then(data => setId(data.id[0]))
+
+      ;
+
+  }, []);
 
   const HandleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-      user_id: localStorage.user_id,
+      user_id:id
     });
   };
 
@@ -17,8 +33,7 @@ const AddPetition = () => {
     fetch("http://localhost:5000/create-publication", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer ${localStorage.getItem('jwt')}",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(form),
     })
@@ -33,6 +48,7 @@ const AddPetition = () => {
     <>
       <NavbarApp />
       <div className="container">
+        {console.log('id', id)}
         <form>
           <div className="mb-3">
             <label htmlFor="inputTitle" className="form-label">
