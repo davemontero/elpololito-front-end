@@ -9,6 +9,21 @@ const NavbarApp = () => {
     localStorage.clear();
     navigate("/");
   }
+
+  useEffect(() => {
+    
+    fetch("http://localhost:5000/protected", {
+      method: "get",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  
+  },[]);
+
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>

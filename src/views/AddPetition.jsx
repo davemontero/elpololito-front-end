@@ -1,4 +1,4 @@
-import React, { useState, useEffect, } from "react";
+import React, { useState } from "react";
 import NavbarApp from "../components/NavbarApp";
 
 
@@ -10,7 +10,6 @@ const AddPetition = () => {
   
 
   
-  console.log(store.auth)
 
   const HandleChange = (e) => {
     setForm({
