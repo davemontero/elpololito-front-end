@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, } from "react";
 import NavbarApp from "../components/NavbarApp";
 
+
+
+
 const AddPetition = () => {
+  
   const [form, setForm] = useState();
+  
+
+  
+  console.log(store.auth)
 
   const HandleChange = (e) => {
     setForm({
@@ -18,7 +26,7 @@ const AddPetition = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer ${localStorage.getItem('jwt')}",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
       body: JSON.stringify(form),
     })

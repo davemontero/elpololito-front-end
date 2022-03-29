@@ -16,16 +16,7 @@ import NavbarApp from "../components/NavbarApp";
 
 const Home = () => {
   const [key, setKey] = useState("trabajador");
-  useEffect(() => {
-    fetch("http://localhost:5000/home", {
-      method: "get",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  });
+  
   return (
     <>
       <NavbarApp />
