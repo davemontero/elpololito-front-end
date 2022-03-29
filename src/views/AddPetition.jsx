@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import NavbarApp from "../components/NavbarApp";
 
+
+
+
 const AddPetition = () => {
+  
   const [form, setForm] = useState();
+<<<<<<< HEAD
   const [id, setId] = useState();
 
   useEffect(() => {
@@ -19,6 +24,11 @@ const AddPetition = () => {
       ;
 
   }, []);
+=======
+  
+
+  
+>>>>>>> 8e2b586ffb47366e73d28ddfab1cc2a5469ef140
 
   const HandleChange = (e) => {
     setForm({
@@ -33,7 +43,12 @@ const AddPetition = () => {
     fetch("http://localhost:5000/create-publication", {
       method: "POST",
       headers: {
+<<<<<<< HEAD
         "Content-Type": "application/json"
+=======
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+>>>>>>> 8e2b586ffb47366e73d28ddfab1cc2a5469ef140
       },
       body: JSON.stringify(form),
     })

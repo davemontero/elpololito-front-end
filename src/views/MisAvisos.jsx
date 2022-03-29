@@ -8,6 +8,10 @@ import NavbarApp from "../components/NavbarApp"
 
 const MisAvisos = () => {
   const { store, actions } = useContext(Context);
+
+
+
+
   useEffect(() => {
     actions.readPetitions();
   }, []);
