@@ -16,7 +16,7 @@ const RegisterFormClient = () => {
   const handleDate = date => {
     setStartDate(date)
     setForm({
-      ...form, 'dob': `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`,
+      ...form, 'dob': `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
     })
   }
 
@@ -29,24 +29,24 @@ const RegisterFormClient = () => {
       },
       "body": JSON.stringify(form)
     })
-    .then(response => response.json())
-    .then(response => {
-      response.status ? (
-      swal({
-        title:"Exito",
-        text: response.msg,
-        icon:"success",
-        timer:5000
-      })) :
-      (
-        swal({
-        title:"Error",
-        text: response.msg,
-        icon:"error",
-        timer:5000
-      }))
-    })
-    .catch(err => console.error(err))
+      .then(response => response.json())
+      .then(response => {
+        response.status ? (
+          swal({
+            title: "Exito",
+            text: response.msg,
+            icon: "success",
+            timer: 5000
+          })) :
+          (
+            swal({
+              title: "Error",
+              text: response.msg,
+              icon: "error",
+              timer: 5000
+            }))
+      })
+      .catch(err => console.error(err))
   }
   return (
     <form className="row g-3" onSubmit={handleSubmit}>
@@ -84,7 +84,7 @@ const RegisterFormClient = () => {
         <label htmlFor="inputDOB" className="form-label">
           Fecha de nacimiento <span className="input-require">*</span>
         </label>
-        <DatePicker selected={startDate} onChange={handleDate} className="form-control" dateFormat="yyyy-MM-dd"/>
+        <DatePicker selected={startDate} onChange={handleDate} className="form-control" dateFormat="yyyy-MM-dd" />
       </div>
       <div className="col-md-6">
         <label htmlFor="inputPhone" className="form-label">

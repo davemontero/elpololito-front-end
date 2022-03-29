@@ -4,7 +4,6 @@ import Carousel from "react-multi-carousel";
 import { Context } from "../store/pololitoContext";
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa"
 import "react-multi-carousel/lib/styles.css";
-import Navbar from "../components/Navbar"
 
 function LandingPage() {
   const [openAviso, setOpenAviso] = useState(false);

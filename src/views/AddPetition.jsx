@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavbarApp from "../components/NavbarApp";
 
 
@@ -7,15 +7,34 @@ import NavbarApp from "../components/NavbarApp";
 const AddPetition = () => {
   
   const [form, setForm] = useState();
+<<<<<<< HEAD
+  const [id, setId] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:5000/who_am_i", {
+      method: "GET",
+      headers: {
+
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
+    })
+      .then(response => response.json())
+      .then(data => setId(data.id[0]))
+
+      ;
+
+  }, []);
+=======
   
 
   
+>>>>>>> 8e2b586ffb47366e73d28ddfab1cc2a5469ef140
 
   const HandleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-      user_id: localStorage.user_id,
+      user_id:id
     });
   };
 
@@ -24,8 +43,12 @@ const AddPetition = () => {
     fetch("http://localhost:5000/create-publication", {
       method: "POST",
       headers: {
+<<<<<<< HEAD
+        "Content-Type": "application/json"
+=======
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+>>>>>>> 8e2b586ffb47366e73d28ddfab1cc2a5469ef140
       },
       body: JSON.stringify(form),
     })
@@ -40,6 +63,7 @@ const AddPetition = () => {
     <>
       <NavbarApp />
       <div className="container">
+        {console.log('id', id)}
         <form>
           <div className="mb-3">
             <label htmlFor="inputTitle" className="form-label">
