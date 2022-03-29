@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import Button from "react-bootstrap/Button";
 import "react-multi-carousel/lib/styles.css";
@@ -9,10 +9,52 @@ import Col from "react-bootstrap/Col";
 import { Context } from "../store/pololitoContext";
 
 const HomeAvisos = () => {
-  const { store, actions } = useContext(Context);
-  useEffect(() => {
-    actions.readPetitions();
-  }, []);
+    const { store, actions } = useContext(Context);
+    const [quienSoy, setQuienSoy] = useState()
+    const [Pololito, setPololito] = useState({
+        "status": false,
+        "user_id": 0,
+        "pub_id": 0
+    })
+    useEffect(() => {
+        actions.readPetitions();
+    }, []);
+
+    useEffect(() => {
+        fetch("http://localhost:5000/who_am_i", {
+            method: 'GET',
+            headers: {
+
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+            },
+        })
+            .then(response => response.json())
+            .then(data => setQuienSoy(data));
+
+    },[]);
+
+    const HandlePololito = () => {
+        setPololito({
+            ...Pololito,
+            "status": true,
+            "user_id": quienSoy.id[0],
+            "pub_id": store.publications[0].pub_id
+        })
+
+        fetch("http://localhost:5000/create-pololito", {
+            "method": "POST",
+            "headers": {
+                "Content-type": "application/json"
+            },
+            "body": JSON.stringify(Pololito)
+        })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
 
 
 
@@ -66,11 +108,12 @@ const HomeAvisos = () => {
                                     <Card.Text>
                                         {publication.place}
                                     </Card.Text>
-                                    <Button variant="primary">Contactar</Button>
+                                        <Button className="btn btn-warning btn-lg btn3d" onClick={() => HandlePololito(publication.pub_id)}>
+                                            Realizar Pololito
+                                        </Button>
                                 </Card.Body>
                             </Card>
                         )}
-
                     </Carousel>
                 </Col>
             </Row>
