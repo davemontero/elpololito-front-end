@@ -34,6 +34,7 @@ const MisAvisos = () => {
         </Col>
       </Row>
       <br />
+
       {store.publications.map((publication) => (
         <Container fluid>
           <Row>
@@ -44,6 +45,7 @@ const MisAvisos = () => {
                 date={HandleDate(publication.create_at)}
                 address={publication.place}
               />
+              
             </Col>
           </Row>
           <br />

@@ -12,6 +12,7 @@ const WhoAmI = () => {
     })
       .then((response) => response.json())
       .then((data) => console.log(data));
+      console.log(localStorage)
   });
 
   return (

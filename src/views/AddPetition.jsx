@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavbarApp from "../components/NavbarApp";
 
+
 const AddPetition = () => {
   const [form, setForm] = useState();
 
@@ -8,27 +9,41 @@ const AddPetition = () => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-      user_id: localStorage.user_id,
+     
     });
   };
 
+
   function handleSubmit(event) {
     event.preventDefault();
+    fetch("http://localhost:5000/who_am_i", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    })
+      .then((response) => response.json().then((response) => setForm({ "user_id" : response.id})))
+      .then((data) => console.log(data));
+    console.log(form) 
     fetch("http://localhost:5000/create-publication", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer ${localStorage.getItem('jwt')}",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       body: JSON.stringify(form),
     })
       .then((response) => {
         console.log(response);
       })
+      
       .catch((err) => {
         console.error(err);
       });
   }
+
+
+
   return (
     <>
       <NavbarApp />

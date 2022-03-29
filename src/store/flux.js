@@ -19,7 +19,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
             },
 
-
             readPetitions: () => {
                 fetch("http://localhost:5000/create-publication")
                 .then(res => res.json())
