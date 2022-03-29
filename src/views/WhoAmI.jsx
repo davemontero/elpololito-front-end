@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar';
-import NavbarDos from '../components/NavbarDos';
 
 
 
@@ -28,4 +26,3 @@ const WhoAmI = () => {
 
 export default WhoAmI
 
-localStorage.getItem('jwt') ? <Navbar /> : <NavbarDos />
