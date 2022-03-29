@@ -1,41 +1,86 @@
-import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from "react-router-dom";
-import { Button, Modal } from "react-bootstrap";
-const NavBar = () => {
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-   
+const Navbar = () => {
+  let navigate = useNavigate();
+  const [show, setShow] = useState(true);
 
-    return (
+  useEffect(() => {
+    const session = localStorage.getItem("jwt");
+    session ? setShow(true) : setShow(false);
+  }, []);
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container-fluid">
-                <Link to="/" className="btn btn-primary col-1"> Inicio </Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse row ms-3" id="navbarNav">
-                    <ul className="navbar-nav col-10">
-                        <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#"></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#"></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#"></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true"></a>
-                        </li>
-
-                        
-                    </ul>
-                    <Link to="SignUp" className="btn btn-primary col-1">Inciar Sesion</Link>
-                </div>
-            </div>
-        </nav>
-    )
+  function handleLogOut() {
+    localStorage.clear();
+    navigate("/");
+  }
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light">
+      <div className="container">
+        <a className="navbar-brand" href="/">
+          El Pololito
+          <img src="./images/flag.svg" className="title-flag" />
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul className="navbar-nav navbar-nav-center">
+            <li className="nav-item nav-item-list">
+              <Link className="nav-link" to="/petition">
+                Publicar Aviso
+              </Link>
+            </li>
+            <li className="nav-item nav-item-list">
+              <Link className="nav-link" to="/pololitos">
+                Mis Pololitos
+              </Link>
+            </li>
+            <li className="nav-item nav-item-list">
+              <Link className="nav-link" to="/publications">
+                Mis Avisos
+              </Link>
+            </li>
+          </ul>
+          <ul className="navbar-nav">
+            {show === false ? (
+              <>
+                <li className="nav-item nav-item-list">
+                  <Link className="nav-link nav-link-login" to="/login">
+                    Iniciar sesión
+                  </Link>
+                </li>
+                <li className="nav-item nav-item-list">
+                  <button
+                    className="nav-link nav-link-btn"
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#registerModal"
+                  >
+                    Registrate
+                  </button>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item nav-item-list">
+                <Link className="nav-link nav-link-btn" to="/home">
+                  Ir a la app
+                </Link>
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 };
 
-export default NavBar
+export default Navbar;
