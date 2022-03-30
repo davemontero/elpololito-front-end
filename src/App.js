@@ -39,6 +39,7 @@ const App = () => {
                     <Route path="/" element={<PublicRoutes />}>
                         <Route path="/login" element={<Login />}></Route>
                         <Route path="/forgot-password" element={<LostPassword />}></Route>
+                        <Route path="/reset-password" element={<ResetPassword />}></Route>
                         <Route path="/landing" element={<VisitPage />}></Route>
                         <Route path="*" element={<p>Nada por aquí: error 404!</p>} />
                     </Route>

@@ -81,7 +81,6 @@ const HomeAvisos = () => {
             <Row>
                 <Col>
 
-
                     <Carousel
 
                         swipeable={true}
@@ -99,7 +98,6 @@ const HomeAvisos = () => {
                         partialVisible
                         className="py-4"
                     >
-
 
                         {store.publications.map(publication =>
                             <Card mx-auto="true" key={publication.pub_id}>

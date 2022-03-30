@@ -92,12 +92,7 @@ const RegisterFormClient = () => {
         </label>
         <input type="text" className="form-control" id="inputPhone" name="phone" onChange={handleChangeform} />
       </div>
-      <div className="col-md-6">
-        <label htmlFor="inputPhone" className="form-label">
-          Foto <span className="input-require">*</span>
-        </label>
-        <input type="text" className="form-control" id="inputPhoto" name="photo" onChange={handleChangeform} />
-      </div>
+
       <div className="col-md-6">
         <label htmlFor="inputGender" className="form-label">
           Genero <span className="input-require">*</span>
