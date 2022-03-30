@@ -12,8 +12,6 @@ const AddPetition = () => {
      
     });
   };
-
-
   function handleSubmit(event) {
     event.preventDefault();
     fetch("http://localhost:5000/who_am_i", {
