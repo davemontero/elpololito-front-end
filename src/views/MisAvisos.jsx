@@ -8,6 +8,10 @@ import NavbarApp from "../components/NavbarApp"
 
 const MisAvisos = () => {
   const { store, actions } = useContext(Context);
+
+
+
+
   useEffect(() => {
     actions.readPetitions();
   }, []);
@@ -19,7 +23,7 @@ const MisAvisos = () => {
 
   return (
     <>
-    <NavbarApp />
+      <NavbarApp />
       <Row>
         <Col xs={{ offset: 1 }}>
           {" "}
@@ -34,33 +38,31 @@ const MisAvisos = () => {
         </Col>
       </Row>
       <br />
-
-      {store.publications.map((publication) => (
-        <Container fluid>
-          <Row>
-            <Col xs={{ span: 10, offset: 1 }}>
-              <HCard
+      <Container fluid>
+        <Row>
+          <Col xs={{ span: 10, offset: 1 }}>
+            {store.publications.map((publication) => (
+              <HCard key={publication.publication_id}
                 title={publication.Title}
                 body={publication.Body}
                 date={HandleDate(publication.create_at)}
                 address={publication.place}
               />
-              
-            </Col>
-          </Row>
-          <br />
-          <br />
-          <br />
-          <br />
+            ))}
+          </Col>
+        </Row>
+        <br />
+        <br />
+        <br />
+        <br />
 
-          <Row>
-            <Col xs={{ offset: 1 }}>
-              <h3>Avisos pasados</h3>
-            </Col>
-          </Row>
-          <br />
-        </Container>
-      ))}
+        <Row>
+          <Col xs={{ offset: 1 }}>
+            <h3>Avisos pasados</h3>
+          </Col>
+        </Row>
+        <br />
+      </Container>
     </>
   );
 };

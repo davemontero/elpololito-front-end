@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import NavbarApp from "../components/NavbarApp";
 
 
+
+
 const AddPetition = () => {
-  const [form, setForm] = useState();
+  
+  const [form, setForm] = useState();  
 
   const HandleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-     
+
     });
   };
   function handleSubmit(event) {
@@ -20,14 +23,14 @@ const AddPetition = () => {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     })
-      .then((response) => response.json().then((response) => setForm({ "user_id" : response.id})))
+      .then((response) => response.json().then((response) => setForm({ "user_id" : response})))
       .then((data) => console.log(data));
     console.log(form) 
     fetch("http://localhost:5000/create-publication", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
       body: JSON.stringify(form),
     })
@@ -46,6 +49,7 @@ const AddPetition = () => {
     <>
       <NavbarApp />
       <div className="container">
+        {console.log('id', id)}
         <form>
           <div className="mb-3">
             <label htmlFor="inputTitle" className="form-label">

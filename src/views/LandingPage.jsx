@@ -5,7 +5,6 @@ import { Context } from "../store/pololitoContext";
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa"
 import "react-multi-carousel/lib/styles.css";
 
-
 function LandingPage() {
   const [openAviso, setOpenAviso] = useState(false);
   const [openPololito, setOpenPololito] = useState(false);

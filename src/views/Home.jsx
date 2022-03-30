@@ -16,16 +16,21 @@ import NavbarApp from "../components/NavbarApp";
 
 const Home = () => {
   const [key, setKey] = useState("trabajador");
+
   useEffect(() => {
-    fetch("http://localhost:5000/home", {
-      method: "get",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
+    fetch("http://localhost:5000/who_am_i", {
+        method: 'GET',
+        headers: {
+
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        },
     })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  });
+        .then(response => response.json())
+        .then(data => setQuienSoy(data));
+
+},[]);
+
+  
   return (
     <>
       <NavbarApp />

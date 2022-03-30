@@ -11,29 +11,6 @@ const HCard = props => {
     const { store } = useContext(Context);
     const [quienSoy, setQuienSoy] = useState();
 
-    const HandlePololito = () => {
-        setPololito({
-            ...Pololito,
-            "status": true,
-            "user_id": quienSoy.id[0],
-            "pub_id": store.publications[0].pub_id
-        })
-        
-
-        fetch("http://localhost:5000/create-pololito", {
-            "method": "POST",
-            "headers": {
-                "Content-type": "application/json"
-            },
-            "body": JSON.stringify(Pololito)
-        })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.error(err);
-            });
-    }
 
     useEffect(() => {
         fetch("http://localhost:5000/who_am_i", {
@@ -46,13 +23,8 @@ const HCard = props => {
             .then(response => response.json())
             .then(data => setQuienSoy(data));
 
-    });
+    },[]);
 
-    const [Pololito, setPololito] = useState({
-        "status": false,
-        "user_id": 0,
-        "pub_id": 0
-    })
     return <>
         <Container fluid >
             <div className="HCardo">
@@ -103,16 +75,8 @@ const HCard = props => {
                         </Carousel>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <Button className="btn btn-warning btn-lg btn3d" onClick={() => HandlePololito(props.pub_id)}>
-                            Realizar Pololito
-                        </Button>
-                    </Col>
-                </Row>
             </div>
         </Container>
-
     </>
 };
 export default HCard;
