@@ -83,13 +83,13 @@ const Login = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data[0].status) {
-            localStorage.setItem("jwt", data[1].token);
+          if (data.status) {
+            localStorage.setItem("jwt", data.token);
             navigate("/home");
           } else {
             swal({
               title: "Error",
-              text: data[0].msg,
+              text: data.msg,
               icon: "error",
               timer: 5000
             });
@@ -103,9 +103,7 @@ const Login = () => {
             timer: 5000
           });
         })
-        .then(() => {
-          setShowSpinner(false)
-        } );
+        .then(() => {setShowSpinner(false)});
     }
   };
 
