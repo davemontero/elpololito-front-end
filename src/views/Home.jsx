@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import {
   Container,
@@ -13,26 +13,23 @@ import {
 import HomeAvisos from "../components/HomeAvisos";
 import HomeWorkers from "../components/HomeWorkers"
 import NavbarApp from "../components/NavbarApp";
+import { Context } from "../store/pololitoContext";
 
 const Home = () => {
   const [key, setKey] = useState("trabajador");
-
+  const { store, actions } = useContext(Context);
+ 
   useEffect(() => {
-    fetch("http://localhost:5000/who_am_i", {
-        method: 'GET',
-        headers: {
-
-            Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        },
-    })
-        .then(response => response.json())
-        .then(data => setQuienSoy(data));
+    actions.WhoAmI();
 
 },[]);
+console.log(store.currentUser)
 
   
   return (
+    
     <>
+    
       <NavbarApp />
       <main>
         <section className="search-wrapper">
