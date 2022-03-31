@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Spinner } from "react-bootstrap";
+import swal from "sweetalert";
 
 const ResetPassword = () => {
   let navigate = useNavigate();
@@ -8,21 +9,57 @@ const ResetPassword = () => {
   const [passwd1, setPasswd1] = useState("");
   const [passwd2, setPasswd2] = useState("");
   const [passwd3, setPasswd3] = useState("");
+  const [checksPassword, setChecksPassword] = useState({
+    caps: false,
+    lows: false,
+    numb: false,
+    spch: false,
+    leng: false,
+  });
   const handleChange1 = (e) => setPasswd1(e.target.value);
   const handleChange2 = (e) => setPasswd2(e.target.value);
   const handleChange3 = (e) => setPasswd3(e.target.value);
 
+  const passwordValidate = passwd => {
+    const caps = /[A-Z]/.test(passwd);
+    const lows = /[a-z]/.test(passwd);
+    const numb = /[0-9]/.test(passwd);
+    const spch = /[$@#*-]/.test(passwd);
+    const leng = passwd.length >= 6 && passwd.length <= 50;
+    if (!caps || !lows || !numb || !spch || !leng) {
+      return false
+    } else return true
+  }
+
+
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    
-    setShowSpinner(true);
-    if (passwd2 != passwd3) {
+    if (!passwordValidate(passwd1)){
+      setShowSpinner(false)
+      swal(
+        {
+          title: "Error",
+          text: "La contraseña actual es incorrecta",
+          icon: "error",
+          timer: 5000,
+        }
+      )
+    } else if (!passwordValidate(passwd1) || !passwordValidate(passwd2)) {
+      setShowSpinner(false)
+      swal({
+        title: "Error",
+        text: "La nueva contraseña debe tener lo siguiente: \n\n 1. Al menos 1 minúscula \n 2. Al menos 1 mayúscula \n 3. Al menos 1 número \n 4. Al menos 1 caracter especial ($@#*-) \n 5. Mínimo 6 caracteres",
+        icon: "error",
+        timer: 7000,
+      })
+    } else if (passwd2 != passwd3) {
+      setShowSpinner(false)
       swal({
         title: "Error",
         text: "Las contraseñas no son iguales",
         icon: "error",
         timer: 5000,
-      });
+      })
     } else {
       fetch("http://localhost:5000/reset-password", {
         method: "PUT",

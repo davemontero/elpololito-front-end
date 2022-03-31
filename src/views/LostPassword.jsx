@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import swal from "sweetalert";
 import { Button, Spinner } from "react-bootstrap";
+
 const LostPassword = () => {
   let navigate = useNavigate();
   localStorage.removeItem('resetEmail')
@@ -14,35 +15,50 @@ const LostPassword = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setShowSpinner(true);
-    fetch("http://localhost:5000/password-recovery", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ mail: mail }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        data.status
-          ? swal({
-              title: "Exito",
-              text: data.msg,
-              icon: "success",
-              timer: 5000,
-            }).then(() => {
-                localStorage.setItem('resetEmail', mail)
-                navigate("/reset-password")
-            })
-          : swal({
-              title: "Error",
-              text: data.msg,
-              icon: "error",
-              timer: 5000,
-            });
+    setShowSpinner(true)
+    const user = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}.([a-z{2,3}])?/.test(mail);
+    
+    if (!user) {
+      setShowSpinner(false)
+      swal(
+        {
+          title: "Error",
+          text: "Favor, ingrese un correo valido",
+          icon: "error",
+          timer: 5000,
+        }
+      )
+    } else {
+      fetch("http://localhost:5000/password-recovery", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mail: mail }),
       })
-      .catch((error) => console.error("Error:", error))
-      .then(() => setShowSpinner(false));
+        .then((response) => response.json())
+        .then((data) => {
+          data.status
+            ? swal({
+                title: "Exito",
+                text: data.msg,
+                icon: "success",
+                timer: 5000,
+              }).then(() => {
+                  localStorage.setItem('resetEmail', mail)
+                  navigate("/reset-password")
+              })
+            : swal({
+                title: "Error",
+                text: data.msg,
+                icon: "error",
+                timer: 5000,
+              })
+        })
+        .catch((error) => console.error("Error:", error))
+        .then(() => setShowSpinner(false));
+    }
+    
   }
 
   return (
