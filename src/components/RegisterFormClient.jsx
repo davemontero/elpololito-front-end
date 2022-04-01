@@ -1,7 +1,7 @@
 import { useState } from "react";
 import swal from 'sweetalert';
 import DatePicker from 'react-datepicker'
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css"
 
 const RegisterFormClient = () => {
   const [startDate, setStartDate] = useState(new Date());

@@ -476,3 +476,32 @@ margin: 5px;
 .link-item {
     margin-bottom: 1rem;
 }
+
+.box-container {
+    background-image: url("../../public/images/pattern.jpg");
+    background-size: contain;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-container::before {
+    background-color: var(--accent-color-1);
+    content: '';
+}
+
+.box {
+    background-color: var(--primary-color);
+    min-width: 320px;
+    width: 840px;
+    border-radius: 5px;
+    color: var(--accent-color-2);
+    padding: 1rem 2rem;
+}
+
+.box-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
