@@ -11,13 +11,14 @@ import { Context } from '../store/pololitoContext';
 
 const HomeWorkers = () => {
 
-
+{/*
     const { store, actions } = useContext(Context);
     useEffect(() => {
         actions.readWorkersProfiles();
     }, [])
 
 
+*/}
 
     const responsive = {
         desktop: {
@@ -63,7 +64,8 @@ const HomeWorkers = () => {
 
 
 
-                        {store.workersProfiles.map(workersProfile =>
+
+{ /* store.workersProfiles.map(workersProfile =>
                             <Card mx-auto="true">
                                 <Card.Body>
                                     <Card.Title>{workersProfile.Person.fullname}</Card.Title>
@@ -74,9 +76,11 @@ const HomeWorkers = () => {
                                     <Button variant="primary">Contactar</Button>
                                 </Card.Body>
                             </Card>
-                        )}
+) */}
 
-                        {/* 
+
+            
+                        
                         <Card className="grid-card h-100" mx-auto="true" >
                             <Card.Img className="img-fluid" variant="top" src="https://cdn.geeksterra.com/q:i/r:1/wp:1/w:380/u:https://geeksterra.com/wp-content/uploads/2021/04/Goku-trabajando.jpg" />
                             <Card.Body>
@@ -151,12 +155,7 @@ const HomeWorkers = () => {
                                     Perdedor de Ligas
                                 </Card.Text>
                             </Card.Body>
-                        </Card> */}
-
-
-
-
-
+                        </Card> 
                     </Carousel>
                 </Col>
             </Row>

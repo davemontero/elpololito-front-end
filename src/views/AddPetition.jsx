@@ -4,9 +4,23 @@ import NavbarApp from "../components/NavbarApp";
 
 
 
+
 const AddPetition = () => {
-  
-  const [form, setForm] = useState();  
+  const [id, setId] = useState();
+  const [form, setForm] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:5000/who_am_i", {
+        method: 'GET',
+        headers: {
+
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        },
+    })
+        .then(response => response.json())
+        .then(data => setId(data.id[0]));
+
+},[]);
 
   const HandleChange = (e) => {
     setForm({
@@ -32,6 +46,7 @@ const AddPetition = () => {
       .catch((err) => {
         console.error(err);
       });
+     
   }
   return (
     <>

@@ -20,7 +20,7 @@ const WhoAmI = () => {
 
   },[]);
   return <>
-    <h1>Soy {quienSoy.email[0]}</h1>
+    <h1>Soy {quienSoy.username}</h1>
   </>
 }
 
