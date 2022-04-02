@@ -19,16 +19,19 @@ const LostPassword = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setShowSpinner(true);
-
-    if (!isValidateMail(mail)) {
-      swal({
-        title: "Error",
-        text: "Ingrese un correo correcto",
-        icon: "error",
-        timer: 5000,
-      });
-      setShowSpinner(false);
+    setShowSpinner(true)
+    const user = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}.([a-z{2,3}])?/.test(mail);
+    
+    if (!user) {
+      setShowSpinner(false)
+      swal(
+        {
+          title: "Error",
+          text: "Favor, ingrese un correo valido",
+          icon: "error",
+          timer: 5000,
+        }
+      )
     } else {
       fetch("http://localhost:5000/password-recovery", {
         method: "POST",
@@ -54,12 +57,13 @@ const LostPassword = () => {
                 text: data.msg,
                 icon: "error",
                 timer: 5000,
-              });
+              })
         })
         .catch((error) => console.error("Error:", error))
         .then(() => setShowSpinner(false));
     }
-  };
+    
+  }
 
   return (
     <main className="box-container">

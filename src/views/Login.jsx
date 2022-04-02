@@ -55,21 +55,24 @@ const Login = () => {
     const passwordValidate = Object.entries(checksPassword).filter((value) =>
       value.includes(false)
     );
+    
     if (!checksUser) {
       swal({
         title: "Error",
-        text: "Ingrese un correo valido",
+        text: "Favor, ingrese un correo valido",
         icon: "error",
         timer: 5000,
       })
+      setEmail("")
       setShowSpinner(false)
     } else if (passwordValidate.length > 0) {
       swal({
         title: "Error",
-        text: "Usuario o contraseña incorrectos",
+        text: "La contraseña debe tener lo siguiente: \n\n 1. Al menos 1 minúscula \n 2. Al menos 1 mayúscula \n 3. Al menos 1 número \n 4. Al menos 1 caracter especial ($@#*-) \n 5. Mínimo 6 caracteres",
         icon: "error",
-        timer: 5000,
+        timer: 7000,
       })
+      setPassword("")
       setShowSpinner(false)
     } else {
       const userValidate = {
@@ -85,15 +88,15 @@ const Login = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data[0].status) {
-            localStorage.setItem("jwt", data[1].token);
+          if (data.status) {
+            localStorage.setItem("jwt", data.token);
             navigate("/home");
           } else {
             swal({
               title: "Error",
-              text: data[0].msg,
+              text: data.msg,
               icon: "error",
-              timer: 5000,
+              timer: 5000
             });
           }
         })
@@ -102,10 +105,10 @@ const Login = () => {
             title: "Error",
             text: "Ha ocurrido un problema, intentalo más tarde.",
             icon: "error",
-            timer: 5000,
+            timer: 5000
           });
         })
-        .then(() => setShowSpinner(false));
+        .then(() => {setShowSpinner(false)});
     }
   };
 

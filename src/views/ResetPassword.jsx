@@ -1,6 +1,13 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form, Spinner, Button, Row, OverlayTrigger, Popover } from "react-bootstrap";
+import {
+  Form,
+  Spinner,
+  Button,
+  Row,
+  OverlayTrigger,
+  Popover,
+} from "react-bootstrap";
 import { BsQuestionCircle } from "react-icons/bs";
 
 const ResetPassword = () => {
@@ -9,10 +16,7 @@ const ResetPassword = () => {
   const [passwd1, setPasswd1] = useState("");
   const [passwd2, setPasswd2] = useState("");
   const [passwd3, setPasswd3] = useState("");
-  const handleChange1 = (e) => setPasswd1(e.target.value);
-  const handleChange2 = (e) => setPasswd2(e.target.value);
-  const handleChange3 = (e) => setPasswd3(e.target.value);
-  
+
   const popover = (
     <Popover id="popover-basic">
       <Popover.Header as="h3">Formato de contraseña</Popover.Header>
@@ -39,40 +43,42 @@ const ResetPassword = () => {
       </Popover.Body>
     </Popover>
   );
-  
-    const isValidatePassword = passwd => {
-      const passwordChecks = {
-        caps: /[A-Z]/.test(passwd),
-        lows: /[a-z]/.test(passwd),
-        numb: /[0-9]/.test(passwd),
-        spch: /[$@#*-]/.test(passwd),
-        leng: passwd.length >= 6 && passwd.length <= 50
-      }
 
-      const validate = Object.entries(passwordChecks).filter((value, i) => value.includes(false))
-      return !validate.length ? true : false
-      
-    }
+  const isValidatePassword = (passwd) => {
+    const passwordChecks = {
+      caps: /[A-Z]/.test(passwd),
+      lows: /[a-z]/.test(passwd),
+      numb: /[0-9]/.test(passwd),
+      spch: /[$@#*-]/.test(passwd),
+      leng: passwd.length >= 6 && passwd.length <= 50,
+    };
+
+    const validate = Object.entries(passwordChecks).filter((value, i) =>
+      value.includes(false)
+    );
+    return !validate.length ? true : false;
+  };
   const handleOnSubmit = (event) => {
     event.preventDefault();
     setShowSpinner(true);
     if (!isValidatePassword(passwd1)) {
+      setShowSpinner(false);
       swal({
         title: "Error",
         text: "La contraseña actual no cumple con el formato",
         icon: "error",
         timer: 5000,
-      })
-    }
-    else if (!isValidatePassword(passwd2) || !isValidatePassword(passwd3)) {
+      });
+    } else if (!isValidatePassword(passwd2) || !isValidatePassword(passwd3)) {
+      setShowSpinner(false);
       swal({
         title: "Error",
         text: "Las contraseñas nuevas no cumplen con el formato",
         icon: "error",
         timer: 5000,
-      })
-    }
-    else if (passwd2 != passwd3) {
+      });
+    } else if (passwd2 != passwd3) {
+      setShowSpinner(false);
       swal({
         title: "Error",
         text: "Las contraseñas no son iguales",
@@ -121,14 +127,16 @@ const ResetPassword = () => {
         <div className="box-title">Reestablecer contraseña</div>
         <Form onSubmit={handleOnSubmit}>
           <Form.Group className="my-4">
-            <Form.Label htmlFor="formResetActualPassword">Contraseña actual</Form.Label>
+            <Form.Label htmlFor="formResetActualPassword">
+              Contraseña actual
+            </Form.Label>
             <Form.Control
               name="password"
               type="password"
               id="formResetActualPassword"
               className="inputCustom"
               value={passwd1}
-              onChange={e => setPasswd1(e.target.value)}
+              onChange={(e) => setPasswd1(e.target.value)}
               required
             />
           </Form.Group>
@@ -146,19 +154,21 @@ const ResetPassword = () => {
               id="formResetNewPassword"
               className="inputCustom"
               value={passwd2}
-              onChange={handleChange2}
+              onChange={(e) => setPasswd2(e.target.value)}
               required
             />
           </Form.Group>
           <Form.Group className="my-4">
-            <Form.Label htmlFor="formResetConfirmPassword">Confirmar contraseña</Form.Label>
+            <Form.Label htmlFor="formResetConfirmPassword">
+              Confirmar contraseña
+            </Form.Label>
             <Form.Control
               name="password"
               type="password"
               id="formResetConfirmPassword"
               className="inputCustom"
               value={passwd3}
-              onChange={handleChange3}
+              onChange={(e) => setPasswd3(e.target.value)}
               required
             />
           </Form.Group>

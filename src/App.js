@@ -24,7 +24,7 @@ const App = () => {
         <Routes>
           {/** Protected Routes */}
           <Route path="/" element={<ProtectedRoutes />}>
-            <Route path="/" element={<Navigate replace to="home" />} />
+            <Route path="/" element={<Navigate replace to="landing" />} />
             <Route path="/home" element={<Home />}></Route>
             <Route path="/publications" element={<MisAvisos />}></Route>
             <Route path="/pololitos" element={<MisPololitos />}></Route>
