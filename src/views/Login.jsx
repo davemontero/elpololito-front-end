@@ -1,7 +1,12 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import swal from "sweetalert";
-import { Button, Spinner } from "react-bootstrap";
+import {
+  Form,
+  Spinner,
+  Button,
+  Row
+} from "react-bootstrap";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -108,68 +113,59 @@ const Login = () => {
   };
 
   return (
-    <main className="login-wrapper">
-      <div className="login-box">
-        <div className="login-title">El pololito</div>
-        <form onSubmit={handleLogin} className="login-form">
-          <div className="mb-3">
-            <label
-              htmlFor="formLoginUser"
-              className="form-label form-label-white"
-            >
-              Correo
-            </label>
-            <input
-              autoFocus
-              type="text"
-              className="form-control"
+    <main className="box-container">
+      <div className="box box-login">
+        <div className="box-title">Inicio de sesión</div>
+        <Form onSubmit={handleLogin}>
+          <Form.Group className="my-3">
+            <Form.Label htmlFor="formLoginUser">Email</Form.Label>
+            <Form.Control
               name="user"
-              id="inputUser"
-              value={email}
+              type="email"
+              id="formLoginUser"
+              className="inputCustom"
+              placeholder="isabellagonzalez@dominio.com"
               onChange={handleOnChangeUser}
               onBlur={handleOnBlurUser}
+              value={email}
+              autoFocus
               required
             />
-          </div>
-          <div className="mb-3">
-            <label
-              htmlFor="formLoginPassword"
-              className="form-label form-label-white"
-            >
-              Contraseña
-            </label>
-            <input
-              type="password"
-              className="form-control"
+          </Form.Group>
+          <Form.Group className="mb-3">
+              <Form.Label htmlFor="formLoginPassword">Contraseña</Form.Label>
+            <Form.Control
               name="password"
-              value={password}
+              type="password"
+              id="formLoginPassword"
+              className="inputCustom"
               onChange={handleOnChangePassword}
               onKeyUp={handleOnKeyUpPassword}
-              id="inputPassword"
+              value={password}
               required
             />
-          </div>
-          <Link to="/forgot-password" className="text-center">
-            Olvide mi Contraseña
-          </Link>
-          {showSpinner ? (
-            <Button className="login-btn" disabled>
-              <Spinner
-                className="me-1"
-                as="span"
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
-              Cargando...
-            </Button>
-          ) : (
-            <Button type="submit" className="login-btn">
-              Iniciar
-            </Button>
-          )}
-        </form>
+          </Form.Group>
+          <Row className="justify-content-center">
+            <Link to="/forgot-password" className="text-center my-2">Olvide mi contraseña</Link>
+            {showSpinner ? (
+              <Button className="box-btn my-2" disabled>
+                <Spinner
+                  className="me-1"
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                Cargando...
+              </Button>
+            ) : (
+              <Button type="submit" className="box-btn my-2">
+                Enviar
+              </Button>
+            )}
+          </Row>
+        </Form>
       </div>
     </main>
   );

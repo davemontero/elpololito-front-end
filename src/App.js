@@ -15,6 +15,7 @@ import ResetPassword from "./views/ResetPassword";
 import WhoAmI from "./views/WhoAmI";
 import ProtectedRoutes from "./components/ProtectedRoute";
 import PublicRoutes from "./components/PublicRoute";
+import Register from "./views/Register.jsx"
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           {/** Public Routes */}
           <Route path="/" element={<PublicRoutes />}>
             <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
             <Route path="/forgot-password" element={<LostPassword />}></Route>
             <Route path="/reset-password" element={<ResetPassword />}></Route>
             <Route path="/landing" element={<VisitPage />}></Route>
