@@ -1,18 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Oregano&family=Roboto:wght@100;300;500;700;900&display=swap');
 
 :root {
+    --primary: #8b85ff;
+    --primary-complement: #00B4E1;
+    --secondary: #EEEEEE;
+    --secondary-complement: #051329;
+    --accent-1: #F8D319;
+    --accent-2: #F10E47;
+    --accent-2-hover: hsl(345, 85%,50%);
+    --accent-1-hover: #aa9114;
+    --accent-1-hover-hsl: 50, 79%, 37%;
+    --accent-2-hover-hsl: 336, 91%, 37%;
+    --primary-hsl: 243, 100%, 76%;
+    --primary-complement-hsl: 192, 100%, 44%;
+    --secondary-hsl: 0, 0%, 93%;
+    --secondary-complement-hsl: 217, 78%, 9%;
+    --accent-1-hsl: 50, 94%, 54%;
+    --accent-2-hsl: 336, 94%, 5s0%;
+    --elpololito-font: 'Oregano';
+    --webfont: 'Roboto';
+    --shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    --shadow-card: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    --divider: hsla(0,40%,50%,0.3);
+    --linear-gradient: linear-gradient(to right bottom, #6761e1, #6761e1, #6761e1, #6761e1, #6761e1, #5173ee, #3584f8, #0093ff, #00b2ff, #00cdff, #00e5fd, #5ffbf1);
+    /* Variables por borrar */
     --primary-color: #e54b4b;
+    --primary-color-hsl: 0, 75%, 60%;
     --primary-color-hover: #c53636;
     --foreground-color: #444140;
     --accent-color-1: #ebcbbf;
     --accent-color-2: #f7ebe8;
     --accent-color-3: #2460a0;
     --accent-color-3-hover: #2d7dd2;
-    --elpololito-font: 'Oregano';
-    --webfont: 'Roboto';
-    --shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    --shadow-card: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    --divider: hsla(0,40%,50%,0.3)
 }
 body {
     font-family: var(--webfont);
@@ -478,30 +497,85 @@ margin: 5px;
 }
 
 .box-container {
-    background-image: url("../../public/images/pattern.jpg");
-    background-size: contain;
+    background-image: var(--linear-gradient);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.box-container::before {
-    background-color: var(--accent-color-1);
-    content: '';
-}
-
 .box {
-    background-color: var(--primary-color);
+    background-color: var(--secondary);
+    color: var(--secondary-complement);
     min-width: 320px;
     width: 840px;
     border-radius: 5px;
-    color: var(--accent-color-2);
-    padding: 1rem 2rem;
+    padding: 2rem 7rem;
+    font-weight: 300;
+    box-shadow: var(--shadow);
 }
 
 .box-title {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 1rem;
+    font-weight: 900;
+}
+
+.inputCustom {
+    color: var(--secondary-complement);
+    border-color: var(--secondary);
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+}
+
+.inputCustom::placeholder {
+    color: hsla(var(--secondary-complement-hsl),.5);
+    font-weight: 400;
+}
+
+.inputCustom:focus {
+    border: 1px solid var(--primary);
+    box-shadow: none;
+}
+
+.inputCustom[type="password"] {
+    letter-spacing: 5px;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.box-btn {
+    background-color: var(--accent-2);
+    padding: 0.5em 1.3em !important;
+    color: var(--secondary);
+    width: 150px;
+    line-height: 1.8rem;
+    border: none;
+    transition: all 0.3s ease 0s;
+    outline: none;
+
+}
+
+.box-btn:hover {
+    background-color: var(--accent-2-hover);
+    transform: translateY(-1px);
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.box-btn:focus {
+    box-shadow: none !important;
+}
+
+.span-require {
+    color: var(--accent-2);
+}
+
+.dropdown-divider {
+    border-color: var(--secondary-complement);
+}
+
+.box-login {
+    width: 600px;
+    padding: 2rem 3rem;
 }

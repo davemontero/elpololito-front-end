@@ -1,87 +1,105 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import swal from "sweetalert";
-import { Button, Spinner } from "react-bootstrap";
+import { Form, Spinner, Button, Row } from "react-bootstrap";
+
 const LostPassword = () => {
   let navigate = useNavigate();
-  localStorage.removeItem('resetEmail')
+  localStorage.removeItem("resetEmail");
   const [showSpinner, setShowSpinner] = useState(false);
   const [mail, setMail] = useState("");
 
-  const changeMail = (event) => {
-    setMail(event.target.value);
+  const isValidateMail = (mail) => {
+    const user =
+      /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}.([a-z{2,3}])?/.test(
+        mail
+      );
+    return user;
   };
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     setShowSpinner(true);
-    fetch("http://localhost:5000/password-recovery", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ mail: mail }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        data.status
-          ? swal({
-              title: "Exito",
-              text: data.msg,
-              icon: "success",
-              timer: 5000,
-            }).then(() => {
-                localStorage.setItem('resetEmail', mail)
-                navigate("/reset-password")
-            })
-          : swal({
-              title: "Error",
-              text: data.msg,
-              icon: "error",
-              timer: 5000,
-            });
+
+    if (!isValidateMail(mail)) {
+      swal({
+        title: "Error",
+        text: "Ingrese un correo correcto",
+        icon: "error",
+        timer: 5000,
+      });
+      setShowSpinner(false);
+    } else {
+      fetch("http://localhost:5000/password-recovery", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mail: mail }),
       })
-      .catch((error) => console.error("Error:", error))
-      .then(() => setShowSpinner(false));
-  }
+        .then((response) => response.json())
+        .then((data) => {
+          data.status
+            ? swal({
+                title: "Exito",
+                text: data.msg,
+                icon: "success",
+                timer: 5000,
+              }).then(() => {
+                localStorage.setItem("resetEmail", mail);
+                navigate("/reset-password");
+              })
+            : swal({
+                title: "Error",
+                text: data.msg,
+                icon: "error",
+                timer: 5000,
+              });
+        })
+        .catch((error) => console.error("Error:", error))
+        .then(() => setShowSpinner(false));
+    }
+  };
 
   return (
-    <main className="forgotPassword-wrapper">
-      <div className="forgotPassword-box">
-      <div className="login-title">El pololito</div>
-        <form onSubmit={handleSubmit}>
-          <h2 className="mb-3">Reestablecer contraseña</h2>
-          <div className="mb-4">
-            <label htmlFor="LostMail" className="form-label form-label-white">
-              Ingrese su email
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="LostMail"
-              placeholder="ejemplo@dominio.com"
+    <main className="box-container">
+      <div className="box">
+        <Form onSubmit={handleSubmit}>
+          <div className="box-title">Reestablecer contraseña</div>
+          <Form.Group className="my-3">
+            <Form.Label htmlFor="formResetPassword">Email</Form.Label>
+            <Form.Control
+              name="user"
+              type="email"
+              id="formResetPassword"
+              className="inputCustom"
+              placeholder="isabellagonzalez@dominio.com"
               value={mail}
-              onChange={changeMail}
+              onChange={(e) => setMail(e.target.value)}
+              autoFocus
+              required
             />
-          </div>
-          {showSpinner ? (
-            <Button className="login-btn" disabled>
-              <Spinner
-                className="me-1"
-                as="span"
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
-              Cargando...
-            </Button>
-          ) : (
-            <Button type="submit" className="login-btn">
-              Enviar
-            </Button>
-          )}
-        </form>
+          </Form.Group>
+          <Row className="justify-content-center">
+            {showSpinner ? (
+              <Button className="box-btn mt-3" disabled>
+                <Spinner
+                  className="me-1"
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                Cargando...
+              </Button>
+            ) : (
+              <Button type="submit" className="box-btn mt-3">
+                Iniciar
+              </Button>
+            )}
+          </Row>
+        </Form>
       </div>
     </main>
   );

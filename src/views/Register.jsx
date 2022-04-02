@@ -102,13 +102,14 @@ const Register = () => {
         <Form onSubmit={handleRegister}>
           <Row className="mb-3">
             <Form.Group controlId="formRegisterFirstName" as={Col}>
-              <Form.Label>Primer nombre*</Form.Label>
+              <Form.Label>Primer nombre <span className="span-require">*</span></Form.Label>
               <Form.Control
                 type="text"
                 name="fname"
                 placeholder="Isabella"
                 onChange={handleChangeform}
                 required
+                className="inputCustom"
               />
             </Form.Group>
             <Form.Group controlId="formRegisterSecondName" as={Col}>
@@ -118,17 +119,19 @@ const Register = () => {
                 name="sname"
                 placeholder="Sofía"
                 onChange={handleChangeform}
+                className="inputCustom"
               />
             </Form.Group>
           </Row>
           <Row className="mb-3">
             <Form.Group controlId="formRegisterLastName" as={Col}>
-              <Form.Label>Primer apellido*</Form.Label>
+              <Form.Label>Primer apellido <span className="span-require">*</span></Form.Label>
               <Form.Control
                 type="text"
                 name="lname"
                 placeholder="González"
                 onChange={handleChangeform}
+                className="inputCustom"
                 required
               />
             </Form.Group>
@@ -139,12 +142,13 @@ const Register = () => {
                 name="lname2"
                 placeholder="Muñoz"
                 onChange={handleChangeform}
+                className="inputCustom"
               />
             </Form.Group>
           </Row>
           <Row className="mb-3">
             <Form.Group controlId="formRegisterRUT" as={Col}>
-              <Form.Label>RUT*</Form.Label>
+              <Form.Label>RUT <span className="span-require">*</span></Form.Label>
               <Form.Control
                 type="text"
                 name="rut"
@@ -152,15 +156,16 @@ const Register = () => {
                 value={rut.formatted}
                 onChange={(e) => updateRut(e.target.value)}
                 onBlur={handleRUT}
+                className="inputCustom"
                 required
               />
             </Form.Group>
             <Form.Group controlId="formRegisterDOB" as={Col}>
-              <Form.Label>Fecha de nacimiento</Form.Label>
+              <Form.Label>Fecha de nacimiento <span className="span-require">*</span></Form.Label>
               <DatePicker
                 selected={startDate}
                 onChange={handleDate}
-                className="form-control"
+                className="form-control inputCustom"
                 dateFormat="dd-MM-yyyy"
                 placeholderText="01-12-2000"
                 required
@@ -169,7 +174,7 @@ const Register = () => {
           </Row>
           <Row className="mb-3">
             <Form.Group className="mb-3" controlId="formRegisterPhone" as={Col}>
-              <Form.Label>Teléfono*</Form.Label>
+              <Form.Label>Teléfono <span className="span-require">*</span></Form.Label>
               <div>
                 <Input
                   country="CL"
@@ -177,7 +182,7 @@ const Register = () => {
                   onChange={handlePhone}
                   rules={{ required: true }}
                   placeholder="9 1234 5678"
-                  className="form-control"
+                  className="form-control inputCustom"
                   required
                 />
               </div>
@@ -187,8 +192,8 @@ const Register = () => {
               controlId="formRegisterGender"
               as={Col}
             >
-              <Form.Label>Genero*</Form.Label>
-              <Form.Select defaultValue="Elegir..." required>
+              <Form.Label>Genero <span className="span-require">*</span></Form.Label>
+              <Form.Select defaultValue="Elegir..." className="inputCustom" required>
                 <option>Elegir...</option>
                 <option>Mujer</option>
                 <option>Hombre</option>
@@ -197,43 +202,46 @@ const Register = () => {
             </Form.Group>
           </Row>
           <div className="dropdown-divider"></div>
-          <Form.Group className="mb-3" controlId="formRegisterEmail">
-            <Form.Label>Email</Form.Label>
+          <Form.Group className="my-3" controlId="formRegisterEmail">
+            <Form.Label>Email <span className="span-require">*</span></Form.Label>
             <Form.Control
               type="email"
               placeholder="isabellagonzalez@dominio.com"
+              className="inputCustom"
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formRegisterPassword">
             <OverlayTrigger placement="top" overlay={popover}>
               <Form.Label>
                 Contraseña
-                <BsQuestionCircle className="align-text-top ms-1" />
+                <BsQuestionCircle className="align-text-top ms-1 span-require" />
               </Form.Label>
             </OverlayTrigger>
 
             <Form.Control
               type="password"
-              placeholder="Ingrese una contraseña..."
+              className="inputCustom"
             />
           </Form.Group>
-          {showSpinner ? (
-            <Button className="login-btn" disabled>
-              <Spinner
-                className="me-1"
-                as="span"
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
-              Cargando...
-            </Button>
-          ) : (
-            <Button type="submit" className="login-btn">
-              Iniciar
-            </Button>
-          )}
+          <Row className="justify-content-center">
+            {showSpinner ? (
+              <Button className="box-btn" disabled>
+                <Spinner
+                  className="me-1"
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                Cargando...
+              </Button>
+            ) : (
+              <Button type="submit" className="box-btn">
+                Iniciar
+              </Button>
+            )}
+          </Row>
         </Form>
       </div>
     </main>
