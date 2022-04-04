@@ -1,6 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Oregano&family=Roboto:wght@100;300;500;700;900&display=swap');
 
 :root {
+    
+    /* ESTOS SI */
+
+    --linear-backgroun: linear-gradient(to right top, hsl(0, 0%, 100%), hsl(0, 0%, 75%), hsl(0, 0%, 50%), hsl(0, 0%, 40%), hsl(0, 0%, 25%));
+    --color-10: #000000;
+    --color-20: #303030;
+    --color-30: #5E5E5E;
+    --color-40: #919191;
+    --color-50: #C6C6C6;
+    --color-60: hsla(0,0%,90%,.34);
+
+    /* ESTOS SI */
+
+
+    
+    
     --primary: #8b85ff;
     --primary-complement: #00B4E1;
     --secondary: #EEEEEE;
@@ -42,7 +58,7 @@ body {
 
 .header-wrapper {
     padding-top: 16px;
-    background-image: var(--linear-gradient-home);
+    background-image: var(--linear-backgroun);
 }
 
 /* NAVBAR */
@@ -51,11 +67,11 @@ body {
     font-family: var(--elpololito-font);
     font-size: 2.4rem;
     position: relative;
-    color: var(--primary) !important;
+    color: var(--color-50) !important;
 }
 
 .navbar-brand:hover {
-    color: var(--primary);
+    color: var(--color-50) !important;
 }
 
 .navbar-nav-center{
@@ -68,31 +84,31 @@ body {
 }
 
 .nav-link {
-    color: var(--primary) !important;
+    color: var(--color-50) !important;
 }
 
 .nav-link:hover {
-    color: var(--primary) !important;
+    color: var(--color-50) !important;
 }
 
 .nav-link:active {
-    color: var(--primary) !important;
+    color: var(--color-50) !important;
 }
 
 .nav-link-login {
-    color: var(--accent-1) !important;
+    color: var(--color-50) !important;
     line-height: 1.8rem;
 }
 
 .nav-link-login:hover {
-    color: var(--accent-1) !important;
+    color: var(--color-50) !important;
 }
 
 .nav-link-btn {
-    background-color: var(--accent-2);
+    background-color: var(--color-40);
     border-radius: 3px;
     padding: 0.5em 1.3em !important;
-    color: var(--accent-color-2) !important;
+    color: var(--color-20) !important;
     line-height: 1.8rem;
     border: 0;
 }
@@ -120,7 +136,7 @@ body {
 }
 
 .header-content-text {
-    color: var(--primary);
+    color: var(--color-20);
 }
 
 .header-text-hook {
@@ -138,8 +154,7 @@ body {
 .header-text-paragraph {
     font-size: 1rem;
     font-weight: 300;
-    color: var(--primary);
-    text-shadow: var(--shadow-text);
+    color: var(--color-20);
 }
 
 .header-content-img {
@@ -165,10 +180,10 @@ body {
 }
 
 .header-btn {
-    background-color: var(--accent-2);
+    background-color: var(--color-40);
+    color: var(--color-20);
     border: none;
     border-radius: 3px;
-    color: var(--accent-color-2);
     padding: 0.5em 1.3em;
     font-size: 1.2rem;
     margin-top: 20px;
@@ -443,7 +458,8 @@ margin: 5px;
 }
 
 .workers-wrapper {
-    padding: 45px 0 60px 0;
+    padding: 75px 0;
+    background-color: hsl(245, 11%, 97%);
 }
 
 .footer-wrapper {
@@ -568,4 +584,69 @@ margin: 5px;
 .box-login {
     width: 600px;
     padding: 2rem 3rem;
+}
+
+/* Services */
+
+.services-wrapper {
+    padding: 75px 0;
+}
+
+.services-icons {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.services-card {
+    background-color: var(--color-60);
+    border: none;
+}
+
+.services-card-body {
+    text-align: center;
+    padding: 25px 35px;
+}
+
+.services-card-title {
+    font-size: 22px;
+}
+
+.services-card-text {
+    font-weight: 300;
+    color: var(--color-30);
+    font-size: 17px;
+    line-height: 28px;
+}
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2.8rem;
+}
+
+.section-title {
+    font-size: 38px;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.section-description {
+    text-align: center;
+    line-height: 28px;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--color-40);
+}
+
+.workers-card-title {
+    text-align: center;
+    font-size: 22px;
+}
+
+.workers-card-text {
+    font-weight: 300;
+    color: var(--color-30);
+    font-size: 17px;
+    line-height: 28px;
 }

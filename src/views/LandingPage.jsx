@@ -2,7 +2,10 @@ import React, { useEffect, useContext, useState } from "react";
 import { Button, Collapse, Container, Card, Row, Col } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import { Context } from "../store/pololitoContext";
-import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa"
+import { FaTwitter, FaFacebook, FaInstagram, FaHandsHelping, FaSearch, FaClock, FaClipboard } from "react-icons/fa";
+import { BiTime, BiSearchAlt, BiReceipt, BiTrophy } from "react-icons/bi"
+import { IoTimeOutline } from "react-icons/io5"
+import { GrMoney, GrAnnounce } from "react-icons/gr"
 import "react-multi-carousel/lib/styles.css";
 
 function LandingPage() {
@@ -39,69 +42,72 @@ function LandingPage() {
 
   return (
     <>
-      <section className="userPanel-wrapper">
+      <section className="services-wrapper">
         <Container>
-          <h2 className="userPanel-title text-center mb-5">
-            Lo que puedes hacer
-          </h2>
-          <div className="userPanel-content d-flex justify-content-around mb-5">
-            <div className="infoBlurb text-start">
-              <Button
-                className="btn btn-warning btn-lg btn3d"
-                onClick={() => setOpenAviso(!openAviso)}
-                aria-controls="collapseAviso"
-                aria-expanded={openAviso}
-              >
-                Publicar un Aviso
-              </Button>
-              <Collapse className="aaa" in={openAviso}>
-                <div id="collapseAviso">
-                  <h2> ¿Quieres publicar avisos? </h2>
-                  <ul>
-                    <li>
-                      {" "}
-                      Puedes hacer visible tus necesidades mediante avisos y asi
-                      trabajadores te contactaran, para realizar un pololito
-                    </li>
-                  </ul>
-                </div>
-              </Collapse>
+          <Row>
+            <div className="section-header">
+              <h2 className="section-title">Lo que puedes encontrar</h2>
+              <p className="section-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br /> Ipsa aperiam, dolorum harum nobis consequuntur inventore ad vero natus.</p>
             </div>
-            <div className="infoBlurb text-start">
-              <Button
-                className="btn btn-warning btn-lg btn3d"
-                onClick={() => setOpenPololito(!openPololito)}
-                aria-controls="collapsePololito"
-                aria-expanded={openPololito}
-              >
-                Hacer un Pololito
-              </Button>
-              <Collapse className="aaa" in={openPololito}>
-                <div id="collapsePololito">
-                  <h2> ¿Quieres realizar pololitos? </h2>
-                  <ul>
-                    <li>
-                      {" "}
-                      Crea un Perfil de Trabajador a través del cual otros
-                      usuarios podrán encontrarte en los rubros que definas
-                    </li>
-                    <li>
-                      {" "}
-                      Filtra avisos de trabajo según tus habilidades o según la
-                      comuna para encontrar el trabajo perfecto para ti
-                    </li>
-                  </ul>
-                </div>
-              </Collapse>
-            </div>
-          </div>
+          </Row>
+          <Row>
+            <Col>
+              <Card className="services-card">
+                <Card.Body className="services-card-body">
+                  <BiReceipt className="services-icons"></BiReceipt>
+                  <Card.Title className="services-card-title">Titulo 1</Card.Title>
+                  <Card.Text className="services-card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae optio quo aliquam quidem iusto consequuntur nisi?
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col>
+              <Card className="services-card">
+                <Card.Body className="services-card-body">
+                  <BiSearchAlt className="services-icons"></BiSearchAlt>
+                  <Card.Title className="services-card-title">Titulo 2</Card.Title>
+                  <Card.Text className="services-card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae optio quo aliquam quidem iusto consequuntur nisi?
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col>
+              <Card className="services-card">
+                <Card.Body className="services-card-body">
+                  <BiTime className="services-icons"></BiTime>
+                  <Card.Title className="services-card-title">Titulo 3</Card.Title>
+                  <Card.Text className="services-card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae optio quo aliquam quidem iusto consequuntur nisi?
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col>
+              <Card className="services-card">
+                <Card.Body className="services-card-body">
+                  <BiTrophy className="services-icons"></BiTrophy>
+                  <Card.Title className="services-card-title">Titulo 4</Card.Title>
+                  <Card.Text className="services-card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae optio quo aliquam quidem iusto consequuntur nisi?
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
         </Container>
       </section>
       <section className="workers-wrapper">
         <Container>
-          <h2 className="workers-title text-center mb-5">
-            Personas que han hecho pololitos
-          </h2>
+        <div className="section-header">
+              <h2 className="section-title">Personas ya trabajando</h2>
+              <p className="section-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br /> Ipsa aperiam, dolorum harum nobis consequuntur inventore ad vero natus.</p>
+            </div>
           <div className="workers-content">
             <Carousel
               className="py-4"
@@ -127,15 +133,15 @@ function LandingPage() {
               renderButtonGroupOutside={false}
               renderDotsOutside={false}
             >
-              <Card style={{ width: "16em" }} className="h-100 carousel-card">
+              <Card style={{ width: "16em" }} className="h-100 carousel-card workers-card">
                 <Card.Img
                   className="img-fluid"
                   variant="top"
                   src="https://cdn.geeksterra.com/q:i/r:1/wp:1/w:380/u:https://geeksterra.com/wp-content/uploads/2021/04/Goku-trabajando.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Son Gokú</Card.Title>
-                  <Card.Text>Granjero</Card.Text>
+                /> 
+                <Card.Body className="workers-card-body">
+                  <Card.Title className="workers-card-title">Son Gokú</Card.Title>
+                  <Card.Text className="workers-card-text">Granjero</Card.Text>
                 </Card.Body>
               </Card>
               <Card style={{ width: "16em" }} className="h-100 carousel-card">
@@ -144,9 +150,9 @@ function LandingPage() {
                   variant="top"
                   src="https://1.bp.blogspot.com/--nN9E8LB86c/X7Ewn5GEGmI/AAAAAAAAGLc/ueRKDW39iUg_5uBBtUANVOv0jMsBufeIQCLcBGAsYHQ/s1280/Frodo%2BBaggins.png"
                 />
-                <Card.Body>
-                  <Card.Title>Frodo Baggins</Card.Title>
-                  <Card.Text>Realiza entregas en todo Santiago</Card.Text>
+                <Card.Body className="workers-card-body">
+                  <Card.Title className="workers-card-title">Frodo Baggins</Card.Title>
+                  <Card.Text className="workers-card-text">Realiza entregas en todo Santiago</Card.Text>
                 </Card.Body>
               </Card>
               <Card style={{ width: "16em" }} className="h-100 carousel-card">
@@ -155,9 +161,9 @@ function LandingPage() {
                   variant="top"
                   src="https://www.infofueguina.com/u/fotografias/m/2021/4/2/f850x638-80410_157899_5050.jpeg"
                 />
-                <Card.Body>
-                  <Card.Title>Mario Mario</Card.Title>
-                  <Card.Text>
+                <Card.Body className="workers-card-body">
+                  <Card.Title className="workers-card-title">Mario Mario</Card.Title>
+                  <Card.Text className="workers-card-text">
                     Plomero, Tenista, Golfista, Jardinero, Cazafantasmas...
                   </Card.Text>
                 </Card.Body>
@@ -168,9 +174,9 @@ function LandingPage() {
                   variant="top"
                   src="https://static1.thegamerimages.com/wordpress/wp-content/uploads/2020/10/Doom-Doom-Guy.jpg"
                 />
-                <Card.Body>
-                  <Card.Title>Doom Guy</Card.Title>
-                  <Card.Text>Experto Exterminador</Card.Text>
+                <Card.Body className="workers-card-body">
+                  <Card.Title className="workers-card-title">Doom Guy</Card.Title>
+                  <Card.Text className="workers-card-text">Experto Exterminador</Card.Text>
                 </Card.Body>
               </Card>
               <Card style={{ width: "16em" }} className="h-100 carousel-card">
@@ -179,9 +185,9 @@ function LandingPage() {
                   variant="top"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKFQ34avLDNEqhIBQ4UEbtIg_ZslmdryfCbg&usqp=CAU"
                 />
-                <Card.Body>
-                  <Card.Title>May</Card.Title>
-                  <Card.Text>Entrenadora de Delfines</Card.Text>
+                <Card.Body className="workers-card-body">
+                  <Card.Title className="workers-card-title">May</Card.Title>
+                  <Card.Text className="workers-card-text">Entrenadora de Delfines</Card.Text>
                 </Card.Body>
               </Card>
               <Card style={{ width: "16em" }} className="h-100 carousel-card">
@@ -190,9 +196,9 @@ function LandingPage() {
                   variant="top"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTee0vA7UeQfdBJYU2yGHoCun91-yEEEjdOucV6IG-wpoHgo-ImeRUPRtoRhesoMHJ7tuI&usqp=CAU"
                 />
-                <Card.Body>
-                  <Card.Title>Bojji</Card.Title>
-                  <Card.Text>Joven Rey</Card.Text>
+                <Card.Body className="workers-card-body">
+                  <Card.Title className="workers-card-title">Bojji</Card.Title>
+                  <Card.Text className="workers-card-text">Joven Rey</Card.Text>
                 </Card.Body>
               </Card>
               <Card style={{ width: "16em" }} className="h-100 carousel-card">
@@ -201,43 +207,60 @@ function LandingPage() {
                   variant="top"
                   src="https://areajugones.sport.es/wp-content/uploads/2019/09/ash-pokemon439.jpg"
                 />
-                <Card.Body>
-                  <Card.Title>Ash Ketchum</Card.Title>
-                  <Card.Text>Perdedor de Ligas</Card.Text>
+                <Card.Body className="workers-card-body">
+                  <Card.Title className="workers-card-title">Ash Ketchum</Card.Title>
+                  <Card.Text className="workers-card-text">Perdedor de Ligas</Card.Text>
                 </Card.Body>
               </Card>
             </Carousel>
           </div>
         </Container>
       </section>
+      <section className="banner-wrapper">
+        <Container>
+          <Row>
+
+          </Row>
+        </Container>
+      </section>
       <footer className="footer-wrapper">
         <Container>
-        <Row>
+          <Row>
             <Col>
-                <h3>¿Necesitas ayuda o tienes una pregunta?</h3>
-                <p>Contactanos en redes sociales</p>
-                <div className="rrss-box">
-                    <a href="https://facebook.com" target="_blank" className="rrss"><FaFacebook /></a>
-                    <a href="https://twitter.com" target="_blank" className="rrss"><FaTwitter /></a>
-                    <a href="https://instagram.com" target="_blank" className="rrss"><FaInstagram /></a>
-                </div>
+              <h3>¿Necesitas ayuda o tienes una pregunta?</h3>
+              <p>Contactanos en redes sociales</p>
+              <div className="rrss-box">
+                <a href="https://facebook.com" target="_blank" className="rrss">
+                  <FaFacebook />
+                </a>
+                <a href="https://twitter.com" target="_blank" className="rrss">
+                  <FaTwitter />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  className="rrss"
+                >
+                  <FaInstagram />
+                </a>
+              </div>
             </Col>
             <Col>
-                <h4>Links</h4>
-                <ul className="link-list">
-                    <li className="link-item">Aplicación</li>
-                    <li className="link-item">Avisos</li>
-                    <li className="link-item">Pololitos</li>
-                    <li className="link-item">Contacto</li>
-                </ul>
+              <h4>Links</h4>
+              <ul className="link-list">
+                <li className="link-item">Aplicación</li>
+                <li className="link-item">Avisos</li>
+                <li className="link-item">Pololitos</li>
+                <li className="link-item">Contacto</li>
+              </ul>
             </Col>
             <Col>
-                <h4>Contacto</h4>
+              <h4>Contacto</h4>
             </Col>
-        </Row>
-        <Row>
+          </Row>
+          <Row>
             <span className="divider"></span>
-        </Row>
+          </Row>
           <Row>
             <span className="copy text-center">
               {today.getFullYear()} copyright
