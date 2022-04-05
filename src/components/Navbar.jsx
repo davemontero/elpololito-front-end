@@ -59,14 +59,12 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-item nav-item-list">
-                  <button
+                  <Link
                     className="nav-link nav-link-btn"
-                    href="#"
-                    data-bs-toggle="modal"
-                    data-bs-target="#registerModal"
+                    to="/register"
                   >
                     Registrate
-                  </button>
+                  </Link>
                 </li>
               </>
             ) : (

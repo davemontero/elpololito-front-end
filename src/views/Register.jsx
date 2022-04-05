@@ -12,11 +12,13 @@ import DatePicker from "react-datepicker";
 import { BsQuestionCircle } from "react-icons/bs";
 import Input, { isValidPhoneNumber } from "react-phone-number-input/input";
 import { useRut, removeSeparators } from "react-rut-formatter";
+import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
 
 const Register = () => {
+  let navigate = useNavigate()
   const [startDate, setStartDate] = useState();
   const [form, setForm] = useState({});
   const [phone, setPhone] = useState();
@@ -95,6 +97,42 @@ const Register = () => {
     e.preventDefault()
   };
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(form)
+    fetch("http://localhost:5000/create-person", {
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": JSON.stringify(form)
+    })
+      .then(response => response.json())
+      .then(response => {
+        response.status ? (
+          swal({
+            title: "Exito",
+            text: response.msg,
+            icon: "success",
+            timer: 5000,
+            button: "good"
+          }).then(()=>console.log('ola'))) :
+          (
+            swal({
+              title: "Error",
+              text: response.msg,
+              icon: "error",
+              timer: 5000
+            }))
+      })
+      .catch(err => swal({
+        title: "Error",
+        text: "No se pudo enviar su solicitud",
+        icon: "error",
+        timer: 5000
+      }))
+
+  }
   return (
     <main className="box-container">
       <div className="box">
@@ -193,11 +231,11 @@ const Register = () => {
               as={Col}
             >
               <Form.Label>Genero <span className="span-require">*</span></Form.Label>
-              <Form.Select defaultValue="Elegir..." className="inputCustom" required>
+              <Form.Select defaultValue="Elegir..." className="inputCustom" name="gender" onChange={handleChangeform} required >
                 <option>Elegir...</option>
-                <option>Mujer</option>
-                <option>Hombre</option>
-                <option>Prefiero no decir</option>
+                <option value="Mujer">Mujer</option>
+                <option value="Hombre">Hombre</option>
+                <option value="no binario">Prefiero no decir</option>
               </Form.Select>
             </Form.Group>
           </Row>
@@ -206,6 +244,8 @@ const Register = () => {
             <Form.Label>Email <span className="span-require">*</span></Form.Label>
             <Form.Control
               type="email"
+              name="mail"
+              onChange={handleChangeform}
               placeholder="isabellagonzalez@dominio.com"
               className="inputCustom"
             />
@@ -221,6 +261,8 @@ const Register = () => {
             <Form.Control
               type="password"
               className="inputCustom"
+              name="password"
+              onChange={handleChangeform}
             />
           </Form.Group>
           <Row className="justify-content-center">
@@ -237,7 +279,7 @@ const Register = () => {
                 Cargando...
               </Button>
             ) : (
-              <Button type="submit" className="box-btn">
+              <Button type="submit" className="box-btn" onClick={handleSubmit}>
                 Iniciar
               </Button>
             )}

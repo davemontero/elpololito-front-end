@@ -37,7 +37,7 @@ const RegisterFormClient = () => {
             text: response.msg,
             icon: "success",
             timer: 5000
-          })) :
+          }).then(navigate("/Login"))) :
           (
             swal({
               title: "Error",
@@ -46,7 +46,13 @@ const RegisterFormClient = () => {
               timer: 5000
             }))
       })
-      .catch(err => console.error(err))
+      .catch(err => swal({
+        title: "Error",
+        text: "No se pudo enviar su solicitud",
+        icon: "error",
+        timer: 5000
+      }))
+
   }
   return (
     <form className="row g-3" onSubmit={handleSubmit}>
