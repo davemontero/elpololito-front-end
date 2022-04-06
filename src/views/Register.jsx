@@ -99,7 +99,6 @@ const Register = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(form)
     fetch("http://localhost:5000/create-person", {
       "method": "POST",
       "headers": {
@@ -109,21 +108,20 @@ const Register = () => {
     })
       .then(response => response.json())
       .then(response => {
-        response.status ? (
+        response.status ? 
           swal({
             title: "Exito",
             text: response.msg,
             icon: "success",
             timer: 5000,
             button: "good"
-          }).then(()=>console.log('ola'))) :
-          (
+          }).then(()=> navigate("/login")) :
             swal({
               title: "Error",
               text: response.msg,
               icon: "error",
               timer: 5000
-            }))
+            })
       })
       .catch(err => swal({
         title: "Error",
