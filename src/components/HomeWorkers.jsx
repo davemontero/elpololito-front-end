@@ -9,72 +9,70 @@ import Col from 'react-bootstrap/Col';
 import { Context } from '../store/pololitoContext';
 
 
-const HomeWorkers = () => {
+// const HomeWorkers = () => {
 
 
-    const { store, actions } = useContext(Context);
-    useEffect(() => {
-        actions.readWorkersProfiles();
-    }, [])
-
-
-
-    const responsive = {
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 4,
-            slidesToSlide: 1, // optional, default to 1.
-            partialVisibilityGutter: 20
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 3,
-            slidesToSlide: 1 // optional, default to 1.
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-            slidesToSlide: 1 // optional, default to 1.
-        }
-    };
-    return <>
-        <Container fluid>
-            <Row>
-                <Col>
-
-
-                    <Carousel
-
-                        swipeable={true}
-                        draggable={true}
-                        showDots={false}
-                        responsive={responsive}
-                        infinite={true}
-                        autoPlaySpeed={8000}
-                        keyBoardControl={true}
-                        transitionDuration={500}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px"
-                        partialVisible
-                        className="py-4"
-                    >
+//     const { store, actions } = useContext(Context);
+//     useEffect(() => {
+//         actions.readWorkersProfiles();
+//     }, [])
 
 
 
-                        {store.workersProfiles.map(workersProfile =>
-                            <Card mx-auto="true">
-                                <Card.Body>
-                                    <Card.Title>{workersProfile.Person.fullname}</Card.Title>
-                                    <Card.Subtitle> {workersProfile.profession} </Card.Subtitle> 
-                                    <Card.Text>
-                                        Pololito disponible!
-                                    </Card.Text>
-                                    <Button variant="primary">Contactar</Button>
-                                </Card.Body>
-                            </Card>
-                        )}
+//     const responsive = {
+//         desktop: {
+//             breakpoint: { max: 3000, min: 1024 },
+//             items: 4,
+//             slidesToSlide: 1, // optional, default to 1.
+//             partialVisibilityGutter: 20
+//         },
+//         tablet: {
+//             breakpoint: { max: 1024, min: 464 },
+//             items: 3,
+//             slidesToSlide: 1 // optional, default to 1.
+//         },
+//         mobile: {
+//             breakpoint: { max: 464, min: 0 },
+//             items: 1,
+//             slidesToSlide: 1 // optional, default to 1.
+//         }
+//     };
+    // return <>
+    //     <Container fluid>
+    //         <Row>
+    //             <Col>
+
+
+    //                 <Carousel
+
+    //                     swipeable={true}
+    //                     draggable={true}
+    //                     showDots={false}
+    //                     responsive={responsive}
+    //                     infinite={true}
+    //                     autoPlaySpeed={8000}
+    //                     keyBoardControl={true}
+    //                     transitionDuration={500}
+    //                     containerClass="carousel-container"
+    //                     removeArrowOnDeviceType={["tablet", "mobile"]}
+    //                     dotListClass="custom-dot-list-style"
+    //                     itemClass="carousel-item-padding-40-px"
+    //                     partialVisible
+    //                     className="py-4"
+    //                 >
+
+    //                     {store.workersProfiles.map(workersProfile =>
+    //                         <Card mx-auto="true">
+    //                             <Card.Body>
+    //                                 <Card.Title>{workersProfile.Person.fullname}</Card.Title>
+    //                                 <Card.Subtitle> {workersProfile.profession} </Card.Subtitle> 
+    //                                 <Card.Text>
+    //                                     Pololito disponible!
+    //                                 </Card.Text>
+    //                                 <Button variant="primary">Contactar</Button>
+    //                             </Card.Body>
+    //                         </Card>
+    //                     )}
 
                         {/* 
                         <Card className="grid-card h-100" mx-auto="true" >
@@ -157,11 +155,11 @@ const HomeWorkers = () => {
 
 
 
-                    </Carousel>
-                </Col>
-            </Row>
-        </Container>
-    </>
-}
+//                     </Carousel>
+//                 </Col>
+//             </Row>
+//         </Container>
+//     </>
+// }
 
 export default HomeWorkers

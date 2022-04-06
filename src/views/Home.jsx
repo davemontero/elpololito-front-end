@@ -11,7 +11,7 @@ import {
   Button,
 } from "react-bootstrap";
 import HomeAvisos from "../components/HomeAvisos";
-import HomeWorkers from "../components/HomeWorkers"
+// import HomeWorkers from "../components/HomeWorkers"
 import NavbarApp from "../components/NavbarApp";
 import { Context } from "../store/pololitoContext";
 
@@ -57,7 +57,7 @@ console.log(store.currentUser)
                   <Tab eventKey="trabajador" title="Trabajadores">
                     <h2>Trabajadores destacados</h2>
                     <div>
-                      <HomeWorkers />
+                      {/* <HomeWorkers /> */}
                     </div>
                   </Tab>
 

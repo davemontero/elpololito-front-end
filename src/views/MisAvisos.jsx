@@ -14,12 +14,20 @@ const MisAvisos = () => {
 
   useEffect(() => {
     actions.readPetitions();
+    actions.WhoAmI();
   }, []);
 
   const HandleDate = (date) => {
     const FormatDate = new Date(date);
     return FormatDate.toLocaleString();
   };
+
+  const Petitions = () =>{
+    if(store.publications.user_id == 1 ) {
+      
+    }
+  }
+
 
   return (
     <>
@@ -41,13 +49,16 @@ const MisAvisos = () => {
       <Container fluid>
         <Row>
           <Col xs={{ span: 10, offset: 1 }}>
-            {store.publications.map((publication) => (
-              <HCard key={publication.publication_id}
-                title={publication.Title}
-                body={publication.Body}
-                date={HandleDate(publication.create_at)}
-                address={publication.place}
-              />
+          {store.publications.filter(publications => publications.fk_user_id == store.currentUser.id).map((publication) => (
+              
+              <HCard 
+              key={publication.publication_id}
+              title={publication.Title}
+              body={publication.Body}
+              date={HandleDate(publication.create_at)}
+              address={publication.place}
+            />
+            
             ))}
           </Col>
         </Row>

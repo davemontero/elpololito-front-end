@@ -10,7 +10,6 @@ import { Context } from "../store/pololitoContext";
 
 const HomeAvisos = () => {
     const { store, actions } = useContext(Context);
-    const [quienSoy, setQuienSoy] = useState()
     const [Pololito, setPololito] = useState({
         "status": false,
         "user_id": 0,
@@ -21,24 +20,17 @@ const HomeAvisos = () => {
     }, []);
 
     useEffect(() => {
-        fetch("http://localhost:5000/who_am_i", {
-            method: 'GET',
-            headers: {
-
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-            },
-        })
-            .then(response => response.json())
-            .then(data => setQuienSoy(data));
+        actions.WhoAmI();
+        
 
     },[]);
 
-    const HandlePololito = () => {
+
+    const HandlePololito = (e) => {
         setPololito({
-            ...Pololito,
             "status": true,
-            "user_id": quienSoy.id[0],
-            "pub_id": store.publications[0].pub_id
+            "user_id": store.currentUser.id[0],
+            "pub_id": e
         })
 
         fetch("http://localhost:5000/create-pololito", {
@@ -51,12 +43,7 @@ const HomeAvisos = () => {
             .then(response => {
                 console.log(response);
             })
-            .catch(err => {
-                console.error(err);
-            });
     }
-
-
 
     const responsive = {
         desktop: {
@@ -98,8 +85,7 @@ const HomeAvisos = () => {
                         partialVisible
                         className="py-4"
                     >
-
-                        {store.publications.map(publication =>
+                        {store.publications.filter(publications => (publications.fk_user_id != store.currentUser.id)).map(publication =>
                             <Card mx-auto="true" key={publication.pub_id}>
                                 <Card.Body>
                                     <Card.Title> Se Busca {publication.Title}</Card.Title>
