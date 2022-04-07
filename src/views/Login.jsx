@@ -1,6 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import swal from "sweetalert";
+import { Context } from "../store/pololitoContext";
 import {
   Form,
   Spinner,
@@ -10,6 +11,7 @@ import {
 
 const Login = () => {
   let navigate = useNavigate();
+  const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
@@ -90,6 +92,7 @@ const Login = () => {
         .then((data) => {
           if (data.status) {
             localStorage.setItem("jwt", data.token);
+            actions.getUserInfo();
             navigate("/home");
           } else {
             swal({
