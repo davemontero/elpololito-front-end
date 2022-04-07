@@ -9,7 +9,6 @@ const WhoAmI = () => {
     fetch("http://localhost:5000/who_am_i", {
       method: "GET",
       headers: {
-
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
     })
