@@ -40,16 +40,16 @@ const MisAvisos = () => {
       <br />
       <Container fluid>
         <Row>
-          <Col xs={{ span: 10, offset: 1 }}>
-            {store.publications.map((publication) => (
-              <HCard key={publication.publication_id}
+          {store.publications.map((publication) => (
+            <Col key={publication.pub_id} xs={{ span: 10, offset: 1 }}>
+              <HCard 
                 title={publication.Title}
                 body={publication.Body}
                 date={HandleDate(publication.create_at)}
                 address={publication.place}
-              />
-            ))}
-          </Col>
+                />
+            </Col>
+          ))}
         </Row>
         <br />
         <br />

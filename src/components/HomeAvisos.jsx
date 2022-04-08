@@ -9,38 +9,24 @@ import Col from "react-bootstrap/Col";
 import { Context } from "../store/pololitoContext";
 
 const HomeAvisos = () => {
-    const { store, actions } = useContext(Context);
-    const [quienSoy, setQuienSoy] = useState()
+    const { store, actions } = useContext(Context)
     const [Pololito, setPololito] = useState({
-        "status": false,
-        "user_id": 0,
-        "pub_id": 0
     })
     useEffect(() => {
-        actions.readPetitions();
+        
+            actions.readPetitions();
     }, []);
 
-    useEffect(() => {
-        fetch("http://localhost:5000/who_am_i", {
-            method: 'GET',
-            headers: {
-
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-            },
-        })
-            .then(response => response.json())
-            .then(data => setQuienSoy(data));
-
-    },[]);
-
-    const HandlePololito = () => {
+    console.log(store.userInfo)
+    console.log(Pololito)
+    const HandlePololito = (pub_id) => {
         setPololito({
             ...Pololito,
             "status": true,
-            "user_id": quienSoy.id[0],
-            "pub_id": store.publications[0].pub_id
+            "user_id": store.userInfo.id,
+            "pub_id":pub_id
         })
-
+        console.log(Pololito)
         fetch("http://localhost:5000/create-pololito", {
             "method": "POST",
             "headers": {
@@ -106,9 +92,9 @@ const HomeAvisos = () => {
                                     <Card.Text>
                                         {publication.place}
                                     </Card.Text>
-                                        <Button className="btn btn-warning btn-lg btn3d" onClick={() => HandlePololito(publication.pub_id)}>
-                                            Realizar Pololito
-                                        </Button>
+                                    <Button className="btn btn-warning btn-lg btn3d" onClick={() => HandlePololito(publication.pub_id)}>
+                                        Realizar Pololito
+                                    </Button>
                                 </Card.Body>
                             </Card>
                         )}

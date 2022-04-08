@@ -1,4 +1,6 @@
 import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
 import {
   Form,
   Spinner,
@@ -12,7 +14,7 @@ import DatePicker from "react-datepicker";
 import { BsQuestionCircle } from "react-icons/bs";
 import Input, { isValidPhoneNumber } from "react-phone-number-input/input";
 import { useRut, removeSeparators } from "react-rut-formatter";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import swal from "sweetalert";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
@@ -108,22 +110,22 @@ const Register = () => {
     })
       .then(response => response.json())
       .then(response => {
-        response.status ? 
+        response.status ?
           swal({
             title: "Exito",
             text: response.msg,
             icon: "success",
             timer: 5000,
             button: "good"
-          }).then(()=> navigate("/login")) :
-            swal({
-              title: "Error",
-              text: response.msg,
-              icon: "error",
-              timer: 5000
-            })
+          }).then(() => navigate("/login")) :
+          swal({
+            title: "Error",
+            text: response.msg,
+            icon: "error",
+            timer: 5000
+          })
       })
-      .catch(err => swal({
+      .catch(() => swal({
         title: "Error",
         text: "No se pudo enviar su solicitud",
         icon: "error",
@@ -134,6 +136,11 @@ const Register = () => {
   return (
     <main className="box-container">
       <div className="box">
+          <Link to="/landing">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-return-left flechita" viewBox="0 0 16 16">
+              <path fillRule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+            </svg>
+          </Link>
         <div className="box-title">Registro de usuario</div>
         <Form onSubmit={handleRegister}>
           <Row className="mb-3">
@@ -278,7 +285,7 @@ const Register = () => {
               </Button>
             ) : (
               <Button type="submit" className="box-btn" onClick={handleSubmit}>
-                Iniciar
+                Registrar
               </Button>
             )}
           </Row>
