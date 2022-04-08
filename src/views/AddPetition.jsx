@@ -1,32 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import NavbarApp from "../components/NavbarApp";
-
+import { Context } from "../store/pololitoContext";
 
 
 
 
 const AddPetition = () => {
-  const [id, setId] = useState();
+  const { store } = useContext(Context);
   const [form, setForm] = useState();
-
-  useEffect(() => {
-    fetch("http://localhost:5000/who_am_i", {
-        method: 'GET',
-        headers: {
-
-            Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        },
-    })
-        .then(response => response.json())
-        .then(data => setId(data.id[0]));
-
-},[]);
 
   const HandleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-      user_id:id
+      user_id: store.userInfo.id
     });
   };
 
@@ -41,18 +28,29 @@ const AddPetition = () => {
       body: JSON.stringify(form),
     })
       .then((response) => {
-        console.log(response);
+        console.log(response.ok)
+        response.ok ?
+          swal({
+            title: "Exito",
+            text: "Publicacion creada con exito",
+            icon: "success",
+            timer: 1500
+          }) : swal({
+            title: "Error",
+            text: "Debe rellenar los campos",
+            icon: "error",
+            timer: 1500
+          })
       })
       .catch((err) => {
         console.error(err);
       });
-     
+
   }
   return (
     <>
       <NavbarApp />
       <div className="container">
-        {console.log('id', id)}
         <form>
           <div className="mb-3">
             <label htmlFor="inputTitle" className="form-label">

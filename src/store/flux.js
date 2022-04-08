@@ -3,21 +3,19 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       publications: [],
       workersProfiles: [],
-      userName: "",
+      userInfo: {},
     },
     actions: {
       getUserInfo: () => {
-        fetch("http://localhost:5000/get-user-info", {
-          method: "GET",
+        fetch("http://localhost:5000/who_am_i", {
+          method: 'GET',
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`,
           },
         })
-          .then((res) => res.json())
-          .then((data) => setStore({ userName : data[0].person_name }))
-          .catch((err) => {
-            console.error(err);
-          });
+          .then(response => response.json())
+          .then(data => setStore({userInfo: data}));
       },
       readWorkersProfiles: () => {
         fetch("http://localhost:5000/get-workers")
