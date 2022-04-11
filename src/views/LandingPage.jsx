@@ -4,6 +4,7 @@ import Carousel from "react-multi-carousel";
 import { Context } from "../store/pololitoContext";
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa"
 import "react-multi-carousel/lib/styles.css";
+import WCard from "../components/WorkerCard";
 
 function LandingPage() {
   const [openAviso, setOpenAviso] = useState(false);
@@ -34,7 +35,7 @@ function LandingPage() {
   };
 
   useEffect(() => {
-    actions.readPetitions();
+    actions.readWorkersProfiles();
   }, []);
 
   return (
@@ -127,85 +128,19 @@ function LandingPage() {
               renderButtonGroupOutside={false}
               renderDotsOutside={false}
             >
-              <Card style={{ width: "16em" }} className="h-100 carousel-card">
-                <Card.Img
-                  className="img-fluid"
-                  variant="top"
-                  src="https://cdn.geeksterra.com/q:i/r:1/wp:1/w:380/u:https://geeksterra.com/wp-content/uploads/2021/04/Goku-trabajando.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Son Gokú</Card.Title>
-                  <Card.Text>Granjero</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card style={{ width: "16em" }} className="h-100 carousel-card">
-                <Card.Img
-                  className="img-fluid"
-                  variant="top"
-                  src="https://1.bp.blogspot.com/--nN9E8LB86c/X7Ewn5GEGmI/AAAAAAAAGLc/ueRKDW39iUg_5uBBtUANVOv0jMsBufeIQCLcBGAsYHQ/s1280/Frodo%2BBaggins.png"
-                />
-                <Card.Body>
-                  <Card.Title>Frodo Baggins</Card.Title>
-                  <Card.Text>Realiza entregas en todo Santiago</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card style={{ width: "16em" }} className="h-100 carousel-card">
-                <Card.Img
-                  className="img-fluid"
-                  variant="top"
-                  src="https://www.infofueguina.com/u/fotografias/m/2021/4/2/f850x638-80410_157899_5050.jpeg"
-                />
-                <Card.Body>
-                  <Card.Title>Mario Mario</Card.Title>
-                  <Card.Text>
-                    Plomero, Tenista, Golfista, Jardinero, Cazafantasmas...
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              <Card style={{ width: "16em" }} className="h-100 carousel-card">
-                <Card.Img
-                  className="img-fluid"
-                  variant="top"
-                  src="https://static1.thegamerimages.com/wordpress/wp-content/uploads/2020/10/Doom-Doom-Guy.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Doom Guy</Card.Title>
-                  <Card.Text>Experto Exterminador</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card style={{ width: "16em" }} className="h-100 carousel-card">
-                <Card.Img
-                  className="img-fluid"
-                  variant="top"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKFQ34avLDNEqhIBQ4UEbtIg_ZslmdryfCbg&usqp=CAU"
-                />
-                <Card.Body>
-                  <Card.Title>May</Card.Title>
-                  <Card.Text>Entrenadora de Delfines</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card style={{ width: "16em" }} className="h-100 carousel-card">
-                <Card.Img
-                  className="img-fluid"
-                  variant="top"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTee0vA7UeQfdBJYU2yGHoCun91-yEEEjdOucV6IG-wpoHgo-ImeRUPRtoRhesoMHJ7tuI&usqp=CAU"
-                />
-                <Card.Body>
-                  <Card.Title>Bojji</Card.Title>
-                  <Card.Text>Joven Rey</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card style={{ width: "16em" }} className="h-100 carousel-card">
-                <Card.Img
-                  className="img-fluid"
-                  variant="top"
-                  src="https://areajugones.sport.es/wp-content/uploads/2019/09/ash-pokemon439.jpg"
-                />
-                <Card.Body>
-                  <Card.Title>Ash Ketchum</Card.Title>
-                  <Card.Text>Perdedor de Ligas</Card.Text>
-                </Card.Body>
-              </Card>
+    
+                {store.workersProfiles.map((workersProfiles) => (
+
+                  <WCard
+                    key={workersProfiles.Worker_id}
+                    title={workersProfiles.Title}
+                    name={workersProfiles.name}
+                    lastname={workersProfiles.last}
+                    contact={workersProfiles.mail}
+                  />
+
+                ))}
+    
             </Carousel>
           </div>
         </Container>
