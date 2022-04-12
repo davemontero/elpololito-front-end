@@ -1,14 +1,11 @@
 import { useState } from "react";
 import swal from 'sweetalert';
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
 
 const RegisterFormClient = () => {
-  // const [startDate, setStartDate] = useState(new Date());
-  const [checked, setChecked] = useState(false);
-
+  const [startDate, setStartDate] = useState(new Date());
   const [form, setForm] = useState({})
-
-
 
   const handleChangeform = e => {
     setForm({
@@ -16,11 +13,15 @@ const RegisterFormClient = () => {
     })
   }
 
-  console.log(form)
+  const handleDate = date => {
+    setStartDate(date)
+    setForm({
+      ...form, 'dob': `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+    })
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log('form', form)
     fetch("http://localhost:5000/create-person", {
       "method": "POST",
       "headers": {
@@ -28,24 +29,31 @@ const RegisterFormClient = () => {
       },
       "body": JSON.stringify(form)
     })
+      .then(response => response.json())
       .then(response => {
-        response.json().then(data => swal({
-          title:"Exito",
-          text:"Usuario"+data.fullname+"Creado con exito",
-          icon:"success",
-          timer:5000
-        }))
+        response.status ? (
+          swal({
+            title: "Exito",
+            text: response.msg,
+            icon: "success",
+            timer: 5000
+          }).then(navigate("/Login"))) :
+          (
+            swal({
+              title: "Error",
+              text: response.msg,
+              icon: "error",
+              timer: 5000
+            }))
       })
-      .catch(err => {
-        console.error(err);
-      });
-    
+      .catch(err => swal({
+        title: "Error",
+        text: "No se pudo enviar su solicitud",
+        icon: "error",
+        timer: 5000
+      }))
 
   }
-
-
-
-
   return (
     <form className="row g-3" onSubmit={handleSubmit}>
       <div className="col-md-6">
@@ -82,14 +90,15 @@ const RegisterFormClient = () => {
         <label htmlFor="inputDOB" className="form-label">
           Fecha de nacimiento <span className="input-require">*</span>
         </label>
-        <input type="text" className="form-control" id="inputdob" name="dob" onChange={handleChangeform} />
+        <DatePicker selected={startDate} onChange={handleDate} className="form-control" dateFormat="yyyy-MM-dd" />
       </div>
       <div className="col-md-6">
-        <label htmlFor="inputPhoto" className="form-label">
-          Foto <span className="input-require">*</span>
+        <label htmlFor="inputPhone" className="form-label">
+          Teléfono <span className="input-require">*</span>
         </label>
-        <input type="text" className="form-control" id="inputPhoto" name="photo" onChange={handleChangeform} />
+        <input type="text" className="form-control" id="inputPhone" name="phone" onChange={handleChangeform} />
       </div>
+
       <div className="col-md-6">
         <label htmlFor="inputGender" className="form-label">
           Genero <span className="input-require">*</span>
@@ -100,12 +109,6 @@ const RegisterFormClient = () => {
           <option value="Hombre">Hombre</option>
           <option value="no binario">Prefiero no decir</option>
         </select>
-      </div>
-      <div className="col-md-6">
-        <label htmlFor="inputPhone" className="form-label">
-          Teléfono <span className="input-require">*</span>
-        </label>
-        <input type="text" className="form-control" id="inputPhone" name="phone" onChange={handleChangeform} />
       </div>
       <div className="col-md-12">
         <label htmlFor="inputPhone" className="form-label">

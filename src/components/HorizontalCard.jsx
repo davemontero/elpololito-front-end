@@ -1,33 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Context } from '../store/pololitoContext';
 import Carousel from 'react-bootstrap/Carousel'
-import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 
 
-const HCard = () => {
+const HCard = props => {
+    const { store } = useContext(Context);
+    const [quienSoy, setQuienSoy] = useState();
+
+
+    useEffect(() => {
+        fetch("http://localhost:5000/who_am_i", {
+            method: 'GET',
+            headers: {
+
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+            },
+        })
+            .then(response => response.json())
+            .then(data => setQuienSoy(data));
+
+    },[]);
 
     return <>
         <Container fluid >
-            <div className="HCardo">
+            <div className="HCardo" key={props.publication_id}>
                 <Row>
-                    <Col xs={6}><h3>Título</h3></Col>
-                    <Col xs={{ span: 2, offset: 4 }}> RATING PENDING</Col>
+                    <Col xs={6}><h3>{props.title}</h3></Col>
+                    <Col xs={{ span: 2, offset: 4 }}></Col>
                 </Row>
                 <br />
                 <Row>
                     <Col xs={8}>
                         <div>
                             <p>
-                                Lugar
+                                Lugar {props.address}
                             </p>
                             <p>
-                                Fecha y Hora
+                                Fecha y Hora {props.date}
                             </p>
                             <p>
-                                Descripción
+                                Descripción {props.body}
                             </p>
                         </div>
                     </Col>
@@ -55,15 +71,12 @@ const HCard = () => {
                                     src="https://areajugones.sport.es/wp-content/uploads/2020/09/one-piece-luffy.jpg"
                                     alt="Third slide"
                                 />
-
                             </Carousel.Item>
                         </Carousel>
                     </Col>
                 </Row>
             </div>
         </Container>
-
-
     </>
-}
-export default HCard
+};
+export default HCard;

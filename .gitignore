@@ -1,3 +1,6 @@
 node_modules/
-.*
-!/.gitignore
+.yarn/
+old.json
+yarn.lock
+package-lock.json
+*.log

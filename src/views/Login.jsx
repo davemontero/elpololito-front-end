@@ -1,11 +1,20 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react"
-import { ToastContainer, toast } from "react-toastify";
+import { useNavigate, Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import swal from "sweetalert";
+import { Context } from "../store/pololitoContext";
+import {
+  Form,
+  Spinner,
+  Button,
+  Row
+} from "react-bootstrap";
 
 const Login = () => {
   let navigate = useNavigate();
+  const { actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showSpinner, setShowSpinner] = useState(false);
   const [checksUser, setChecksUser] = useState(false);
   const [checksPassword, setChecksPassword] = useState({
     caps: false,
@@ -15,10 +24,13 @@ const Login = () => {
     leng: false,
   });
 
-  const handleOnChangeUser = e => setEmail(e.target.value);
+  const handleOnChangeUser = (e) => setEmail(e.target.value);
 
   const handleOnBlurUser = () => {
-    const user = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}.([a-z{2,3}])?/.test(email);
+    const user =
+      /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}.([a-z{2,3}])?/.test(
+        email
+      );
     setChecksUser(user);
   };
 
@@ -27,7 +39,7 @@ const Login = () => {
     const caps = /[A-Z]/.test(value);
     const lows = /[a-z]/.test(value);
     const numb = /[0-9]/.test(value);
-    const spch = /[$@#*-]/.test(value);
+    const spch = /[$%@#*-]/.test(value);
     const leng = value.length >= 6 && value.length <= 50;
     setChecksPassword({
       caps,
@@ -39,81 +51,128 @@ const Login = () => {
   };
   const handleOnChangePassword = (e) => setPassword(e.target.value);
 
-  const handleLogin = e => {
-    e.preventDefault()
-    const passwordValidate = Object.entries(checksPassword).filter(value => value.includes(false))
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setShowSpinner(true);
+    const passwordValidate = Object.entries(checksPassword).filter((value) =>
+      value.includes(false)
+    );
+    
     if (!checksUser) {
-      toast.error('Favor, ingrese un correo valido', {autoClose: 2400})
-    } else if (passwordValidate.length > 0){
-      toast.error('Usuario o contraseña incorrectos', {autoClose: 2400})
+      swal({
+        title: "Error",
+        text: "Favor, ingrese un correo valido",
+        icon: "error",
+        timer: 5000,
+      })
+      setEmail("")
+      setShowSpinner(false)
+    } else if (passwordValidate.length > 0) {
+      swal({
+        title: "Error",
+        text: "La contraseña debe tener lo siguiente: \n\n 1. Al menos 1 minúscula \n 2. Al menos 1 mayúscula \n 3. Al menos 1 número \n 4. Al menos 1 caracter especial ($@#*-) \n 5. Mínimo 6 caracteres",
+        icon: "error",
+        timer: 7000,
+      })
+      setPassword("")
+      setShowSpinner(false)
     } else {
-      const id = toast.loading("Cargando...")
       const userValidate = {
-          user: "dave@gmail.com",
-          password: "oa1Rasd*"
-      }
-      fetch("http://localhost:5000/login",{
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userValidate)
+        user: email,
+        password: password,
+      };
+      fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userValidate),
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data.status) {
-          navigate('/app')
-        } else {
-          toast.update(id, {
-            render: data.msg,
-            type: "error",
-            isLoading: false,
-            closeButton: true,
-          })
-        }
-      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status) {
+            localStorage.setItem("jwt", data.token);
+            navigate("/home");
+          } else {
+            swal({
+              title: "Error",
+              text: data.msg,
+              icon: "error",
+              timer: 5000
+            });
+          }
+        })
+        .catch(() => {
+          swal({
+            title: "Error",
+            text: "Ha ocurrido un problema, intentalo más tarde.",
+            icon: "error",
+            timer: 5000
+          });
+        })
+        .then(() => {setShowSpinner(false)});
     }
-  }
+  };
 
   return (
-    <main className="login-wrapper">
-      <div className="login-title">El pololito</div>
-      <div className="login-box">
-        <form onSubmit={handleLogin} className="login-form">
-          <ToastContainer />
-          <div className="mb-3">
-            <label htmlFor="formLoginUser" className="form-label">
-              Correo
-            </label>
-            <input
-              autoFocus
-              type="text"
-              className="form-control"
+    <main className="box-container">
+      <div className="box box-login">
+      <Link to="/landing">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-return-left flechita" viewBox="0 0 16 16">
+              <path fillRule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+            </svg>
+          </Link>
+        <div className="box-title">Inicio de sesión</div>
+        <Form onSubmit={handleLogin}>
+          <Form.Group className="my-3">
+            <Form.Label htmlFor="formLoginUser">Email</Form.Label>
+            <Form.Control
               name="user"
-              id="inputUser"
-              value={email}
+              type="email"
+              id="formLoginUser"
+              className="inputCustom"
+              placeholder="isabellagonzalez@dominio.com"
               onChange={handleOnChangeUser}
               onBlur={handleOnBlurUser}
+              value={email}
+              autoFocus
               required
             />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="formLoginPassword" className="form-label">
-              Contraseña
-            </label>
-            <input
-              type="password"
-              className="form-control"
+          </Form.Group>
+          <Form.Group className="mb-3">
+              <Form.Label htmlFor="formLoginPassword">Contraseña</Form.Label>
+            <Form.Control
               name="password"
-              value={password}
+              type="password"
+              id="formLoginPassword"
+              className="inputCustom"
               onChange={handleOnChangePassword}
               onKeyUp={handleOnKeyUpPassword}
-              id="inputPassword"
+              value={password}
               required
             />
-          </div>
-          <button type="submit" className="login-btn">Iniciar sesión</button>
-        </form>
+          </Form.Group>
+          <Row className="justify-content-center">
+            <Link to="/forgot-password" className="text-center my-2">Olvide mi contraseña</Link>
+            {showSpinner ? (
+              <Button className="box-btn my-2" disabled>
+                <Spinner
+                  className="me-1"
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                Cargando...
+              </Button>
+            ) : (
+              <Button type="submit" className="box-btn my-2">
+                Enviar
+              </Button>
+            )}
+          </Row>
+        </Form>
       </div>
     </main>
   );
