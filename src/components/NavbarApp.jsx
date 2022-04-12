@@ -13,7 +13,7 @@ const NavbarApp = () => {
   }
 
   useEffect(() => {
-    actions.getUserInfo();
+    actions.getUserInfo()
   }, []);
   return (
     <Navbar bg="light" expand="lg">
@@ -26,7 +26,7 @@ const NavbarApp = () => {
             <Nav.Link href="/petition">Nuevo aviso</Nav.Link>
             <Nav.Link href="/publications">Mis avisos</Nav.Link>
             <Nav.Link href="/pololitos">Mis pololitos</Nav.Link>
-            <NavDropdown title={store.userName}>
+            <NavDropdown title={store.username}>
               <NavDropdown.Item>Perfil</NavDropdown.Item>
               <NavDropdown.Item>Ayuda</NavDropdown.Item>
               <NavDropdown.Item onClick={handleLogOut}>

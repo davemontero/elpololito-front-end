@@ -39,7 +39,7 @@ const Login = () => {
     const caps = /[A-Z]/.test(value);
     const lows = /[a-z]/.test(value);
     const numb = /[0-9]/.test(value);
-    const spch = /[$@#*-]/.test(value);
+    const spch = /[$%@#*-]/.test(value);
     const leng = value.length >= 6 && value.length <= 50;
     setChecksPassword({
       caps,
@@ -92,7 +92,6 @@ const Login = () => {
         .then((data) => {
           if (data.status) {
             localStorage.setItem("jwt", data.token);
-            actions.getUserInfo();
             navigate("/home");
           } else {
             swal({

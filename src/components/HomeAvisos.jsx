@@ -9,24 +9,19 @@ import Col from "react-bootstrap/Col";
 import { Context } from "../store/pololitoContext";
 
 const HomeAvisos = () => {
-    const { store, actions } = useContext(Context)
+    const { store, actions } = useContext(Context);
     const [Pololito, setPololito] = useState({
     })
     useEffect(() => {
-        
-            actions.readPetitions();
+        actions.readPetitions();
     }, []);
 
-    console.log(store.userInfo)
-    console.log(Pololito)
     const HandlePololito = (pub_id) => {
         setPololito({
-            ...Pololito,
             "status": true,
-            "user_id": store.userInfo.id,
-            "pub_id":pub_id
+            "user_id": store.id,
+            "pub_id": pub_id
         })
-        console.log(Pololito)
         fetch("http://localhost:5000/create-pololito", {
             "method": "POST",
             "headers": {
@@ -34,15 +29,28 @@ const HomeAvisos = () => {
             },
             "body": JSON.stringify(Pololito)
         })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.error(err);
-            });
+            .then(response =>
+                response.ok ?
+                    swal({
+                        title: "Exito",
+                        text: "Pololito agendado con exito",
+                        icon: "success",
+                        timer: 2000
+                    }) :
+                    swal({
+                        title: "Error",
+                        text: "error al registrar pololito",
+                        icon: "error",
+                        timer: 2000
+                    })
+                        .catch(() => swal({
+                            title: "Error",
+                            text: "No se pudo enviar su solicitud",
+                            icon: "error",
+                            timer: 5000
+                        }))
+            )
     }
-
-
 
     const responsive = {
         desktop: {
@@ -84,8 +92,7 @@ const HomeAvisos = () => {
                         partialVisible
                         className="py-4"
                     >
-
-                        {store.publications.map(publication =>
+                        {store.publications.filter(publications => (publications.fk_user_id != store.id)).map(publication =>
                             <Card mx-auto="true" key={publication.pub_id}>
                                 <Card.Body>
                                     <Card.Title> Se Busca {publication.Title}</Card.Title>
