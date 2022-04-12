@@ -20,7 +20,8 @@
     "react-rut-formatter": "^0.2.1",
     "react-scripts": "^5.0.0",
     "react-toastify": "^8.2.0",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "toastify": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
