@@ -71,6 +71,7 @@ const LoginForm = () => {
             localStorage.setItem("user_id", response[1].user_id);
             localStorage.setItem("jwt", response[1].token);
             navigate("/Home");
+          console.log(localStorage)  
           } else {
             toast.update(id, {
               render: response.msg,

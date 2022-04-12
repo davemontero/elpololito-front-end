@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import {
   Container,
@@ -11,15 +11,18 @@ import {
   Button,
 } from "react-bootstrap";
 import HomeAvisos from "../components/HomeAvisos";
-import HomeWorkers from "../components/HomeWorkers"
+// import HomeWorkers from "../components/HomeWorkers"
 import NavbarApp from "../components/NavbarApp";
+import { Context } from "../store/pololitoContext";
 
 const Home = () => {
   const [key, setKey] = useState("trabajador");
 
 
   return (
+    
     <>
+    
       <NavbarApp />
       <main>
         <section className="search-wrapper">
@@ -47,7 +50,7 @@ const Home = () => {
                   <Tab eventKey="trabajador" title="Trabajadores">
                     <h2>Trabajadores destacados</h2>
                     <div>
-                      <HomeWorkers />
+                      {/* <HomeWorkers /> */}
                     </div>
                   </Tab>
 

@@ -21,6 +21,13 @@ const MisAvisos = () => {
     return FormatDate.toLocaleString();
   };
 
+  const Petitions = () =>{
+    if(store.publications.user_id == 1 ) {
+      
+    }
+  }
+
+
   return (
     <>
       <NavbarApp />
@@ -40,16 +47,18 @@ const MisAvisos = () => {
       <br />
       <Container fluid>
         <Row>
-          {store.publications.map((publication) => (
-            <Col key={publication.pub_id} xs={{ span: 10, offset: 1 }}>
-              <HCard 
-                title={publication.Title}
-                body={publication.Body}
-                date={HandleDate(publication.create_at)}
-                address={publication.place}
-                />
-            </Col>
-          ))}
+          <Col xs={{ span: 10, offset: 1 }}>
+          {store.publications.filter(publications => publications.fk_user_id == store.id).map((publication) => (
+              
+              <HCard key={publication.pub_id}
+              title={publication.Title}
+              body={publication.Body}
+              date={HandleDate(publication.create_at)}
+              address={publication.place}
+            />
+            
+            ))}
+          </Col>
         </Row>
         <br />
         <br />

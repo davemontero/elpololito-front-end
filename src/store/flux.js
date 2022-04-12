@@ -3,11 +3,29 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       publications: [],
       workersProfiles: [],
-      userInfo: {},
+      username:"",
+      id:0,
+      mail:""
     },
     actions: {
+      readWorkersProfiles: () => {
+        fetch("http://localhost:5000/get-workers")
+          .then(res => res.json())
+          .then(data => setStore({ workersProfiles: data }))
+          .catch(err => {
+            console.error(err);
+          });
+      },
+      readPetitions: () => {
+        fetch("http://localhost:5000/create-publication")
+          .then(res => res.json())
+          .then(data => setStore({ publications: data }))
+          .catch(err => {
+            console.error(err);
+          });
+      },
       getUserInfo: () => {
-        fetch("http://localhost:5000/who_am_i", {
+        fetch("http://localhost:5000/get-user-info", {
           method: 'GET',
           headers: {
 
@@ -15,25 +33,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         })
           .then(response => response.json())
-          .then(data => setStore({userInfo: data}));
-      },
-      readWorkersProfiles: () => {
-        fetch("http://localhost:5000/get-workers")
-          .then((res) => res.json())
-          .then((data) => setStore({ workersProfiles: data }))
-          .catch((err) => {
-            console.error(err);
-          });
-      },
-      readPetitions: () => {
-        fetch("http://localhost:5000/create-publication")
-          .then((res) => res.json())
-          .then((data) => setStore({ publications: data }))
-          .catch((err) => {
-            console.error(err);
-          });
-      },
-    },
+          .then(data => setStore({ username: data[0].name,
+                                   id: data[0].id,
+                                   mail: data[0].mail}));
+      }
+
+    }
   };
 };
 

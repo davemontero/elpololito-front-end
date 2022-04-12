@@ -49,10 +49,10 @@ const ResetPassword = () => {
       caps: /[A-Z]/.test(passwd),
       lows: /[a-z]/.test(passwd),
       numb: /[0-9]/.test(passwd),
-      spch: /[$@#*-]/.test(passwd),
-      leng: passwd.length >= 6 && passwd.length <= 50,
+      spch: /[$%@#*-]/.test(passwd),
+      leng: passwd.length >= 6 && passwd.length <= 50
     };
-
+    console.log('passwordChecks', passwordChecks)
     const validate = Object.entries(passwordChecks).filter((value, i) =>
       value.includes(false)
     );

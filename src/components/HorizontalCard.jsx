@@ -30,7 +30,7 @@ const HCard = props => {
             <div className="HCardo" key={props.publication_id}>
                 <Row>
                     <Col xs={6}><h3>{props.title}</h3></Col>
-                    <Col xs={{ span: 2, offset: 4 }}> RATING PENDING</Col>
+                    <Col xs={{ span: 2, offset: 4 }}></Col>
                 </Row>
                 <br />
                 <Row>

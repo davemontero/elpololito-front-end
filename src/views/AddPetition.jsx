@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import NavbarApp from "../components/NavbarApp";
 import { Context } from "../store/pololitoContext";
 
@@ -13,7 +13,7 @@ const AddPetition = () => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-      user_id: store.userInfo.id
+      user_id: store.id
     });
   };
 
@@ -23,7 +23,6 @@ const AddPetition = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
       body: JSON.stringify(form),
     })
@@ -42,11 +41,15 @@ const AddPetition = () => {
             timer: 1500
           })
       })
+
       .catch((err) => {
         console.error(err);
       });
 
   }
+
+
+
   return (
     <>
       <NavbarApp />

@@ -9,36 +9,36 @@ import Col from 'react-bootstrap/Col';
 import { Context } from '../store/pololitoContext';
 
 
-const HomeWorkers = () => {
-
-{/*
-    const { store, actions } = useContext(Context);
-    useEffect(() => {
-        actions.readWorkersProfiles();
-    }, [])
+// const HomeWorkers = () => {
 
 
-*/}
+//     const { store, actions } = useContext(Context);
+//     useEffect(() => {
+//         actions.readWorkersProfiles();
+//     }, [])
 
-    const responsive = {
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 4,
-            slidesToSlide: 1, // optional, default to 1.
-            partialVisibilityGutter: 20
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 3,
-            slidesToSlide: 1 // optional, default to 1.
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-            slidesToSlide: 1 // optional, default to 1.
-        }
-    };
-    return <>
+
+//*/}
+
+//     const responsive = {
+//         desktop: {
+//             breakpoint: { max: 3000, min: 1024 },
+//             items: 4,
+//             slidesToSlide: 1, // optional, default to 1.
+//             partialVisibilityGutter: 20
+//         },
+//         tablet: {
+//             breakpoint: { max: 1024, min: 464 },
+//             items: 3,
+//             slidesToSlide: 1 // optional, default to 1.
+//         },
+//         mobile: {
+//             breakpoint: { max: 464, min: 0 },
+//             items: 1,
+//             slidesToSlide: 1 // optional, default to 1.
+//         }
+//     };
+    // return <>
         <Container fluid>
             <Row>
                 <Col>
@@ -62,10 +62,7 @@ const HomeWorkers = () => {
                         className="py-4"
                     >
 
-
-
-
-{ /* store.workersProfiles.map(workersProfile =>
+                        {store.workersProfiles.map(workersProfile =>
                             <Card mx-auto="true">
                                 <Card.Body>
                                     <Card.Title>{workersProfile.Person.fullname}</Card.Title>
@@ -76,7 +73,7 @@ const HomeWorkers = () => {
                                     <Button variant="primary">Contactar</Button>
                                 </Card.Body>
                             </Card>
-) */}
+                        )}
 
 
             
@@ -156,11 +153,16 @@ const HomeWorkers = () => {
                                 </Card.Text>
                             </Card.Body>
                         </Card> 
-                    </Carousel>
-                </Col>
-            </Row>
-        </Container>
-    </>
-}
+
+
+
+
+
+//                     </Carousel>
+//                 </Col>
+//             </Row>
+//         </Container>
+//     </>
+// }
 
 export default HomeWorkers
