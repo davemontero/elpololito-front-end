@@ -93,7 +93,7 @@ const HomeAvisos = () => {
                         className="py-4"
                     >
                         {store.publications.filter(publications => (publications.fk_user_id != store.id)).map(publication =>
-                            <Card mx-auto="true" key={publication.pub_id}>
+                            <Card className ="homecard 1-bg-cherry" mx-auto="true" key={publication.pub_id}>
                                 <Card.Body>
                                     <Card.Title> Se Busca {publication.Title}</Card.Title>
                                     <Card.Text>

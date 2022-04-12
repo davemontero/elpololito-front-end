@@ -11,18 +11,18 @@ import {
   Button,
 } from "react-bootstrap";
 import HomeAvisos from "../components/HomeAvisos";
-// import HomeWorkers from "../components/HomeWorkers"
+//import HomeWorkers from "../components/HomeWorkers"
 import NavbarApp from "../components/NavbarApp";
 import { Context } from "../store/pololitoContext";
 
 const Home = () => {
-  const [key, setKey] = useState("trabajador");
+  const [key, setKey] = useState("aviso");
 
 
   return (
-    
+
     <>
-    
+
       <NavbarApp />
       <main>
         <section className="search-wrapper">
@@ -47,12 +47,6 @@ const Home = () => {
                   onSelect={(k) => setKey(k)}
                   className="mb-3"
                 >
-                  <Tab eventKey="trabajador" title="Trabajadores">
-                    <h2>Trabajadores destacados</h2>
-                    <div>
-                      {/* <HomeWorkers /> */}
-                    </div>
-                  </Tab>
 
                   <Tab eventKey="aviso" title="Avisos">
                     <h2>Avisos destacados</h2>
@@ -60,6 +54,15 @@ const Home = () => {
                       <HomeAvisos />
                     </div>
                   </Tab>
+
+                  <Tab eventKey="trabajador" title="Trabajadores">
+                    <h2>Trabajadores destacados</h2>
+                    <div>
+                       {/* <HomeWorkers /> */}
+                    </div>
+                  </Tab>
+
+
                 </Tabs>
               </Col>
             </Row>
