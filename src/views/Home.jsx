@@ -65,16 +65,7 @@ const Home = () => {
                 </Tabs>
               </Col>
             </Row>
-
-            <Row>
-              <Col>
-                <div>
-                  <Link className="nav-link" to="/who_am_i">
-                    WHO AM I
-                  </Link>
-                </div>
-              </Col>
-            </Row>
+           
           </Container>
         </section>
       </main>

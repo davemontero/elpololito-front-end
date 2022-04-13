@@ -61,10 +61,19 @@ function LandingPage() {
                   <ul>
                     <li>
                       {" "}
-                      Puedes hacer visible tus necesidades mediante avisos y asi
-                      trabajadores te contactaran, para realizar un pololito
-                    </li>
+                      Puedes hacer visible tus necesidades mediante avisos y asá
+                      trabajadores te contactarán para hacer un pololito
+                    </li>                   
+               
                   </ul>
+                  <div className="float-start">
+                  <Button
+                  href="/register"
+                className="btn btn-warning btn-lg btn3d "               
+              >
+                ¡Vamos!
+              </Button>
+              </div>
                 </div>
               </Collapse>
             </div>
@@ -79,7 +88,7 @@ function LandingPage() {
               </Button>
               <Collapse className="aaa" in={openPololito}>
                 <div id="collapsePololito">
-                  <h2> ¿Quieres realizar pololitos? </h2>
+                  <h2> ¿Quieres hacer pololitos? </h2>
                   <ul>
                     <li>
                       {" "}
@@ -92,6 +101,14 @@ function LandingPage() {
                       comuna para encontrar el trabajo perfecto para ti
                     </li>
                   </ul>
+                  <div className="float-end">
+                  <Button
+                  href="/register"
+                className="btn btn-warning btn-lg btn3d "               
+              >
+                ¡Vamos!
+              </Button>
+              </div>
                 </div>
               </Collapse>
             </div>
