@@ -2,11 +2,13 @@
 
 :root {
     --primary: #8b85ff;
+    --primary-rgb: rgb(139, 133, 255);
     --primary-complement: #00B4E1;
     --secondary: #EEEEEE;
     --secondary-complement: #051329;
-    --accent-1: #F8D319;
+    --accent-1: #ffb02e;
     --accent-2: #F10E47;
+    --accent-rgb: rgb(241, 14, 71);
     --accent-2-hover: hsl(345, 85%,50%);
     --accent-1-hover: #aa9114;
     --accent-1-hover-hsl: 50, 79%, 37%;
@@ -92,9 +94,14 @@ body {
     background-color: var(--accent-2);
     border-radius: 3px;
     padding: 0.5em 1.3em !important;
-    color: var(--accent-color-2) !important;
+    color: var(--secondary) !important;
     line-height: 1.8rem;
     border: 0;
+}
+
+.nav-link-btn:hover {
+    color: var(--secondary) !important;
+    box-shadow: rgba(241, 14, 71, 0.5) 0px 3px 8px;
 }
 
 .navbar-toggler:focus {
@@ -138,8 +145,7 @@ body {
 .header-text-paragraph {
     font-size: 1rem;
     font-weight: 300;
-    color: var(--primary);
-    text-shadow: var(--shadow-text);
+    color: #181818;
 }
 
 .header-content-img {
@@ -662,13 +668,12 @@ margin: 5px;
 .services-icons {
     font-size: 4rem;
     margin-bottom: 1.5rem;
-    text-shadow: 5px 5px #000;
+    color: var(--primary);
 }
 
 .services-card {
-    background-color: var(--color-60);
     border: none;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    box-shadow: rgba(139, 133, 255, 0.5) 0px 20px 25px -5px, rgba(139, 133, 255, 0.3) 0px 10px 10px -5px;
 }
 
 .services-card-body {
@@ -719,4 +724,8 @@ margin: 5px;
 
 .ubication-icon {
     font-size: 25px;
+}
+
+svg path {
+    stroke: var(--primary);
 }
