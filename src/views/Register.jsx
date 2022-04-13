@@ -21,7 +21,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
 
 const Register = () => {
-  const { actions } = useContext(Context);
+  const { actions, store } = useContext(Context);
   let navigate = useNavigate();
   const [startDate, setStartDate] = useState();
   const [form, setForm] = useState({});
@@ -136,6 +136,14 @@ const Register = () => {
       swal({
         title: "Error",
         text: "No puedes dejar campos obligatorias vacios",
+        icon: "error",
+        timer: 5000,
+      }),
+      setShowSpinner(false)
+    } else if (!store.EmailIsValid){
+      swal({
+        title: "Error",
+        text: "Debes ingresar un correo valido",
         icon: "error",
         timer: 5000,
       }),
