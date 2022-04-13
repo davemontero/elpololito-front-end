@@ -1,26 +1,11 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
-import HCard2 from "../components/HorizontalCardN2";
+import HCard from "../components/HorizontalCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import NavbarApp from "../components/NavbarApp"
-import { Context } from "../store/pololitoContext";
 
 const MisPololitos = () => {
-  const { store, actions } = useContext(Context);
-
-  const HandleDate = (date) => {
-    const FormatDate = new Date(date);
-    return FormatDate.toLocaleString();
-  };
-
-
-  useEffect(() => {
-    actions.readWorkersProfiles();
-    actions.getUserInfo()
-  }, []);
-
-  console.log(store.userinfo.person_id)
   return (
     <>
       <NavbarApp />
@@ -40,17 +25,8 @@ const MisPololitos = () => {
         </Row>
         <br />
         <Row>
-        <Col xs={{ span: 10, offset: 1 }}>
-          {store.workersProfiles.filter(workersProfiles => workersProfiles.Worker_id == store.userinfo.person_id).map((workersProfile) => (
-              
-              <HCard2 key={workersProfile.pololito}
-              title={workersProfile.Title}
-              employerFirst={workersProfile.name}
-              employerLast={workersProfile.last}
-              PublicationDesc={workersProfile.Publication_desc}
-            />
-            
-            ))}
+          <Col xs={{ span: 10, offset: 1 }}>
+            <HCard />
           </Col>
         </Row>
         <br />

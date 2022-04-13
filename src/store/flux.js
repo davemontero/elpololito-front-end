@@ -3,7 +3,9 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       publications: [],
       workersProfiles: [],
-      userinfo:[]
+      username:"",
+      id:0,
+      mail:""
     },
     actions: {
       readWorkersProfiles: () => {
@@ -31,7 +33,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         })
           .then(response => response.json())
-          .then(data => setStore({ userinfo:data[0]}));
+          .then(data => setStore({ username: data[0].name,
+                                   id: data[0].id,
+                                   mail: data[0].mail}));
       }
 
     }

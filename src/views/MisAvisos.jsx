@@ -14,10 +14,7 @@ const MisAvisos = () => {
 
   useEffect(() => {
     actions.readPetitions();
-    actions.getUserInfo()
   }, []);
-
- 
 
   const HandleDate = (date) => {
     const FormatDate = new Date(date);
@@ -29,6 +26,7 @@ const MisAvisos = () => {
       
     }
   }
+
 
   return (
     <>
@@ -50,7 +48,7 @@ const MisAvisos = () => {
       <Container fluid>
         <Row>
           <Col xs={{ span: 10, offset: 1 }}>
-          {store.publications.filter(publications => publications.fk_user_id == store.userinfo.person_id).map((publication) => (
+          {store.publications.filter(publications => publications.fk_user_id == store.id).map((publication) => (
               
               <HCard key={publication.pub_id}
               title={publication.Title}
