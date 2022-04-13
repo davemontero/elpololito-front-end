@@ -84,6 +84,12 @@ body {
 .nav-link-login {
     color: var(--accent-1) !important;
     line-height: 1.8rem;
+    padding: 0.5em 1.3em !important;
+}
+
+.nav-link-login:hover {
+    background-color: rgb(255, 176, 46, 0.1);
+    padding: 0.5em 1.3em !important;
 }
 
 .nav-link-login:hover {
@@ -99,7 +105,8 @@ body {
     border: 0;
 }
 
-.nav-link-btn:hover {
+.nav-link-btn:hover,
+.header-btn:hover {
     color: var(--secondary) !important;
     box-shadow: rgba(241, 14, 71, 0.5) 0px 3px 8px;
 }
@@ -153,6 +160,10 @@ body {
     min-height: 480px;
 }
 
+.header-content-btn {
+    display: flex ;
+}
+
 .content-img-1 {
     z-index: 1;
     left: 80px;
@@ -177,10 +188,11 @@ body {
     color: var(--accent-color-2);
     padding: 0.5em 1.3em;
     font-size: 1.2rem;
+    display: block;
     margin-top: 20px;
     margin-bottom: 10px;
+    text-decoration: none;
 }
-
 
 /* MODAL  */
 .nav-pills {

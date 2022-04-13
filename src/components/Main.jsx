@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Main = () => {
     return (
         <>
@@ -12,7 +14,7 @@ const Main = () => {
                                     <p className="header-text-paragraph">Sin pagar por servicios o publicidad, acá podras encontrar esos trabajos que se ajusten a tu tiempo de una manera sencilla.</p>
                                 </div>
                                 <div className="header-content-btn">
-                                    <button className="header-btn">¡Empecemos!</button>
+                                    <Link to="/register" className="header-btn">¡Empecemos!</Link>
                                 </div>
                             </div>
                         </div>

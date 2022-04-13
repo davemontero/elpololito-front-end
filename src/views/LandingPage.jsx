@@ -1,16 +1,14 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Button, Collapse, Container, Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import { Context } from "../store/pololitoContext";
 import { BiReceipt, BiSearchAlt, BiTime, BiTrophy, BiMapPin } from "react-icons/bi";
-import { FaTwitter, FaFacebook, FaInstagram, FaMapMarkedAlt } from "react-icons/fa";
+import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 import { GrMoney, GrAnnounce } from "react-icons/gr";
 import "react-multi-carousel/lib/styles.css";
 import WCard from "../components/WorkerCard";
 
 function LandingPage() {
-  const [openAviso, setOpenAviso] = useState(false);
-  const [openPololito, setOpenPololito] = useState(false);
   const today = new Date();
   const { store, actions } = useContext(Context);
   const responsive = {

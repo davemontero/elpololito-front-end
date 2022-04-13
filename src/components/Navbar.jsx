@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Nav, Button, Navbar } from "react-bootstrap";
 
 const NavbarLanding = () => {
-  let navigate = useNavigate();
   const [show, setShow] = useState(true);
 
   useEffect(() => {
