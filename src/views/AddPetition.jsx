@@ -1,13 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 import NavbarApp from "../components/NavbarApp";
 import { Context } from "../store/pololitoContext";
-
+import Form from 'react-bootstrap/Form'
 
 
 
 const AddPetition = () => {
   const { store } = useContext(Context);
   const [form, setForm] = useState();
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/get-professions", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
+    })
+      .then(response => response.json())
+    
+      .then(data => setJobs(data))
+  }, []);
+
 
   const HandleChange = (e) => {
     setForm({
@@ -30,8 +44,8 @@ const AddPetition = () => {
         console.log(response.ok)
         response.ok ?
           swal({
-            title: "Exito",
-            text: "Publicacion creada con exito",
+            title: "Éxito",
+            text: "Publicación creada con éxito",
             icon: "success",
             timer: 1500
           }) : swal({
@@ -53,11 +67,14 @@ const AddPetition = () => {
   return (
     <>
       <NavbarApp />
+
+      <br />
+      <br />
       <div className="container">
         <form>
           <div className="mb-3">
             <label htmlFor="inputTitle" className="form-label">
-              Titulo de su peticion
+              Título de su Petición
             </label>
             <input
               type="text"
@@ -67,21 +84,41 @@ const AddPetition = () => {
               onChange={HandleChange}
             />
           </div>
+
+
+           <div className="mb-3">
+            <label htmlFor="inputBody" className="form-label">
+              Rubro de la Petición
+            </label>
+            <Form.Select 
+            aria-label="Default select example" 
+            id="jobs"
+            name="jobs"
+            onChange={HandleChange}>   
+             <option disabled>Pololitos</option> 
+            
+             {jobs.map((item)=>  <option value={item.id} key={item.id}>{item.profession} </option> )  
+             }
+                                            
+            </Form.Select>
+          </div> 
+
+
           <div className="mb-3">
             <label htmlFor="inputBody" className="form-label">
-              Descripcion de la peticion
+              Descripción de la petición
             </label>
-            <input
-              type="text"
+            <textarea
               className="form-control"
               id="body"
+              rows="4"
               name="body"
               onChange={HandleChange}
             />
           </div>
           <div className="mb-3">
             <label htmlFor="inputBody" className="form-label">
-              Direccion
+              Dirección
             </label>
             <input
               type="text"
@@ -96,7 +133,7 @@ const AddPetition = () => {
             className="btn btn-primary"
             onClick={handleSubmit}
           >
-            Submit
+            Publicar
           </button>
         </form>
       </div>
