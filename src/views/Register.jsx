@@ -21,7 +21,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
 
 const Register = () => {
-  const { actions, store } = useContext(Context);
+  const { actions } = useContext(Context);
   let navigate = useNavigate();
   const [startDate, setStartDate] = useState();
   const [form, setForm] = useState({});
