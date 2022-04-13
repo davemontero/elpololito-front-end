@@ -14,7 +14,12 @@ const HomeAvisos = () => {
     })
     useEffect(() => {
         actions.readPetitions();
+        actions.getUserInfo();
     }, []);
+
+    console.log(store.userinfo.person_id)
+
+
 
     const HandlePololito = (pub_id) => {
         setPololito({
@@ -92,7 +97,7 @@ const HomeAvisos = () => {
                         partialVisible
                         className="py-4"
                     >
-                        {store.publications.filter(publications => (publications.fk_user_id != store.id)).map(publication =>
+                        {store.publications.filter(publications => (publications.fk_user_id != store.userinfo.person_id)).map(publication =>
                             <Card className ="homecard 1-bg-cherry" mx-auto="true" key={publication.pub_id}>
                                 <Card.Body>
                                     <Card.Title> Se Busca {publication.Title}</Card.Title>
