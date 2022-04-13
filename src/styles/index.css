@@ -522,14 +522,25 @@ margin: 5px;
 
 .rrss-box {
     padding: 10px 0;
+    display: flex;
 }
 
 .rrss{
     background-color: var(--bs-gray);
     color: var(--bs-light);
-    border-radius: 50%;
+    width: 40px !important;
+    height: 40px;
+    border-radius: 20px;
     padding: 7px 9px;
     margin-right: 5px;
+    position: relative;
+}
+
+.rrss-icon {
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 .rrss:hover {
@@ -642,3 +653,57 @@ margin: 5px;
     text-decoration: none;
 }
 
+/* Services */
+
+.services-wrapper {
+    padding: 75px 0;
+}
+
+.services-icons {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 5px 5px #000;
+}
+
+.services-card {
+    background-color: var(--color-60);
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.services-card-body {
+    text-align: center;
+    padding: 25px 35px;
+}
+
+.services-card-title {
+    font-size: 22px;
+}
+
+.services-card-text {
+    font-weight: 300;
+    color: var(--color-30);
+    font-size: 17px;
+    line-height: 28px;
+}
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2.8rem;
+}
+
+.section-title {
+    font-size: 38px;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.section-description {
+    text-align: center;
+    line-height: 28px;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--color-40);
+}

@@ -2,7 +2,9 @@ import React, { useEffect, useContext, useState } from "react";
 import { Button, Collapse, Container, Card, Row, Col } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import { Context } from "../store/pololitoContext";
-import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa"
+import { BiReceipt, BiSearchAlt, BiTime, BiTrophy } from "react-icons/bi";
+import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
+import { GrMoney, GrAnnounce } from "react-icons/gr";
 import "react-multi-carousel/lib/styles.css";
 import WCard from "../components/WorkerCard";
 
@@ -14,12 +16,12 @@ function LandingPage() {
   const responsive = {
     desktoplg: {
       breakpoint: { max: 3000, min: 1400 },
-      items: 4,
+      items: 2,
       partialVisibilityGutter: 40,
     },
     desktop: {
       breakpoint: { max: 1400, min: 950 },
-      items: 3,
+      items: 2,
       partialVisibilityGutter: 40,
     },
     tablet: {
@@ -40,86 +42,88 @@ function LandingPage() {
 
   return (
     <>
-      <section className="userPanel-wrapper">
+      <section className="services-wrapper" id="servicios">
         <Container>
-          <h2 className="userPanel-title text-center mb-5">
-            Lo que puedes hacer
-          </h2>
-          <div className="userPanel-content d-flex justify-content-around mb-5">
-            <div className="infoBlurb text-start">
-              <Button
-                className="btn btn-warning btn-lg btn3d"
-                onClick={() => setOpenAviso(!openAviso)}
-                aria-controls="collapseAviso"
-                aria-expanded={openAviso}
-              >
-                Publicar un Aviso
-              </Button>
-              <Collapse className="aaa" in={openAviso}>
-                <div id="collapseAviso">
-                  <h2> ¿Quieres publicar avisos? </h2>
-                  <ul>
-                    <li>
-                      {" "}
-                      Puedes hacer visible tus necesidades mediante avisos y asá
-                      trabajadores te contactarán para hacer un pololito
-                    </li>                   
-               
-                  </ul>
-                  <div className="float-start">
-                  <Button
-                  href="/register"
-                className="btn btn-warning btn-lg btn3d "               
-              >
-                ¡Vamos!
-              </Button>
-              </div>
-                </div>
-              </Collapse>
+          <Row>
+            <div className="section-header">
+              <h2 className="section-title">Lo que puedes encontrar</h2>
+              <p className="section-description">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br />{" "}
+                Ipsa aperiam, dolorum harum nobis consequuntur inventore ad vero
+                natus.
+              </p>
             </div>
-            <div className="infoBlurb text-start">
-              <Button
-                className="btn btn-warning btn-lg btn3d"
-                onClick={() => setOpenPololito(!openPololito)}
-                aria-controls="collapsePololito"
-                aria-expanded={openPololito}
-              >
-                Hacer un Pololito
-              </Button>
-              <Collapse className="aaa" in={openPololito}>
-                <div id="collapsePololito">
-                  <h2> ¿Quieres hacer pololitos? </h2>
-                  <ul>
-                    <li>
-                      {" "}
-                      Crea un Perfil de Trabajador a través del cual otros
-                      usuarios podrán encontrarte en los rubros que definas
-                    </li>
-                    <li>
-                      {" "}
-                      Filtra avisos de trabajo según tus habilidades o según la
-                      comuna para encontrar el trabajo perfecto para ti
-                    </li>
-                  </ul>
-                  <div className="float-end">
-                  <Button
-                  href="/register"
-                className="btn btn-warning btn-lg btn3d "               
-              >
-                ¡Vamos!
-              </Button>
-              </div>
-                </div>
-              </Collapse>
-            </div>
-          </div>
+          </Row>
+          <Row>
+            <Col>
+              <Card className="services-card">
+                <Card.Body className="services-card-body">
+                  <BiReceipt className="services-icons"></BiReceipt>
+                  <Card.Title className="services-card-title">
+                    Titulo 1
+                  </Card.Title>
+                  <Card.Text className="services-card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae optio quo aliquam quidem iusto consequuntur nisi?
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col>
+              <Card className="services-card">
+                <Card.Body className="services-card-body">
+                  <BiSearchAlt className="services-icons"></BiSearchAlt>
+                  <Card.Title className="services-card-title">
+                    Titulo 2
+                  </Card.Title>
+                  <Card.Text className="services-card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae optio quo aliquam quidem iusto consequuntur nisi?
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col>
+              <Card className="services-card">
+                <Card.Body className="services-card-body">
+                  <BiTime className="services-icons"></BiTime>
+                  <Card.Title className="services-card-title">
+                    Titulo 3
+                  </Card.Title>
+                  <Card.Text className="services-card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae optio quo aliquam quidem iusto consequuntur nisi?
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col>
+              <Card className="services-card">
+                <Card.Body className="services-card-body">
+                  <BiTrophy className="services-icons"></BiTrophy>
+                  <Card.Title className="services-card-title">
+                    Titulo 4
+                  </Card.Title>
+                  <Card.Text className="services-card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae optio quo aliquam quidem iusto consequuntur nisi?
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
         </Container>
       </section>
-      <section className="workers-wrapper">
+      <section className="workers-wrapper" id="trabajadores">
         <Container>
-          <h2 className="workers-title text-center mb-5">
-            Personas que han hecho pololitos
-          </h2>
+          <div className="section-header">
+            <h2 className="section-title">Personas ya trabajando</h2>
+            <p className="section-description">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br />{" "}
+              Ipsa aperiam, dolorum harum nobis consequuntur inventore ad vero
+              natus.
+            </p>
+          </div>
           <div className="workers-content">
             <Carousel
               className="py-4"
@@ -145,51 +149,57 @@ function LandingPage() {
               renderButtonGroupOutside={false}
               renderDotsOutside={false}
             >
-    
-                {store.workersProfiles.map((workersProfiles) => (
-
-                  <WCard
-                    key={workersProfiles.Worker_id}
-                    title={workersProfiles.Title}
-                    name={workersProfiles.name}
-                    lastname={workersProfiles.last}
-                    contact={workersProfiles.mail}
-                  />
-
-                ))}
-    
+              {store.workersProfiles.map((workersProfiles) => (
+                <WCard
+                  key={workersProfiles.Worker_id}
+                  title={workersProfiles.Title}
+                  name={workersProfiles.name}
+                  lastname={workersProfiles.last}
+                  contact={workersProfiles.mail}
+                />
+              ))}
             </Carousel>
           </div>
         </Container>
       </section>
       <footer className="footer-wrapper">
         <Container>
-        <Row>
+          <Row>
             <Col>
-                <h3>¿Necesitas ayuda o tienes una pregunta?</h3>
-                <p>Contactanos en redes sociales</p>
-                <div className="rrss-box">
-                    <a href="https://facebook.com" target="_blank" className="rrss"><FaFacebook /></a>
-                    <a href="https://twitter.com" target="_blank" className="rrss"><FaTwitter /></a>
-                    <a href="https://instagram.com" target="_blank" className="rrss"><FaInstagram /></a>
-                </div>
+              <h3>¿Necesitas ayuda o tienes una pregunta?</h3>
+              <p>Contactanos en redes sociales</p>
+              <div className="rrss-box">
+                <a href="https://facebook.com" target="_blank" className="rrss">
+                  <FaFacebook className="rrss-icon"/>
+                </a>
+                <a href="https://twitter.com" target="_blank" className="rrss">
+                  <FaTwitter className="rrss-icon" />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  className="rrss"
+                >
+                  <FaInstagram className="rrss-icon" />
+                </a>
+              </div>
             </Col>
             <Col>
-                <h4>Links</h4>
-                <ul className="link-list">
-                    <li className="link-item">Aplicación</li>
-                    <li className="link-item">Avisos</li>
-                    <li className="link-item">Pololitos</li>
-                    <li className="link-item">Contacto</li>
-                </ul>
+              <h4>Links</h4>
+              <ul className="link-list">
+                <li className="link-item">Aplicación</li>
+                <li className="link-item">Avisos</li>
+                <li className="link-item">Pololitos</li>
+                <li className="link-item">Contacto</li>
+              </ul>
             </Col>
             <Col>
-                <h4>Contacto</h4>
+              <h4>Contacto</h4>
             </Col>
-        </Row>
-        <Row>
+          </Row>
+          <Row>
             <span className="divider"></span>
-        </Row>
+          </Row>
           <Row>
             <span className="copy text-center">
               {today.getFullYear()} copyright
