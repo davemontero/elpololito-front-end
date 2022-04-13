@@ -21,17 +21,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
 
 const Register = () => {
-  const {actions, store} = useContext(Context)
-  let navigate = useNavigate()
+  const { actions, store } = useContext(Context);
+  let navigate = useNavigate();
   const [startDate, setStartDate] = useState();
   const [form, setForm] = useState({});
   const [phone, setPhone] = useState();
-  const { rut, updateRut } = useRut();
+  const { rut, updateRut, isValid } = useRut();
   const [showSpinner, setShowSpinner] = useState(false);
 
-  const IsValidateMail = (email) => {
-    actions.EmailExist(email)
-  }
+  const IsValidateMail = () => actions.EmailExist(form.mail);
 
   const ageValidator = (dob) => {
     const today = new Date();
@@ -52,26 +50,47 @@ const Register = () => {
     });
   };
   const handleDate = (date) => {
-    setStartDate(date);
-    setForm({
-      ...form,
-      dob: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
-    });
+    const isOlder = ageValidator(date);
+    isOlder &&
+      (setStartDate(date),
+      setForm({
+        ...form,
+        dob: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+      }));
   };
 
-  const handlePhone = (phone) => {
-    setPhone(phone);
-    setForm({
-      ...form,
-      phone: phone,
-    });
+  const handlePhone = (phone) => setPhone(phone);
+
+  const validatePhone = () => {
+    if (phone !== undefined) {
+      isValidPhoneNumber(phone)
+        ? setForm({
+            ...form,
+            phone: phone,
+          })
+        : (swal({
+            title: "Error",
+            text: "Ingresa un número valido",
+            icon: "error",
+            timer: 5000,
+          }),
+          setPhone(""));
+    }
   };
 
   const handleRUT = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: removeSeparators(rut.raw),
-    });
+    isValid
+      ? setForm({
+          ...form,
+          [e.target.name]: removeSeparators(rut.raw),
+        })
+      : (swal({
+          title: "Error",
+          text: "Ingresa un RUT valido",
+          icon: "error",
+          timer: 5000,
+        }),
+        updateRut(""));
   };
 
   const popover = (
@@ -101,65 +120,88 @@ const Register = () => {
     </Popover>
   );
 
-  const handleRegister = (e) => {
-    e.preventDefault()
-  };
-  function handleSubmit(event) {
-    event.preventDefault();
-    actions.EmailExist(form.mail)
-    store.EmailIsValid ?
-    fetch("http://localhost:5000/create-person", {
-      "method": "POST",
-      "headers": {
-        "Content-Type": "application/json"
-      },
-      "body": JSON.stringify(form)
-    })
-      .then(response => response.json())
-      .then(response => {
-        response.status ?
-          swal({
-            title: "Exito",
-            text: response.msg,
-            icon: "success",
-            timer: 5000,
-            button: "good"
-          }).then(() => navigate("/login")) :
+  const handleRegister = e => {
+    e.preventDefault();
+    setShowSpinner(true);
+    if (
+      !form.fname ||
+      !form.lname ||
+      !form.rut ||
+      !form.dob ||
+      !form.phone ||
+      !form.gender ||
+      !form.mail ||
+      !form.password
+    ) {
+      swal({
+        title: "Error",
+        text: "No puedes dejar campos obligatorias vacios",
+        icon: "error",
+        timer: 5000,
+      }),
+      setShowSpinner(false)
+    } else {
+      fetch("http://localhost:5000/create-person", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          response.status
+            ? swal({
+                title: "Exito",
+                text: response.msg,
+                icon: "success",
+                timer: 5000,
+                button: "good",
+              }).then(() => navigate("/login"))
+            : swal({
+                title: "Error",
+                text: response.msg,
+                icon: "error",
+                timer: 5000,
+              });
+        })
+        .catch(() =>
           swal({
             title: "Error",
-            text: response.msg,
+            text: "No se pudo enviar su solicitud",
             icon: "error",
-            timer: 5000
+            timer: 5000,
           })
-      })
-      .catch(() => swal({
-        title: "Error",
-        text: "No se pudo enviar su solicitud",
-        icon: "error",
-        timer: 5000
-      }))
-
-      :swal({
-        title: "Error",
-        text: "Ingresar Correo Valido",
-        icon: "error",
-        timer: 5000
-      })
+          )
+          .then(() => setShowSpinner(false));
+    }
   }
-  
+
   return (
     <main className="box-container">
       <div className="box">
-          <Link to="/landing">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-return-left flechita" viewBox="0 0 16 16">
-              <path fillRule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
-            </svg>
-          </Link>
+        <Link to="/landing">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            className="bi bi-arrow-return-left flechita"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"
+            />
+          </svg>
+        </Link>
         <div className="box-title">Registro de usuario</div>
         <Form onSubmit={handleRegister}>
           <Row className="mb-3">
             <Form.Group controlId="formRegisterFirstName" as={Col}>
-              <Form.Label>Primer nombre <span className="span-require">*</span></Form.Label>
+              <Form.Label>
+                Primer nombre <span className="span-require">*</span>
+              </Form.Label>
               <Form.Control
                 type="text"
                 name="fname"
@@ -182,7 +224,9 @@ const Register = () => {
           </Row>
           <Row className="mb-3">
             <Form.Group controlId="formRegisterLastName" as={Col}>
-              <Form.Label>Primer apellido <span className="span-require">*</span></Form.Label>
+              <Form.Label>
+                Primer apellido <span className="span-require">*</span>
+              </Form.Label>
               <Form.Control
                 type="text"
                 name="lname"
@@ -205,7 +249,9 @@ const Register = () => {
           </Row>
           <Row className="mb-3">
             <Form.Group controlId="formRegisterRUT" as={Col}>
-              <Form.Label>RUT <span className="span-require">*</span></Form.Label>
+              <Form.Label>
+                RUT <span className="span-require">*</span>
+              </Form.Label>
               <Form.Control
                 type="text"
                 name="rut"
@@ -218,9 +264,12 @@ const Register = () => {
               />
             </Form.Group>
             <Form.Group controlId="formRegisterDOB" as={Col}>
-              <Form.Label>Fecha de nacimiento <span className="span-require">*</span></Form.Label>
+              <Form.Label>
+                Fecha de nacimiento <span className="span-require">*</span>
+              </Form.Label>
               <DatePicker
                 selected={startDate}
+                name="dob"
                 onChange={handleDate}
                 className="form-control inputCustom"
                 dateFormat="dd-MM-yyyy"
@@ -231,12 +280,16 @@ const Register = () => {
           </Row>
           <Row className="mb-3">
             <Form.Group className="mb-3" controlId="formRegisterPhone" as={Col}>
-              <Form.Label>Teléfono <span className="span-require">*</span></Form.Label>
+              <Form.Label>
+                Teléfono <span className="span-require">*</span>
+              </Form.Label>
               <div>
                 <Input
                   country="CL"
                   value={phone}
+                  name="phone"
                   onChange={handlePhone}
+                  onBlur={validatePhone}
                   rules={{ required: true }}
                   placeholder="9 1234 5678"
                   className="form-control inputCustom"
@@ -249,8 +302,16 @@ const Register = () => {
               controlId="formRegisterGender"
               as={Col}
             >
-              <Form.Label>Genero <span className="span-require">*</span></Form.Label>
-              <Form.Select defaultValue="Elegir..." className="inputCustom" name="gender" onChange={handleChangeform} required >
+              <Form.Label>
+                Genero <span className="span-require">*</span>
+              </Form.Label>
+              <Form.Select
+                defaultValue="Elegir..."
+                className="inputCustom"
+                name="gender"
+                onChange={handleChangeform}
+                required
+              >
                 <option>Elegir...</option>
                 <option value="Mujer">Mujer</option>
                 <option value="Hombre">Hombre</option>
@@ -260,11 +321,14 @@ const Register = () => {
           </Row>
           <div className="dropdown-divider"></div>
           <Form.Group className="my-3" controlId="formRegisterEmail">
-            <Form.Label>Email <span className="span-require">*</span></Form.Label>
+            <Form.Label>
+              Email <span className="span-require">*</span>
+            </Form.Label>
             <Form.Control
               type="email"
               name="mail"
               onChange={handleChangeform}
+              onBlur={IsValidateMail}
               placeholder="isabellagonzalez@dominio.com"
               className="inputCustom"
             />
@@ -298,7 +362,7 @@ const Register = () => {
                 Cargando...
               </Button>
             ) : (
-              <Button type="submit" className="box-btn" onClick={handleSubmit}>
+              <Button type="submit" className="box-btn">
                 Registrar
               </Button>
             )}

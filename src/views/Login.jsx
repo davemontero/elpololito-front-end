@@ -11,7 +11,6 @@ import {
 
 const Login = () => {
   let navigate = useNavigate();
-  const { actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
@@ -24,9 +23,7 @@ const Login = () => {
     leng: false,
   });
 
-  const handleOnChangeUser = (e) => {
-    setEmail(e.target.value)
-  };
+  const handleOnChangeUser = (e) => setEmail(e.target.value);
 
   const handleOnBlurUser = () => {
     const user =
