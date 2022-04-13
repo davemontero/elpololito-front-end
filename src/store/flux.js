@@ -41,7 +41,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }));
       },
       EmailExist: (email) => {
-        fetch(`https://emailvalidation.abstractapi.com/v1/?api_key=07f34a6254f244dea890b1f0eeccbc1c&email=${email}`, {
+        fetch(`https://emailvalidation.abstractapi.com/v1/?api_key=869108da245e44a486d8cea4b95807de&email=${email}`, {
           "method": "GET",
           "headers": {
             "Content-type": "application/json"

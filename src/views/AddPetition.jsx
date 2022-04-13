@@ -27,12 +27,16 @@ const AddPetition = () => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-      user_id: store.id
+      user_id: store.id,
+      
     });
   };
 
+
+
   function handleSubmit(event) {
     event.preventDefault();
+    console.log(form)
     fetch("http://localhost:5000/create-publication", {
       method: "POST",
       headers: {
@@ -91,9 +95,11 @@ const AddPetition = () => {
               Rubro de la Petición
             </label>
             <Form.Select 
+           
+            className="form-control"
             aria-label="Default select example" 
-            id="jobs"
-            name="jobs"
+            id="profession_id"
+            name="profession_id"
             onChange={HandleChange}>   
              <option disabled>Pololitos</option> 
             
