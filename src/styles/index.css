@@ -707,3 +707,16 @@ margin: 5px;
     font-size: 18px;
     color: var(--color-40);
 }
+
+.workers-icon {
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+.workers-text {
+    font-weight: 300;
+}
+
+.ubication-icon {
+    font-size: 25px;
+}

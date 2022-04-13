@@ -2,8 +2,8 @@ import React, { useEffect, useContext, useState } from "react";
 import { Button, Collapse, Container, Card, Row, Col } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import { Context } from "../store/pololitoContext";
-import { BiReceipt, BiSearchAlt, BiTime, BiTrophy } from "react-icons/bi";
-import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
+import { BiReceipt, BiSearchAlt, BiTime, BiTrophy, BiMapPin } from "react-icons/bi";
+import { FaTwitter, FaFacebook, FaInstagram, FaMapMarkedAlt } from "react-icons/fa";
 import { GrMoney, GrAnnounce } from "react-icons/gr";
 import "react-multi-carousel/lib/styles.css";
 import WCard from "../components/WorkerCard";
@@ -116,50 +116,78 @@ function LandingPage() {
       </section>
       <section className="workers-wrapper" id="trabajadores">
         <Container>
-          <div className="section-header">
-            <h2 className="section-title">Personas ya trabajando</h2>
-            <p className="section-description">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br />{" "}
-              Ipsa aperiam, dolorum harum nobis consequuntur inventore ad vero
-              natus.
-            </p>
-          </div>
-          <div className="workers-content">
-            <Carousel
-              className="py-4"
-              swipeable
-              draggable
-              showDots={false}
-              partialVisible
-              responsive={responsive}
-              infinite
-              autoPlaySpeed={5000}
-              keyBoardControl
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              dotListClass="custom-dot-list-style"
-              itemClass="carousel-item-padding-40-px"
-              sliderClass=""
-              slidesToSlide={1}
-              additionalTransfrom={0}
-              arrows
-              focusOnSelect={false}
-              minimumTouchDrag={80}
-              renderButtonGroupOutside={false}
-              renderDotsOutside={false}
-            >
-              {store.workersProfiles.map((workersProfiles) => (
-                <WCard
-                  key={workersProfiles.Worker_id}
-                  title={workersProfiles.Title}
-                  name={workersProfiles.name}
-                  lastname={workersProfiles.last}
-                  contact={workersProfiles.mail}
-                />
-              ))}
-            </Carousel>
-          </div>
+          <Row>
+            <div className="section-header">
+              <h2 className="section-title">Personas ya trabajando</h2>
+              <p className="section-description">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br />{" "}
+                Ipsa aperiam, dolorum harum nobis consequuntur inventore ad vero
+                natus.
+              </p>
+            </div>
+          </Row>
+          <Row>
+            <Col md="5">
+              <Carousel
+                className="py-4"
+                swipeable
+                draggable
+                showDots={false}
+                partialVisible
+                responsive={responsive}
+                infinite
+                autoPlaySpeed={5000}
+                keyBoardControl
+                transitionDuration={500}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                dotListClass="custom-dot-list-style"
+                itemClass="carousel-item-padding-40-px"
+                sliderClass=""
+                slidesToSlide={1}
+                additionalTransfrom={0}
+                arrows
+                focusOnSelect={false}
+                minimumTouchDrag={80}
+                renderButtonGroupOutside={false}
+                renderDotsOutside={false}
+              >
+                {store.workersProfiles.map((workersProfiles) => (
+                  <WCard
+                    key={workersProfiles.Worker_id}
+                    title={workersProfiles.Title}
+                    name={workersProfiles.name}
+                    lastname={workersProfiles.last}
+                    contact={workersProfiles.mail}
+                  />
+                ))}
+              </Carousel>
+            </Col>
+            <Col md="7">
+              <Row className="justify-content-around g-4">
+                <Card style={{ width: "18rem", border: 0 }}>
+                  <Card.Body>
+                    <GrAnnounce className="workers-icon" />
+                    <Card.Title>Busca avisos</Card.Title>
+                    <Card.Text className="workers-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+                <Card style={{ width: "18rem", border: 0 }}>
+                  <Card.Body>
+                    <GrMoney className="workers-icon" />
+                    <Card.Title>Dinero extra</Card.Title>
+                    <Card.Text className="workers-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Row>
+            </Col>
+          </Row>
         </Container>
       </section>
       <footer className="footer-wrapper">
@@ -170,7 +198,7 @@ function LandingPage() {
               <p>Contactanos en redes sociales</p>
               <div className="rrss-box">
                 <a href="https://facebook.com" target="_blank" className="rrss">
-                  <FaFacebook className="rrss-icon"/>
+                  <FaFacebook className="rrss-icon" />
                 </a>
                 <a href="https://twitter.com" target="_blank" className="rrss">
                   <FaTwitter className="rrss-icon" />
@@ -185,16 +213,11 @@ function LandingPage() {
               </div>
             </Col>
             <Col>
-              <h4>Links</h4>
-              <ul className="link-list">
-                <li className="link-item">Aplicación</li>
-                <li className="link-item">Avisos</li>
-                <li className="link-item">Pololitos</li>
-                <li className="link-item">Contacto</li>
-              </ul>
-            </Col>
-            <Col>
-              <h4>Contacto</h4>
+              <h4>Ubicación</h4>
+              <div>
+                  <BiMapPin className="ubication-icon" />
+                  <span> Av. Manquehue Sur 350, Oficina 110, Las Condes</span>
+              </div>
             </Col>
           </Row>
           <Row>
