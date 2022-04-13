@@ -4,6 +4,7 @@
     --primary: #8b85ff;
     --primary-rgb: rgb(139, 133, 255);
     --primary-complement: #00B4E1;
+    --primary-complement-rgb: rgb(0, 180, 225);
     --secondary: #EEEEEE;
     --secondary-complement: #051329;
     --accent-1: #ffb02e;
@@ -544,8 +545,7 @@ margin: 5px;
 }
 
 .rrss{
-    background-color: var(--bs-gray);
-    color: var(--bs-light);
+    background-color: var(--secondary);
     width: 40px !important;
     height: 40px;
     border-radius: 20px;
@@ -559,14 +559,24 @@ margin: 5px;
     position: absolute;
     top: 10px;
     left: 10px;
+    color: var(--primary);
 }
 
 .rrss:hover {
     color: var(--bs-light);
+    animation-name: rrss-animation;
+    animation-duration: .3s;
 }
 
+@keyframes rrss-animation {
+    0%   {transform: rotate(90deg);}
+    25%  {transform: rotate(180deg);}
+    50%  {transform: rotate(270deg);}
+    100% {transform: rotate(360deg);}
+  }
+
 .divider {
-    border-top: 1px solid var(--divider);
+    border-top: 1px solid var(--primary);
     margin: 20px 0 0 0;
 }
 
@@ -685,7 +695,13 @@ margin: 5px;
 
 .services-card {
     border: none;
-    box-shadow: rgba(139, 133, 255, 0.5) 0px 20px 25px -5px, rgba(139, 133, 255, 0.3) 0px 10px 10px -5px;
+    box-shadow: rgba(139, 133, 255, 0.5) 0px 20px 25px -5px, rgba(0, 180, 225, 0.3) 0px 10px 10px -5px;
+    transition: transform 0.45s ease-in-out;
+}
+
+.services-card:hover{
+    transform: scale(1.08);
+    cursor: pointer;
 }
 
 .services-card-body {
