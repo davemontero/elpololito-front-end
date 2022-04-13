@@ -49,7 +49,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
           .then(response => 
             response.json()
-          ).then((data)=>setStore({EmailIsValid : data.is_smtp_valid.value  }))
+          ).then((data)=>setStore({EmailIsValid : data.is_smtp_valid.value}))
           .catch(err => {
             console.log(err);
           });
