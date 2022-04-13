@@ -13,7 +13,6 @@ import {
 import HomeAvisos from "../components/HomeAvisos";
 // import HomeWorkers from "../components/HomeWorkers"
 import NavbarApp from "../components/NavbarApp";
-import { Context } from "../store/pololitoContext";
 
 const Home = () => {
   const [key, setKey] = useState("trabajador");

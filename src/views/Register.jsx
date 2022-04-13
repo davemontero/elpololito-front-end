@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import {
@@ -15,17 +15,23 @@ import { BsQuestionCircle } from "react-icons/bs";
 import Input, { isValidPhoneNumber } from "react-phone-number-input/input";
 import { useRut, removeSeparators } from "react-rut-formatter";
 import { useNavigate, Link } from "react-router-dom";
+import { Context } from "../store/pololitoContext";
 import swal from "sweetalert";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
 
 const Register = () => {
+  const {actions, store} = useContext(Context)
   let navigate = useNavigate()
   const [startDate, setStartDate] = useState();
   const [form, setForm] = useState({});
   const [phone, setPhone] = useState();
   const { rut, updateRut } = useRut();
   const [showSpinner, setShowSpinner] = useState(false);
+
+  const IsValidateMail = (email) => {
+    actions.EmailExist(email)
+  }
 
   const ageValidator = (dob) => {
     const today = new Date();
@@ -98,9 +104,10 @@ const Register = () => {
   const handleRegister = (e) => {
     e.preventDefault()
   };
-
   function handleSubmit(event) {
     event.preventDefault();
+    actions.EmailExist(form.mail)
+    store.EmailIsValid ?
     fetch("http://localhost:5000/create-person", {
       "method": "POST",
       "headers": {
@@ -132,7 +139,14 @@ const Register = () => {
         timer: 5000
       }))
 
+      :swal({
+        title: "Error",
+        text: "Ingresar Correo Valido",
+        icon: "error",
+        timer: 5000
+      })
   }
+  
   return (
     <main className="box-container">
       <div className="box">

@@ -27,7 +27,11 @@ const HomeAvisos = () => {
             "headers": {
                 "Content-type": "application/json"
             },
-            "body": JSON.stringify(Pololito)
+            "body": JSON.stringify({
+                "status": true,
+                "user_id": store.id,
+                "pub_id": pub_id
+            })
         })
             .then(response =>
                 response.ok ?

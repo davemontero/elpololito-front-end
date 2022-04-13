@@ -22,4 +22,4 @@ const useAuth = () => {
 	}
 	
 
-	export default PublicRoutes;;
+	export default PublicRoutes;

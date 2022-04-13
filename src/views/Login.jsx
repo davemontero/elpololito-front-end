@@ -24,7 +24,9 @@ const Login = () => {
     leng: false,
   });
 
-  const handleOnChangeUser = (e) => setEmail(e.target.value);
+  const handleOnChangeUser = (e) => {
+    setEmail(e.target.value)
+  };
 
   const handleOnBlurUser = () => {
     const user =

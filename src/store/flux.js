@@ -3,9 +3,10 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       publications: [],
       workersProfiles: [],
-      username:"",
-      id:0,
-      mail:""
+      username: "",
+      id: 0,
+      mail: "",
+      EmailIsValid:false
     },
     actions: {
       readWorkersProfiles: () => {
@@ -33,10 +34,26 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         })
           .then(response => response.json())
-          .then(data => setStore({ username: data[0].name,
-                                   id: data[0].id,
-                                   mail: data[0].mail}));
-      }
+          .then(data => setStore({
+            username: data[0].name,
+            id: data[0].id,
+            mail: data[0].mail
+          }));
+      },
+      EmailExist: (email) => {
+        fetch(`https://emailvalidation.abstractapi.com/v1/?api_key=07f34a6254f244dea890b1f0eeccbc1c&email=${email}`, {
+          "method": "GET",
+          "headers": {
+            "Content-type": "application/json"
+          }
+        })
+          .then(response => 
+            response.json()
+          ).then((data)=>setStore({EmailIsValid : data.is_smtp_valid.value  }))
+          .catch(err => {
+            console.log(err);
+          });
+      } 
 
     }
   };
