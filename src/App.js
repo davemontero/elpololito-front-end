@@ -1,18 +1,49 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle"
-import Header from "./components/Header"
-import LandingPage from "./views/LandingPage";
+import "bootstrap/dist/js/bootstrap.bundle";
 import injectContext from "./store/pololitoContext";
 import "react-toastify/dist/ReactToastify.css";
-
+import VisitPage from "./views/visitPage";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./views/Home";
+import Login from "./views/Login";
+import LostPassword from "./views/LostPassword";
+import MisAvisos from "./views/MisAvisos";
+import MisPololitos from "./views/MisPololitos";
+import AddPetition from "./views/AddPetition";
+import ResetPassword from "./views/ResetPassword";
+import WhoAmI from "./views/WhoAmI";
+import ProtectedRoutes from "./components/ProtectedRoute";
+import PublicRoutes from "./components/PublicRoute";
+import Register from "./views/Register.jsx"
 
 const App = () => {
-    return <>
-        <Header />
-        <LandingPage/>
-</>
-}
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          {/** Protected Routes */}
+          <Route path="/" element={<ProtectedRoutes />}>
+            <Route path="/" element={<Navigate replace to="landing" />} />
+            <Route path="/home" element={<Home />}></Route>
+            <Route path="/publications" element={<MisAvisos />}></Route>
+            <Route path="/pololitos" element={<MisPololitos />}></Route>
+            <Route path="/petition" element={<AddPetition />}></Route>
+            <Route path="/who_am_i" element={<WhoAmI />}></Route>
+          </Route>
+          {/** Public Routes */}
+          <Route path="/" element={<PublicRoutes />}>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/forgot-password" element={<LostPassword />}></Route>
+            <Route path="/reset-password" element={<ResetPassword />}></Route>
+            <Route path="/landing" element={<VisitPage />}></Route>
+            <Route path="*" element={<p>Nada por aquí: error 404!</p>} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+};
 
 export default injectContext(App);

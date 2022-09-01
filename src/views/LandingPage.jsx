@@ -1,211 +1,187 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Collapse from 'react-bootstrap/Collapse';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Carousel from 'react-bootstrap/Carousel';
-import Card from 'react-bootstrap/Card';
+import React, { useEffect, useContext, useState } from "react";
+import { Button, Collapse, Container, Card, Row, Col } from "react-bootstrap";
+import Carousel from "react-multi-carousel";
+import { Context } from "../store/pololitoContext";
+import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa"
+import "react-multi-carousel/lib/styles.css";
+import WCard from "../components/WorkerCard";
 
 function LandingPage() {
-    const [openAviso, setOpenAviso] = useState(false);
-    const [openPololito, setOpenPololito] = useState(false);
+  const [openAviso, setOpenAviso] = useState(false);
+  const [openPololito, setOpenPololito] = useState(false);
+  const today = new Date();
+  const { store, actions } = useContext(Context);
+  const responsive = {
+    desktoplg: {
+      breakpoint: { max: 3000, min: 1400 },
+      items: 4,
+      partialVisibilityGutter: 40,
+    },
+    desktop: {
+      breakpoint: { max: 1400, min: 950 },
+      items: 3,
+      partialVisibilityGutter: 40,
+    },
+    tablet: {
+      breakpoint: { max: 950, min: 720 },
+      items: 2,
+      partialVisibilityGutter: 80,
+    },
+    mobile: {
+      breakpoint: { max: 720, min: 0 },
+      items: 1,
+      partialVisibilityGutter: 70,
+    },
+  };
 
-    return (
-        <>
-            <Container fluid='md' >
-                <br />
-                <br />
-                <br />
-                <br />
-                <Row>
-                    <Col mx-auto="true">
-                        <h2 className='text-center'>Hoy Quiero...</h2>
-                    </Col>
-                </Row>
-                <br />
-                <br />
-                <br />
-                <br />
-                <Row>
-                <Col xs={{ span: 5, offset: 2 }}>
-                        <div className='infoBlurb'>
-                            <Button
-                                className="btn btn-warning btn-lg btn3d"
-                                onClick={() => setOpenAviso(!openAviso)}
-                                aria-controls="collapseAviso"
-                                aria-expanded={openAviso}
-                                
-                                >
-                                        Publicar un Aviso
-                            </Button>
-                            <Collapse className="aaa" 
-                            in={openAviso}>
-                                <div id="collapseAviso">
-                                    <h2> ¿Quieres publicar avisos? </h2>
-                                    <ul>
-                                        <li> Puedes hacer visible tus necesidades mediante avisos y asi trabajadores te contactaran, para realizar un pololito</li>
-                                    </ul>    
-                                    </div>                   
-                            </Collapse>
-                            </div>  
-                    </Col>
-                    <Col xs={{ span: 5 }}>
-                        <div className='infoBlurb'>
-                            <Button
-                                className="btn btn-warning btn-lg btn3d"
-                                onClick={() => setOpenPololito(!openPololito)}
-                                aria-controls="collapsePololito"
-                                aria-expanded={openPololito}
-                            >
-                                Hacer un Pololito
-                            </Button>
-                            <Collapse className="aaa"  in={openPololito}>
-                                <div id="collapsePololito">
-                                    <h2> ¿Quieres realizar pololitos? </h2>
-                                    <ul>
-                                        <li> Crea un Perfil de Trabajador a través del cual otros usuarios podrán encontrarte en los rubros que definas</li>
-                                        <li> Filtra avisos de trabajo según tus habilidades o según la comuna para encontrar el trabajo perfecto para ti</li>
-                                    </ul>
-                                </div>
-                            </Collapse>
-                        </div>
-                    </Col>
-                </Row>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <Row>
-                    <Col mx-auto="true">
-                        <h2 className='text-center'>O encuentra Exactamente lo que buscas!</h2>
-                    </Col>
-                </Row>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <Row>
-                    <h2>Trabajadores</h2>
-                </Row>
-                <br />
-                <Row>
-                    <Col >
-                        <Carousel id="carousel-trabajadores" variant="dark" align="center">
-                            <Carousel.Item>
-                                <Card style={{ width: '24rem' }}>
-                                    <Card.Img className="img-fluid" variant="top" src="https://cdn.geeksterra.com/q:i/r:1/wp:1/w:380/u:https://geeksterra.com/wp-content/uploads/2021/04/Goku-trabajando.jpg" />
-                                    <Card.Body>
-                                        <Card.Title>Son Gokú</Card.Title>
-                                        <Card.Text>
-                                            Granjero
-                                        </Card.Text>
-                                        <div>
-                                            <Link to="SignUp" className="btn btn-primary">Contactar</Link>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <Card style={{ width: '24rem' }}>
-                                    <Card.Img className="img-fluid" variant="top" src="https://1.bp.blogspot.com/--nN9E8LB86c/X7Ewn5GEGmI/AAAAAAAAGLc/ueRKDW39iUg_5uBBtUANVOv0jMsBufeIQCLcBGAsYHQ/s1280/Frodo%2BBaggins.png" />
-                                    <Card.Body>
-                                        <Card.Title>Frodo Baggins</Card.Title>
-                                        <Card.Text>
-                                            Realiza entregas en todo Santiago
-                                        </Card.Text>
-                                        <div>
-                                            <Link to="SignUp" className="btn btn-primary">Contactar</Link>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <Card style={{ width: '24rem' }}>
-                                    <Card.Img className="img-fluid" variant="top" src="https://www.infofueguina.com/u/fotografias/m/2021/4/2/f850x638-80410_157899_5050.jpeg" />
-                                    <Card.Body>
-                                        <Card.Title>Mario Mario</Card.Title>
-                                        <Card.Text>
-                                            Plomero, Tenista, Golfista, Jardinero, Cazafantasmas, Medallista Olímpico...
-                                        </Card.Text>
-                                        <div>
-                                            <Link to="SignUp" className="btn btn-primary">Contactar</Link>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </Carousel.Item>
-                        </Carousel>
-                    </Col>
-                </Row>
-                <br />
-                <br />
-                <br />
-                <Row>
-                    <h2>Avisos</h2>
-                </Row>
-                <br />
-                <Row>
-                    <Col >
-                        <Carousel id="carousel-avisos" variant="dark" align="center">
-                            <Carousel.Item>
-                                <Card style={{ width: '18rem' }}>
-                                    <Card.Body>
-                                        <Card.Title>Se busca Jardinero</Card.Title>
-                                        <Card.Text>
-                                            Santiago. Comuna de Maipú.
-                                        </Card.Text>
-                                        <Button variant="primary">Contactar</Button>
-                                    </Card.Body>
-                                </Card>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <Card style={{ width: '18rem' }}>
-                                    <Card.Body>
-                                        <Card.Title>Necesito una niñera de 4 a 8</Card.Title>
-                                        <Card.Text>
-                                            Santiago. Comuna de Las Condes. Días Lunes, Martes, y Jueves.
-                                        </Card.Text>
-                                        <Button variant="primary">Contactar</Button>
-                                    </Card.Body>
-                                </Card>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <Card style={{ width: '18rem' }}>
-                                    <Card.Body>
-                                        <Card.Title>se busca gf 10gp</Card.Title>
-                                        <Card.Text>
-                                            Meet at GE
-                                        </Card.Text>
-                                        <Button variant="primary">Contactar</Button>
-                                    </Card.Body>
-                                </Card>
-                            </Carousel.Item>
-                        </Carousel>
-                    </Col>
-                </Row>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <Row>
-                    <h2>Más Información</h2>
-                    <br />
-                    <p>One Piece es un manga escrito e ilustrado por Eiichirō Oda y actualmente es el manga más comprado en el mundo. Comenzó a publicarse en la revista japonesa Weekly Shōnen Jump el 22 de julio de 1997 y a la fecha se han publicado 101 volúmenes. Por otra parte, Toei Animation realiza el anime que adapta el manga, siendo transmitido en Fuji TV desde el 20 de octubre de 1999 hasta la actualidad. Larp Editores licenció el manga en Argentina y posteriormente fue retomado por Ivrea. En España principalmente la publicación estaba a manos de Planeta DeAgostini y después pasó a manos de Planeta Cómic el cual se encarga actualmente de su publicación. En México fue publicado por Editorial Toukan en un principio y, más tarde, por Panini Comics.2
+  useEffect(() => {
+    actions.readWorkersProfiles();
+  }, []);
 
-                        One Piece es el manga más vendido de la revista Shonen Jump, (la más importante, reconocida y vendida del medio), de la editorial Shueisha, y de la historia, con más de 490 millones3​ de copias vendidas a nivel mundial, (400 millones en Japón, y 90 millones en 58 países) y en Japón fue el manga más vendido de manera consecutiva desde el año 2007 hasta 2018 logrando un récord histórico. En la encuesta realizada por la Agencia de Cultura Japonesa sobre los cincuenta mejores animes y mangas de Japón, One Piece alcanzó el puesto número 11.4​ El anime también ha contado con varios reconocimientos. En el ranking publicado por TV Asahi de 2005 sobre los 100 animes más conocidos de todos los tiempos, basado a una encuesta en línea en Japón, One Piece alcanzó el puesto número 6.5​ En 2016 era el décimo anime más largo de la historia.6​7​ y el que más ganancias ha reportado a su autor ostentando el récord Guinness como el manga más vendido de la historia del mundo.</p>
-                </Row>
-            </Container>
-        </>
-    );
+  return (
+    <>
+      <section className="userPanel-wrapper">
+        <Container>
+          <h2 className="userPanel-title text-center mb-5">
+            Lo que puedes hacer
+          </h2>
+          <div className="userPanel-content d-flex justify-content-around mb-5">
+            <div className="infoBlurb text-start">
+              <Button
+                className="btn btn-warning btn-lg btn3d"
+                onClick={() => setOpenAviso(!openAviso)}
+                aria-controls="collapseAviso"
+                aria-expanded={openAviso}
+              >
+                Publicar un Aviso
+              </Button>
+              <Collapse className="aaa" in={openAviso}>
+                <div id="collapseAviso">
+                  <h2> ¿Quieres publicar avisos? </h2>
+                  <ul>
+                    <li>
+                      {" "}
+                      Puedes hacer visible tus necesidades mediante avisos y asi
+                      trabajadores te contactaran, para realizar un pololito
+                    </li>
+                  </ul>
+                </div>
+              </Collapse>
+            </div>
+            <div className="infoBlurb text-start">
+              <Button
+                className="btn btn-warning btn-lg btn3d"
+                onClick={() => setOpenPololito(!openPololito)}
+                aria-controls="collapsePololito"
+                aria-expanded={openPololito}
+              >
+                Hacer un Pololito
+              </Button>
+              <Collapse className="aaa" in={openPololito}>
+                <div id="collapsePololito">
+                  <h2> ¿Quieres realizar pololitos? </h2>
+                  <ul>
+                    <li>
+                      {" "}
+                      Crea un Perfil de Trabajador a través del cual otros
+                      usuarios podrán encontrarte en los rubros que definas
+                    </li>
+                    <li>
+                      {" "}
+                      Filtra avisos de trabajo según tus habilidades o según la
+                      comuna para encontrar el trabajo perfecto para ti
+                    </li>
+                  </ul>
+                </div>
+              </Collapse>
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="workers-wrapper">
+        <Container>
+          <h2 className="workers-title text-center mb-5">
+            Personas que han hecho pololitos
+          </h2>
+          <div className="workers-content">
+            <Carousel
+              className="py-4"
+              swipeable
+              draggable
+              showDots={false}
+              partialVisible
+              responsive={responsive}
+              infinite
+              autoPlaySpeed={5000}
+              keyBoardControl
+              transitionDuration={500}
+              containerClass="carousel-container"
+              removeArrowOnDeviceType={["tablet", "mobile"]}
+              dotListClass="custom-dot-list-style"
+              itemClass="carousel-item-padding-40-px"
+              sliderClass=""
+              slidesToSlide={1}
+              additionalTransfrom={0}
+              arrows
+              focusOnSelect={false}
+              minimumTouchDrag={80}
+              renderButtonGroupOutside={false}
+              renderDotsOutside={false}
+            >
+    
+                {store.workersProfiles.map((workersProfiles) => (
+
+                  <WCard
+                    key={workersProfiles.Worker_id}
+                    title={workersProfiles.Title}
+                    name={workersProfiles.name}
+                    lastname={workersProfiles.last}
+                    contact={workersProfiles.mail}
+                  />
+
+                ))}
+    
+            </Carousel>
+          </div>
+        </Container>
+      </section>
+      <footer className="footer-wrapper">
+        <Container>
+        <Row>
+            <Col>
+                <h3>¿Necesitas ayuda o tienes una pregunta?</h3>
+                <p>Contactanos en redes sociales</p>
+                <div className="rrss-box">
+                    <a href="https://facebook.com" target="_blank" className="rrss"><FaFacebook /></a>
+                    <a href="https://twitter.com" target="_blank" className="rrss"><FaTwitter /></a>
+                    <a href="https://instagram.com" target="_blank" className="rrss"><FaInstagram /></a>
+                </div>
+            </Col>
+            <Col>
+                <h4>Links</h4>
+                <ul className="link-list">
+                    <li className="link-item">Aplicación</li>
+                    <li className="link-item">Avisos</li>
+                    <li className="link-item">Pololitos</li>
+                    <li className="link-item">Contacto</li>
+                </ul>
+            </Col>
+            <Col>
+                <h4>Contacto</h4>
+            </Col>
+        </Row>
+        <Row>
+            <span className="divider"></span>
+        </Row>
+          <Row>
+            <span className="copy text-center">
+              {today.getFullYear()} copyright
+            </span>
+          </Row>
+        </Container>
+      </footer>
+    </>
+  );
 }
-
 
 export default LandingPage;
